@@ -1,0 +1,47 @@
+<form class="add_bank_ac"
+(ngSubmit)="submitted(bankF)"
+ #bankF="ngForm"
+>
+  <div class="text_cards_acs">
+    Add a bank account
+  </div>
+
+  <div class="card_details">
+
+    <div class="div_control">
+      <div class="the_title">
+        Bank name
+      </div>
+      <div class="fields form_full">
+        <span>
+          <input type="text" class="form_input" name="bank_name" ngModel placeholder="Bank Name" required>
+        </span>
+      </div>
+    </div>
+
+    <div class="div_control">
+      <div class="the_title">
+        Bank account number
+      </div>
+      <div class="fields form_full">
+        <span>
+          <input type="text" class="form_input" name="number" (keypress)="_keyPress($event)" placeholder="Bank account number" ngModel required>
+        </span>
+      </div>
+    </div>
+
+    <div class="div_control">
+      <div class="the_title">
+        IFBN
+      </div>
+      <div class="fields">
+        <span>
+          <input type="text" class="form_input" name="ifbn" placeholder="IFBN" ngModel required>
+        </span>
+      </div>
+    </div>
+
+  </div>
+  <button type="submit" class="btn btn_custom_add adjust_margin" [disabled]="bankF.form.invalid">Add bank account</button>
+
+</form>

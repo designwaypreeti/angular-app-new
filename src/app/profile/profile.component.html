@@ -1,0 +1,178 @@
+<div class="center_state_div">
+  <div class="container">
+    <h1 class="the_title_left">Profile</h1>
+    <div class="the_white_container">
+      <div class="acsetting">
+        <div class="top_title">
+          Account settings
+        </div>
+        <div class="sub_title">
+          All the important details of your event go here
+        </div>
+      </div>
+      <div class="tab_section">
+
+        <ul class="nav nav-tabs">
+          <li [ngClass]="{'active':tab === 1}">
+            <a data-toggle="tab" (click)="changeTab(1)">GENERAL</a>
+          </li>
+          <li [ngClass]="{'active':tab === 2}">
+            <a data-toggle="tab" (click)="changeTab(2)">SUBSCRIPTION</a>
+          </li>
+          <li [ngClass]="{'active':tab === 3}">
+            <a data-toggle="tab" (click)="changeTab(3)">CARD DETAILS</a>
+          </li>
+          <li [ngClass]="{'active':tab === 4}">
+            <a data-toggle="tab" (click)="changeTab(4)">BANK DETAILS</a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="tab1" class="tab-pane fade" [ngClass]="{'in active':tab === 1}">
+            <h3 class="hide">GENERAL</h3>
+            <form class="general_form" (ngSubmit)="submitGeneral(gf)" #gf="ngForm">
+
+              <div class="div_control_containers">
+                <div class="div_control">
+                  <div class="the_title">
+                    Full name
+                  </div>
+                  <div class="fields form_full">
+                    <span>
+                      <input type="text" class="form_input" [ngModel]="user ? user.name:''" name="name" placeholder="Full Name" required>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="div_control">
+                  <div class="the_title">
+                    Email address
+                  </div>
+                  <div class="fields form_full">
+                    <span>
+                      <input type="text" class="form_input" [ngModel]="user ? user.email:''" name="email" placeholder="Email" email requried>
+                    </span>
+                  </div>
+                </div>
+                <div class="div_control"  *ngIf="changePass">
+                  <div class="the_title">
+                    Old Password
+                  </div>
+                  <div class="fields form_full">
+                    <span>
+                      <input type="password" class="form_input" ngModel name="oldpassword" placeholder="* * * * * * * * * * * *"  requried>
+                    </span>
+                  </div>
+                </div>
+                <div class="div_control" *ngIf="changePass">
+                  <div class="the_title">
+                    New Password
+                  </div>
+                  <div class="fields form_full">
+                    <span>
+                      <input type="password" class="form_input" ngModel name="newpassword" placeholder="* * * * * * * * * * * *" requried>
+                    </span>
+                  </div>
+                </div>
+                <div class="div_control" >
+                  <div class="the_title" *ngIf="!changePass">
+                    Password
+                  </div>
+                  <div class="fields flexstart">
+                    <span class="pass pass_text" *ngIf="!changePass">
+                      <input type="password" disabled class="form_input"  placeholder="* * * * * * * * * * * *">
+                    </span>
+                    <span class="pass pass_link">
+                      <a class="change_pass" (click)="changePass=!changePass">{{(changePass)?'Cancel':'Change password'}}</a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" [disabled]="gf.invalid" class="btn btn_custom_add">Save changes</button>
+
+            </form>
+
+          </div>
+          <div id="tab2" class="tab-pane fade" [ngClass]="{'in active':tab === 2}">
+            <h3 class="hide">SUBSCRIPTION</h3>
+
+            <div class="tab_plans_container">
+              <div class="plans_container">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-3" *ngFor="let plan of subs">
+                    <app-profile-subscription [plan]="plan" (click)="selectPlan(plan)"></app-profile-subscription>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div id="tab3" class="tab-pane fade" [ngClass]="{'in active':tab === 3}">
+            <h3 class="hide">CARD DETAILS</h3>
+
+            <div class="card_details_container">
+              <div class="text_saved_cards">
+                Saved cards
+              </div>
+              <div class="row">
+
+                <div class="col-sm-4" *ngFor="let card of cards">
+                  <app-profile-card [card]=card></app-profile-card>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="add_card" (click)="showModal()">
+                    <div class="add_text">
+                      <img src="/assets/images/plus.svg" />
+                      <span class="span_text">Add another card</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <div id="tab4" class="tab-pane fade" [ngClass]="{'in active':tab === 4}">
+            <h3 class="hide">BANK DETAILS</h3>
+            <div class="bank_details_container">
+              <div class="bank_details">
+                <div class="row">
+                  <div class="col-sm-7">
+
+                    <app-profile-bank-details (bankAdded)="bankAdded($event)"></app-profile-bank-details>
+
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="saved_ac">
+                      <div class="text_cards_acs">
+                        Saved accounts
+                      </div>
+                      <div class="outer_contain">
+
+                        <app-profile-bank-details-card 
+                            *ngFor="let bank of banks" 
+                            [bank]="bank"
+                            (deleteBank)="deleteBank($event)"
+                            >
+                        </app-profile-bank-details-card>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <app-card-modal *ngIf="shown" [shown]="shown" (cardAdded)="cardAdded($event)" (hideModal)="hideModal($event)"></app-card-modal>
+
+      </div>
+    </div>
+  </div>
+</div>

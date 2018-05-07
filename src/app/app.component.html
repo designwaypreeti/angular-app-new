@@ -1,0 +1,76 @@
+<div
+[ngClass]="{
+  'bg_color_grey':loginPathHide === true,
+  'loginBody': loginPathHide === false
+}"
+>
+  <header *ngIf="loginPathHide">  
+    <nav class="navbar navbar-custom">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" >
+            <img src="/assets/images/designwayblue.svg" />
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-left">
+            <li class="active">
+              <a [routerLink]="['profile']">DASHBOARD</a>
+            </li>
+            <li>
+              <a [routerLink]="['events','create']">EVENTS</a>
+            </li>
+            <li>
+              <a >VENUES</a>
+            </li>
+            <li>
+              <a >PAYMENTS</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a (click)="logout()">
+                <span class="logo_right">
+                  <img class="logo" src="/assets/images/designwayblue.svg" />
+                </span>
+                <span class="rightmenutext">Designway</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <router-outlet></router-outlet>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="copytext">
+            2017 © All Rights reserved. App Inc.
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="socialicons">
+            <div class="socialiconsinner">
+              <span class="socio fb">
+                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+              </span>
+              <span class="socio twit">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </span>
+              <span class="socio insta">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

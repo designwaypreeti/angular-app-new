@@ -1,0 +1,459 @@
+<div class="center_state_div">
+  <div class="container">
+    <h1 class="the_title_left no_bottom_margin">Create an event</h1>
+
+    <div class="bread_crumbs">
+      <ul class="clearfix">
+        <li>Events</li>
+        <li>Create an event</li>
+      </ul>
+    </div>
+
+
+
+    <div class="the_white_event_container">
+
+      <div class="event_tab_list">
+        <ul class="nav nav-tabs">
+
+          <li class="active" (click)="tab=1" [ngClass]="{'active':tab === 1}">
+            <a data-toggle="tab">
+              <div class="inner_tab_div">
+                <div class="steps">Step 1</div>
+                <div class="step_name">Event details</div>
+              </div>
+            </a>
+          </li>
+
+          <li (click)="tab= eId ? 2 : 1" [ngClass]="{'active':tab === 2}" >
+            <a data-toggle="tab">
+              <div class="inner_tab_div">
+                <div class="steps">Step 2</div>
+                <div class="step_name">Tickets</div>
+              </div>
+            </a>
+          </li>
+
+          <li (click)="tab=eId ? 3 : 1" [ngClass]="{'active':tab === 3}">
+            <a data-toggle="tab">
+              <div class="inner_tab_div">
+                <div class="steps">Step 3</div>
+                <div class="step_name">Settings</div>
+              </div>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="tab_content_container">
+        <div class="tab-content">
+          <div id="step1" class="tab-pane fade" [ngClass]="{'in active':tab === 1}">
+            <div class="tab_heading">
+              <h3>Enter event details</h3>
+              <div class="subs">All the important details of your event go here</div>
+            </div>
+
+            <form class="tab_one_form form-one" (ngSubmit)="submitted(tabOneForm)" #tabOneForm="ngForm">
+
+              <div class="row the_flex_row">
+                <div class="col-sm-8">
+                  <div class="forms">
+
+                    <div class="div_control">
+                      <div class="the_title">
+                        Event name
+                      </div>
+                      <div class="fields form_full">
+                        <span>
+                          <input type="text" class="form_input" [ngModel]='currentEvent.event_name' name="name" required>
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form_desc">
+                    This will be the name of the event that will be publicly visible
+                  </div>
+                </div>
+              </div>
+
+              <div class="row the_flex_row">
+                <div class="col-sm-8">
+                  <div class="forms">
+
+                    <div class="div_control">
+                      <div class="the_title">
+                        Event description
+                      </div>
+                      <div class="fields form_full">
+                        <span>
+                          <textarea rows="6" name="description" [ngModel]='currentEvent.event_description' required>
+                          </textarea>
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form_desc">
+                    Give a description of the event and what would take place
+                  </div>
+                </div>
+              </div>
+
+              <div class="row the_flex_row">
+                <div class="col-sm-8">
+                  <div class="forms">
+
+                    <div class="double_fields">
+                      <div class="div_control">
+                        <div class="the_title">
+                          Start date
+                        </div>
+                        <mat-form-field>
+                          <input matInput [matDatepicker]="picker1" [min]="today" [max]="endDate" 
+                          [(ngModel)]="startDate" name="start_date" required>
+                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                      <div class="div_control">
+                        <div class="the_title">
+                          Start time
+                        </div>
+                        <div class="fields form_full">
+                          <span>
+                            <input type="text" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
+                               class="form_input" placeholder="HH:MM" 
+                               [ngModel]="currentEvent.start_time" 
+                               name="start_time"
+                              required>
+                          </span>
+                        </div>
+                        <div class="err-msg" *ngIf="tabOneForm 
+                                    && tabOneForm.controls.start_time 
+                                    && tabOneForm.controls.start_time.invalid 
+                                    && tabOneForm.controls.start_time.touched                                     
+                                    && tabOneForm.controls.start_time.dirty">
+                          Please enter a valid time format. (HH:MM)
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form_desc hide">
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row the_flex_row">
+                <div class="col-sm-8">
+                  <div class="forms">
+
+                    <div class="double_fields">
+                      <div class="div_control">
+                        <div class="the_title">
+                          End date
+                        </div>
+                        <mat-form-field>
+                          <input matInput [matDatepicker]="picker2" [min]="startDate || today" [(ngModel)]="endDate" name="end_date" required>
+                          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                          <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                      <div class="div_control">
+                        <div class="the_title">
+                          End time
+                        </div>
+                        <div class="fields form_full">
+                          <span>
+                            <input type="text" class="form_input validreq" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$" class="form_input" placeholder="HH:MM"
+                              required [ngModel]="currentEvent.end_time" name="end_time">
+                          </span>
+                        </div>
+                        <div class="err-msg" *ngIf="tabOneForm 
+                                    && tabOneForm.controls.end_time 
+                                    && tabOneForm.controls.end_time.invalid 
+                                    && tabOneForm.controls.end_time.touched                                     
+                                    && tabOneForm.controls.end_time.dirty">
+                          Please enter a valid time format. (HH:MM)
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form_desc">
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row the_flex_row">
+                <div class="col-sm-8">
+                  <div class="forms">
+
+                    <div class="div_control">
+                      <div class="the_title the_title_flex">
+                        <span>Venue</span>
+                        <span>
+                          <a (click)="showModal()">Add a venue</a>
+                        </span>
+                      </div>
+                      <div class="fields form_full">
+                        <!-- <span>
+                          <input type="text" class="form_input" placeholder="Enter a saved venue name" name="venu">
+                        </span> -->
+                        <mat-form-field class="example-full-width autocomp">
+                          <input type="text"
+                                 class="form_input" 
+                                 matInput [matAutocomplete]="auto"
+                                 name="state"
+                                 #state="ngModel" [(ngModel)]="currentState" 
+                                 (blur)="detectChange()"
+                                 (ngModelChange)="tdStates = filterStates(currentState)" [disabled]="options.length==0">
+                          <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption >
+                            <mat-option *ngFor="let option of tdStates" [value]="option.venue_name" 
+                                        (click)="detectChange()">
+                              {{ option.venue_name }}
+                            </mat-option>
+                          </mat-autocomplete>
+                        </mat-form-field>
+                        <div class="err-msg" *ngIf="options.length==0">
+                          No Venues Exist
+                        </div>
+                        <div class="err-msg" *ngIf="invalidVenue">
+                          The venue does not exist
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form_desc">
+                    The place where your event will be hosted
+                  </div>
+                </div>
+              </div>
+
+              <div class="row the_flex_row">
+                <div class="col-sm-8">
+                  <div class="forms">
+
+                    <div class="div_control">
+                      <div class="the_title">
+                        Select an event category
+                      </div>
+
+                      <div class="fields form_selection">
+
+                        <div class="div_select" (click)="category=1" [ngClass]="{'active':category === 1}">
+                          <img [src]="(category === 1)?
+                                      '/assets/images/food-white.svg':
+                                      '/assets/images/food.svg'" /> Food
+                        </div>
+
+                        <div class="div_select" (click)="category=2" [ngClass]="{'active':category === 2}">
+                          <img [src]="(category === 2)?
+                                      '/assets/images/fdining.svg':
+                                      '/assets/images/fdining-grey.svg'" /> Fine dining
+                        </div>
+
+                        <div class="div_select" (click)="category=3" [ngClass]="{'active':category === 3}">
+                          <img [src]="(category === 3)?
+                                  '/assets/images/dance-white.svg':
+                                  '/assets/images/dance.svg'" /> Dance
+                        </div>
+
+                        <div class="div_select" (click)="category=4" [ngClass]="{'active':category === 4}">
+                          <img [src]="(category === 4)?
+                                  '/assets/images/beach-white.svg':
+                                  '/assets/images/beach.svg'" /> Beach
+                        </div>
+
+                        <div class="div_select" (click)="category=5" [ngClass]="{'active':category === 5}">
+                          <img [src]="(category === 5)?
+                                  '/assets/images/karaoke-white.svg':
+                                  '/assets/images/karaoke.svg'" /> Karaoke
+                        </div>
+
+                        <div class="div_select" (click)="category=6" [ngClass]="{'active':category === 6}">
+                          <img [src]="(category === 6)?
+                                  '/assets/images/music-white.svg':
+                                  '/assets/images/music.svg'" /> Music
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form_desc">
+                    Your event will be published as under the selected category on Stubba
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row the_flex_row">
+                <div class="col-sm-8">
+                  <div class="forms">
+
+                    <div class="div_control">
+                      <div class="the_title">
+                        Event image
+                      </div>
+                      <div *ngIf="!selectedFakeUrl" class="dropzone" appDnd (fileUploaded)="fileDragged($event)" (click)="file.click()">
+                        <div class="text-wrapper">
+                          <div class="centered"> <span>Upload an image</span> or drag it here</div>
+                        </div>
+                      </div>
+                      <div class="imagezone" *ngIf="selectedFakeUrl">
+                        <img [src]="selectedFakeUrl" alt="">
+                        <div class="img-overlay" 
+                        (click)="selectedFakeUrl=undefined">
+                          <span>Cancel</span>
+                        </div>
+                      </div>
+                      <input class="hidden" type="file" (change)="fileChange($event)" accept="image/*"   #file>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form_desc">
+                    Your image should represent your brand and the event
+                  </div>
+                </div>
+              </div>
+
+              <div class="buttons_events_page">
+                <button type="submit" [disabled]="tabOneForm.form.invalid || invalidVenue || !selectedFakeUrl" class="btn btn_custom_acsetting adjust_margin_next_step">Next step : Tickets</button>
+                <div class="draft">
+                  Save as draft
+                </div>
+              </div>
+
+            </form>
+            <app-venue-create-modal *ngIf="shown" [shown]="shown" (cardAdded)="cardAdded($event)" (hideModal)="hideModal($event)"></app-venue-create-modal>
+
+          </div>
+          <div id="step2" class="tab-pane fade" [ngClass]="{'in active':tab === 2}">
+
+            <div class="tab_heading">
+              <h3>Add event tickets</h3>
+              <div class="subs">Create tickets for your event based on your pricing tiers</div>
+            </div>
+
+            <div class="tab_one_form">
+              <app-create-ticket (ticketCreated)="ticketCreated($event)" [uId]="user && user._id" [eId]="eId"></app-create-ticket>
+            </div>
+            <div class="saved_cards">
+              <div class="tab_heading">
+                <h3>Saved event tickets</h3>
+                <div class="subs">View and edit any tickets you have created</div>
+              </div>
+
+              <div class="cards_container">
+                <div class="cards_container_inner">
+                  <app-ticket-card *ngFor="let ticket of tickets" [ticket]="ticket"></app-ticket-card>
+                </div>
+              </div>
+
+            </div>
+            <div class="buttons_events_page events_page_two">
+              <a class="btn btn_custom_acsetting adjust_margin_next_step">Next step : Settings</a>
+              <div class="draft">
+                Save as draft
+              </div>
+            </div>
+
+          </div>
+          <div id="step3" class="tab-pane fade" [ngClass]="{'in active':tab === 3}">
+            <div class="tab_heading">
+              <h3>Settings</h3>
+              <div class="subs">All the little details about your event go here</div>
+            </div>
+
+
+            <form class="tab_one_form" (ngSubmit)="submitFinal(tabThreeForm)" #tabThreeForm="ngForm">
+
+              <div class="row the_flex_row">
+                <div class="col-sm-8">
+                  <div class="forms">
+
+                    <div class="div_control">
+                      <div class="the_title">
+                        Event time zone
+                      </div>
+                      <div class="fields form_full">
+                        <span class="arrowdown">
+                          <input type="text" name="timezone" [ngModel]="this.currentEvent.timezone" class="form_input">
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div> 
+                <div class="col-sm-4">
+                  <div class="form_desc">
+                    The timezone of the event should be the same as the timezone of the location the event takes place in
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row the_flex_row">
+                <div class="col-sm-8">
+                  <div class="forms">
+
+                    <div class="div_control">
+                      <div class="the_title">
+                        Terms and conditions
+                      </div>
+                      <div class="fields form_full">
+                        <span>
+                          <textarea rows="11" name="terms" ngModel></textarea>
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form_desc">
+                    Add in your event’s terms and conditions and disclaimers if any
+                  </div>
+                </div>
+              </div>
+
+              <div class="buttons_events_page   events_page_three">
+                <button type="submit" class="btn btn_custom_acsetting adjust_margin_next_step">Publish the event</button>
+                <div class="draft">
+                  Save as draft
+                </div>
+              </div>
+
+
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

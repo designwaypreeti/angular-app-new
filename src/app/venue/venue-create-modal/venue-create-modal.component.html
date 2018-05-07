@@ -1,0 +1,84 @@
+<div id="addCardModal" role="dialog" [ngClass]="{
+        'modal':true,
+        'fade':true,
+        'in': shown === true,
+        'hidden': !shown
+      }">
+
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="hideCard()">
+          <img src="/assets/images/close.svg" />
+        </button>
+        <h4 class="modal-title">Add a venue</h4>
+      </div>
+      <form class="modal-body" (ngSubmit)="submitted(modalf)" #modalf="ngForm">
+        <div class="card_details_modal">
+          <div class="card_details">
+            <div class="div_control">
+              <div class="the_title">
+                Venue Name
+              </div>
+              <div class="fields form_full">
+                <span>
+                  <input type="text" name="name" ngModel class="form_input" required>
+                </span>
+              </div>
+            </div>
+            <div class="div_control">
+              <div class="the_title">
+                Venue address
+              </div>
+              <div class="fields form_full">
+                <span>
+                  <input type="text" name="address" ngModel class="form_input" required>
+                </span>
+              </div>
+            </div>
+            <div class="div_control">
+              <div class="fields flexstart">
+                <span class="half-width">
+                  <div class="div_control">
+                    <div class="the_title">
+                      Postal Code
+                    </div>
+                    <div class="fields form_full">
+                      <span>
+                        <input type="number" name="postal" ngModel class="form_input" required>
+                      </span>
+                    </div>
+                  </div>
+                </span>
+                <span class="half-width">
+                  <div class="div_control">
+                    <div class="the_title">
+                      Phone No.
+                    </div>
+                    <div class="fields form_full">
+                      <span>
+                        <input type="text" name="phone" ngModel class="form_input" required>
+                      </span>
+                    </div>
+                  </div>
+                </span>
+              </div>
+            </div>
+            <div class="div_control">
+              <div class="map-contain">
+                  <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="geoClick($event)">
+                      <agm-marker [latitude]="markLat" [longitude]="markLng"></agm-marker>
+                  </agm-map>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn_custom_add" [disabled]="modalf.form.invalid || !!markLat===false">Add Venue</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div class="overlay" (click)="hideCard()"></div>
+</div>

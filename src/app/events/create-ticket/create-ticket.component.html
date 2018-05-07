@@ -1,0 +1,85 @@
+<form (ngSubmit)="submitted(tabTwoForm)" #tabTwoForm="ngForm">
+  
+  <div class="row the_flex_row">
+    <div class="col-sm-8">
+      <div class="forms">
+  
+        <div class="div_control">
+          <div class="the_title">
+            Ticket name
+          </div>
+          <div class="fields form_full">
+            <span>
+              <input type="text"  name="title" ngModel class="form_input">
+            </span>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form_desc">
+        This would be the name of your ticket. Eg, General, Exclusive, Free Pass etc.
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="row the_flex_row">
+    <div class="col-sm-8">
+      <div class="forms">
+  
+        <div class="double_fields tripple_fields">
+          <div class="div_control">
+            <div class="the_title">
+              Ticket type
+            </div>
+            <div class="fields form_full">
+              <span >
+                  <mat-select placeholder="Type" required name="ticketType" ngModel >
+                      <mat-option *ngFor="let type of types" [value]="type.name">
+                        {{ type.name }}
+                      </mat-option>
+                    </mat-select>
+              </span>
+            </div>
+          </div>
+          <div class="div_control">
+            <div class="the_title">
+              Price per ticket
+            </div>
+            <div class="fields form_full">
+              <label class="price_contain">
+                <mat-select placeholder="" required [(value)]="selectedCurrency.name" name="curr" class="price-input no-carret-sel one">
+                    <mat-option *ngFor="let currency of currencies" [value]="currency.name">
+                      {{ currency.name }}
+                    </mat-option>
+                  </mat-select>
+                <input type="text" name="price" ngModel class="price-input">
+              </label>
+            </div>
+          </div>
+          <div class="div_control">
+            <div class="the_title">
+              Quantity
+            </div>
+            <div class="fields form_full">
+              <span>
+                <input type="text" name="quantity" ngModel class="form_input">
+              </span>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form_desc hide">
+  
+      </div>
+    </div>
+  </div>
+  
+  <button type="submit" class="btn btn_custom_acsetting adjust_margin_next_step">Save ticket</button>
+
+</form>

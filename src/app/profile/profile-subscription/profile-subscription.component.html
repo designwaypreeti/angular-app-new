@@ -1,0 +1,32 @@
+<a class="outline_container" 
+  [ngClass]="'free'" 
+  *ngIf="plan"
+  [ngStyle]="hovered === 1 ? {border : '2px solid'+ plan.color_scheme} : ''"
+  (mouseover)="hovered = 1"
+  (mouseout)="hovered = 0"
+  >
+  <div class="top_container">
+    <div class="logo_container">
+      <img [src]="plan.src" class="img img-responsive" />
+    </div>
+    <div class="plan_title" [ngStyle]="{color:plan.color_scheme}">{{plan.type}}</div>
+    <div class="plan_rates">
+      <span class="currency" [ngStyle]="{color:plan.color_scheme}">$</span>
+      <span class="price" [ngStyle]="{color:plan.color_scheme}">{{plan.price}}</span>
+      <span class="term" [ngStyle]="{color:plan.color_scheme}">/month</span>
+    </div>
+  </div>
+  <div class="bottom_container">
+    <div class="text_dec">{{plan.events !== null? plan.events : Unlimited}} events</div>
+    <div class="text_dec">{{plan.tickets !== null? plan.tickets : Unlimited}} ticket sales</div>
+    <div class="text_dec">{{plan.booking}} booking fee</div>
+    <div class="button_tag" 
+    [ngStyle]="
+    {
+      'color':plan.color_scheme,
+      'border-color': plan.color_scheme
+    }
+    ">
+    {{(!plan.selected)?'Select plan':'Selected'}}</div>
+  </div>
+</a>
