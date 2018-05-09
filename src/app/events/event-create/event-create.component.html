@@ -339,7 +339,11 @@
               </div>
 
               <div class="buttons_events_page">
-                <button type="submit" [disabled]="tabOneForm.form.invalid || invalidVenue || !selectedFakeUrl" class="btn btn_custom_acsetting adjust_margin_next_step">Next step : Tickets</button>
+                <button type="submit" 
+                      [disabled]="tabOneForm.form.invalid || invalidVenue || !selectedFakeUrl"
+                       class="btn btn_custom_acsetting adjust_margin_next_step"
+                       
+                       >Next step : Tickets</button>
                 <div class="draft">
                   Save as draft
                 </div>
@@ -373,7 +377,9 @@
 
             </div>
             <div class="buttons_events_page events_page_two">
-              <a class="btn btn_custom_acsetting adjust_margin_next_step">Next step : Settings</a>
+              <a class="btn btn_custom_acsetting adjust_margin_next_step"
+                 (click)="tab=3"
+              >Next step : Settings</a>
               <div class="draft">
                 Save as draft
               </div>
@@ -399,7 +405,7 @@
                       </div>
                       <div class="fields form_full">
                         <span class="arrowdown">
-                          <input type="text" name="timezone" [ngModel]="this.currentEvent.timezone" class="form_input">
+                          <input type="text" name="timezone" [ngModel]="this.currentEvent.event_timezone" class="form_input">
                         </span>
                       </div>
                     </div>
@@ -424,7 +430,7 @@
                       </div>
                       <div class="fields form_full">
                         <span>
-                          <textarea rows="11" name="terms" ngModel></textarea>
+                          <textarea rows="11" name="terms" [ngModel]="this.currentEvent.event_timezone"></textarea>
                         </span>
                       </div>
                     </div>

@@ -137,20 +137,18 @@ export class ProfileComponent implements OnInit {
     this.shown = true
   }
   cardAdded(res) {
-    console.log(res.data)
     const card = {
       number: `xxxx xxxx xxxx ${res.data.number4}`,
       month: res.data.month,
       year: res.data.year
     }
     this.cards.push(card)
-    console.log(card)
   }
   bankAdded(res) {
-    console.log(res.data)
     const sub = res.data.number.substr(res.data.number.length - 4)
     const bank = {
-      number: `xxxx xxxx xxxx ${sub}`
+      number: `xxxx xxxx xxxx ${sub}`,
+      id: res.data._id
     }
     this.banks.push(bank)
   }

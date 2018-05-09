@@ -5,6 +5,9 @@ import { Observable } from 'rxjs/Observable'
 import { startWith } from 'rxjs/operators/startWith'
 import { map } from 'rxjs/operators/map'
 import { Event } from '../../shared/models/event.model'
+import * as moment from 'moment';
+import * as momentTime from 'moment-timezone';
+import { Router } from '@angular/router';
 // This is the parent component for the event's create page
 @Component({
   selector: 'app-event-create',
@@ -15,7 +18,7 @@ export class EventCreateComponent implements OnInit {
   tab = 1
   category = 1
   shown = false
-  eId// = '5aeb4bfcf00fbb2ce092001a'
+  eId //= '5af2a1d12c82b9000475ac32'
   currentEvent = new Event
   secure_url
   options = [
@@ -40,23 +43,41 @@ export class EventCreateComponent implements OnInit {
   selectedFakeUrl
   user
   tickets = [
-    {
-      title: 'Exclusive Access',
-      price: '£45.00',
-      type: 'Paid ticket',
-      quantity: '100'
-    }
   ]
   reader = new FileReader()
 
-  constructor(private mainService: MainService, private toastr: ToastrService) {
+  constructor(private mainService: MainService,
+              private toastr: ToastrService,
+              private router: Router) {
     this.user = JSON.parse(localStorage.getItem('user'))
   }
-
   ngOnInit() {
+    // console.log(momentTime.tz.names())
     console.log(this.tickets)
     this.fetchVenues()
+    this.fetchTickets()
   }
+
+  fetchTickets(){
+    if(this.eId){
+      this.mainService.getTicket(this.eId).subscribe(
+        r=>{
+          console.log(r)
+          if(!r.tickets || r.tickets.length ===0) return
+          this.tickets = r.tickets.map(ele=>{
+            return {
+              price:ele.ticket_price,
+              quantity: ele.quantity,
+              title:ele.ticket_name,
+              type:ele.ticket_type,
+              eventId: this.eId
+            }
+          })
+        }
+        ,e=>{})
+  }
+  }
+  
   fetchVenues() {
     this.mainService.getAllVenue(this.user._id).subscribe(r => {
       console.log(r.venues)
@@ -122,7 +143,9 @@ export class EventCreateComponent implements OnInit {
   }
   ticketCreated(res) {
     console.log(res.data)
-    this.tickets.push(res.data)
+    let ticket = res.data
+    ticket.title = res.data.ticket
+    this.tickets.push(ticket)
   }
   getEvents() {
     if (!this.eId) return
@@ -195,7 +218,7 @@ export class EventCreateComponent implements OnInit {
   submitFinal(f){
 
     const data = { ...f.form.value }
-    if (this.eId) this.updateEvent(data)
+    if (this.eId) this.updateEvent(data,3)
   }
   createEvent(uid, data) {
     this.mainService.createEvent(uid, data).subscribe(
@@ -215,13 +238,14 @@ export class EventCreateComponent implements OnInit {
         })
       })
   }
-  updateEvent(data) {
+  updateEvent(data,calledFrom?) {
     this.mainService.updateEvent(this.eId, data).subscribe(
       r => {
         console.log(r)
         this.toastr.success('Event Saved', '', {
           timeOut: 3000,
         })
+        if(calledFrom===3)   this.router.navigate(['events'])
         this.tab = 2
         // f.resetForm()
       }

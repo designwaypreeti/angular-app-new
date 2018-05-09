@@ -18,6 +18,7 @@ export class ProfileBankDetailsCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.bank)
   }
   delete() {
     this.selectedCard = ''

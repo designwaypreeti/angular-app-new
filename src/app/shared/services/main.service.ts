@@ -98,6 +98,13 @@ export class MainService {
     )
       .map(r => r)
   }
+  getTicket(eid){
+    this.setHeader()
+    return this.http.get<any>(`${URL}/event/ticket?eventId=${eid}`,
+      { headers: this.headers }
+    )
+      .map(r => r)
+  }
   createVenue(uid,data){
     this.setHeader()
     console.log(data)

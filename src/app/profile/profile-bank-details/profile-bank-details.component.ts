@@ -37,7 +37,9 @@ export class ProfileBankDetailsComponent implements OnInit {
     this.mainService.addBank(data, this.user._id).subscribe(
       r => {
         console.log(r)
-        this.bankAdded.emit({ action: 'SUBMIT', data: f.form.value })
+        let data = f.form.value
+        data._id = r._id
+        this.bankAdded.emit({ action: 'SUBMIT', data: data, })
         this.toastr.success('Bank Details Saved', '', {
           timeOut: 3000,
         })
