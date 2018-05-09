@@ -12,20 +12,20 @@
         <li><a data-toggle="tab" href="#drafts">DRAFTS</a></li>
       </ul>
 
-      <div class="tab-content">
+      <div class="tab-content" *ngIf="events">
         <div id="upcoming" class="tab-pane fade in active">
           <div class="tab_the_section">
             <div class="row the_flex_event_row">
-              <div class="col-sm-4">
+              <div class="col-sm-4" *ngFor="let event of events">
 
                 <div class="tablet">
                   <div class="top_sec">
                     <div class="date_field">
                       <div class="date">10</div>
                       <div class="month">Jun</div>
-                    </div><!--
-                    --><div class="location_field">
-                      <div class="name_event">Creator Story</div>
+                    </div>
+                    <div class="location_field">
+                      <div class="name_event">{{event.event_name}}</div>
                       <div class="location_event"><img src="/assets/images/locaicon.svg" /><span>Mahiki</span></div>
                     </div>
                   </div>
@@ -37,8 +37,8 @@
                       <div class="the_figure">
                         321<span>/500</span>
                       </div>
-                    </div><!--
-                    --><div class="sold revenue">
+                    </div>
+                    <div class="sold revenue">
                       <div class="short_title">
                         Revenue
                       </div>
@@ -55,199 +55,7 @@
                 </div>
 
               </div>
-
-
-              <div class="col-sm-4">
-
-                <div class="tablet">
-                  <div class="top_sec">
-                    <div class="date_field">
-                      <div class="date">10</div>
-                      <div class="month">Jun</div>
-                    </div><!--
-                    --><div class="location_field">
-                      <div class="name_event">Creator Story</div>
-                      <div class="location_event"><img src="/assets/images/locaicon.svg" /><span>Mahiki</span></div>
-                    </div>
-                  </div>
-                  <div class="mid_sec">
-                    <div class="sold">
-                      <div class="short_title">
-                        Tickets sold
-                      </div>
-                      <div class="the_figure">
-                        321<span>/500</span>
-                      </div>
-                    </div><!--
-                    --><div class="sold revenue">
-                      <div class="short_title">
-                        Revenue
-                      </div>
-                      <div class="the_figure">
-                        £12,545
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bottom_sec">
-                    <div class="graph">
-                      <div class="graph_title">Sales graph</div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-
-              <div class="col-sm-4">
-
-                <div class="tablet">
-                  <div class="top_sec">
-                    <div class="date_field">
-                      <div class="date">10</div>
-                      <div class="month">Jun</div>
-                    </div><!--
-                    --><div class="location_field">
-                      <div class="name_event">Creator Story</div>
-                      <div class="location_event"><img src="/assets/images/locaicon.svg" /><span>Mahiki</span></div>
-                    </div>
-                  </div>
-                  <div class="mid_sec">
-                    <div class="sold">
-                      <div class="short_title">
-                        Tickets sold
-                      </div>
-                      <div class="the_figure">
-                        321<span>/500</span>
-                      </div>
-                    </div><!--
-                    --><div class="sold revenue">
-                      <div class="short_title">
-                        Revenue
-                      </div>
-                      <div class="the_figure">
-                        £12,545
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bottom_sec">
-                    <div class="graph">
-                      <div class="graph_title">Sales graph</div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-
             </div>
-
-            <div class="row the_flex_event_row">
-              <div class="col-sm-4">
-
-                <div class="tablet">
-                  <div class="top_sec">
-                    <div class="date_field">
-                      <div class="date">10</div>
-                      <div class="month">Jun</div>
-                    </div><!--
-                    --><div class="location_field">
-                      <div class="name_event">Creator Story</div>
-                      <div class="location_event"><img src="/assets/images/locaicon.svg" /><span>Mahiki</span></div>
-                    </div>
-                  </div>
-                  <div class="mid_sec">
-                    <div class="sold">
-                      <div class="short_title">
-                        Tickets sold
-                      </div>
-                      <div class="the_figure">
-                        321<span>/500</span>
-                      </div>
-                    </div><!--
-                    --><div class="sold revenue">
-                      <div class="short_title">
-                        Revenue
-                      </div>
-                      <div class="the_figure">
-                        £12,545
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bottom_sec">
-                    <div class="graph">
-                      <div class="graph_title">Sales graph</div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-
-              <div class="col-sm-4">
-
-                <div class="tablet">
-                  <div class="top_sec">
-                    <div class="date_field">
-                      <div class="date">10</div>
-                      <div class="month">Jun</div>
-                    </div><!--
-                    --><div class="location_field">
-                      <div class="name_event">Creator Story</div>
-                      <div class="location_event"><img src="/assets/images/locaicon.svg" /><span>Mahiki</span></div>
-                    </div>
-                  </div>
-                  <div class="mid_sec">
-                    <div class="sold">
-                      <div class="short_title">
-                        Tickets sold
-                      </div>
-                      <div class="the_figure">
-                        321<span>/500</span>
-                      </div>
-                    </div><!--
-                    --><div class="sold revenue">
-                      <div class="short_title">
-                        Revenue
-                      </div>
-                      <div class="the_figure">
-                        £12,545
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bottom_sec">
-                    <div class="graph">
-                      <div class="graph_title">Sales graph</div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-
-              <div class="col-sm-4">
-
-                <div class="tablet the_last">
-
-                  <div class="center_the_div">
-                    <div class="text">
-                      There’s not much happening
-                    </div>
-                    <a href="#" class="the_tag">
-                      <img src="/assets/images/plus.svg" />
-                      <span>Create another event</span>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-
-
-            </div>
-
-
-
-
           </div>
 
         </div>

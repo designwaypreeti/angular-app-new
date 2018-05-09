@@ -70,6 +70,13 @@ export class MainService {
     )
       .map(r => r)
   }
+  getEvents(uid){
+    this.setHeader()
+    return this.http.get<any>(`${URL}/event/getall?uid=${uid}`,
+      { headers: this.headers }
+    )
+      .map(r => r)
+  }
   createEvent(uid,data){
     this.setHeader()
     console.log(data)
