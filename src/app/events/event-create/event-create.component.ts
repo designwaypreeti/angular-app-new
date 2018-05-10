@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators/map'
 import { Event } from '../../shared/models/event.model'
 import * as moment from 'moment';
 import * as momentTime from 'moment-timezone';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 // This is the parent component for the event's create page
 @Component({
   selector: 'app-event-create',
@@ -48,7 +48,9 @@ export class EventCreateComponent implements OnInit {
 
   constructor(private mainService: MainService,
               private toastr: ToastrService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
+    this.eId = route.snapshot.queryParams && route.snapshot.queryParams.id
     this.user = JSON.parse(localStorage.getItem('user'))
   }
   ngOnInit() {
@@ -198,10 +200,10 @@ export class EventCreateComponent implements OnInit {
     const data = { ...f.form.value }
     data.category = this.categories[this.category]
     data.venueId = this.venue._id
-    if (!this.selectedFile) return
+    if (!this.selectedFile && !this.selectedFakeUrl) return
     //uploading file to cloudinary
     this.uploading = true
-    if (!!this.selectedFile === false) return
+    if (!!this.selectedFile == true) {
     this.mainService.uploadCloud(this.selectedFile).subscribe(r => {
       console.log(r.secure_url)
       this.secure_url = r.secure_url
@@ -214,6 +216,13 @@ export class EventCreateComponent implements OnInit {
       e => {
         this.uploading = false
       })
+    } else if(this.selectedFakeUrl){
+      console.log("here")
+      this.uploading = false      
+      data.image = this.selectedFakeUrl
+      if (this.eId) this.updateEvent(data)
+      else this.createEvent(this.user._id, data)
+    }
   }
   submitFinal(f){
 

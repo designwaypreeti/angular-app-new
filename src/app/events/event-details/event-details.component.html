@@ -8,19 +8,19 @@
       </ul>
     </div>
 
-    <div class="edetailssection">
+    <div class="edetailssection" *ngIf="currentEvent">
       <div class="row">
         <div class="col-sm-8">
           <div class="left_side">
             <div class="imgbanner_container">
-              <img src="/assets/images/wolfpack.png" class="img img-responsive" />
+              <img src="{{currentEvent.event_image|| '/assets/images/wolfpack.png'}}" class="img img-responsive" />
             </div>
             <div class="imgdesc_section">
-              <h2>Creator Story</h2>
+              <h2>{{currentEvent.event_name}}</h2>
               <div class="details">
                 <span class="datetime">
                   <img src="/assets/images/timeicon.svg" />
-                  Saturday 10 Jun 2017 • 09:30pm
+                  {{currentEvent.start_date | date: 'fullDate'}} • {{currentEvent.start_time}}
                 </span>
                 <span class="locationic">
                   <img src="/assets/images/locaicon.svg" />
@@ -28,7 +28,7 @@
                 </span>
               </div>
               <div class="desc">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                {{currentEvent.event_description}}
               </div>
 
               <div class="ticket_sales">
@@ -40,8 +40,8 @@
                   </div>
                   <div class="col-md-6">
                     <div class="btns_management">
-                      <a href="#" class="edit">Edit tickets</a>
-                      <a href="#" class="btn order_manage">Order management</a>
+                      <a [routerLink]="['/events','create']" [queryParams]="{id: eId}"class="edit">Edit tickets</a>
+                      <a  class="btn order_manage">Order management</a>
                     </div>
                   </div>
                 </div>
@@ -137,8 +137,8 @@
             <a class="copysharelink">Copy share link</a>
 
             <div class="btn_container">
-              <a href="#" class="btn_right disabled">Attendee Check-in</a>
-              <a href="#" class="btn_right"><span>More options</span></a>
+              <a  class="btn_right disabled">Attendee Check-in</a>
+              <a  class="btn_right"><span>More options</span></a>
             </div>
 
             <div class="location_div">
@@ -152,7 +152,7 @@
 
               <div id="map_location" class="mapid"></div>
 
-              <a href="#" class="change_venue">Change venue</a>
+              <a  class="change_venue">Change venue</a>
             </div>
 
           </div>

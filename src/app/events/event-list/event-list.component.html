@@ -2,7 +2,7 @@
   <div class="container">
     <div class="main_title_container">
       <h1 class="the_title_left no_bottom_margin">Events</h1>
-      <a href="#" class="btn btn_custom_acsetting adjust_margin_next_step">Create event</a>
+      <a [routerLink]="['create']" class="btn btn_custom_acsetting adjust_margin_next_step">Create event</a>
     </div>
 
     <div class="event_section">
@@ -15,9 +15,8 @@
       <div class="tab-content" *ngIf="events">
         <div id="upcoming" class="tab-pane fade in active">
           <div class="tab_the_section">
-            <div class="row the_flex_event_row">
-              <div class="col-sm-4" *ngFor="let event of events">
-
+            <div class="row ">
+              <div class="col-sm-4 event-card" *ngFor="let event of events" [routerLink]="[event._id]">
                 <div class="tablet">
                   <div class="top_sec">
                     <div class="date_field">
