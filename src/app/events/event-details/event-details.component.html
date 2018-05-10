@@ -123,8 +123,7 @@
                 <span class="down_arrow">
                   <select class="theme_select">
                     <option value="Published">Published</option>
-                    <option value="Published">Published</option>
-                    <option value="Published">Published</option>
+                    <option value="Published">Draft</option>
                   </select>
                 </span>
               </div>
@@ -144,13 +143,17 @@
             <div class="location_div">
               <div class="location_name">
                 <img src="/assets/images/locaicon.svg" />
-                Mahiki
+                {{this.venue && this.venue.venue_name}}
               </div>
               <div class="location_desc">
-                21 Wellington St, London WC2E 7RQ, UK
+                {{this.venue && this.venue.venue_address}}
               </div>
 
-              <div id="map_location" class="mapid"></div>
+              <div id="map_location" class="mapid" *ngIf="loc">
+                   <agm-map [latitude]="loc.lat" [longitude]="loc.lng" >
+                      <agm-marker [latitude]="loc.lat" [longitude]="loc.lng"></agm-marker>
+                  </agm-map>
+              </div>
 
               <a  class="change_venue">Change venue</a>
             </div>

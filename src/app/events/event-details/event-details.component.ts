@@ -24,6 +24,7 @@ export class EventDetailsComponent implements OnInit {
   endDate
   currentState
   venue
+  loc
   selectedFakeUrl
   secure_url
   currentUrl
@@ -39,11 +40,11 @@ export class EventDetailsComponent implements OnInit {
     console.log(1)
     this.getEvents()
   }
-  fetchVenues() {
+  fetchVenues(venue) {
     this.mainService.getAllVenue(this.user._id).subscribe(r => {
-      console.log(r.venues)
-      this.options = r.venues
-      this.tdStates = [...this.options]
+      this.venue = r.venues.find(x=> x._id === venue)
+      console.log(this.venue.location)
+      this.loc = JSON.parse(this.venue.location)
       //fetching event detais if event id is provided, function returns if its not
     }, e => { })
   }
@@ -53,6 +54,9 @@ export class EventDetailsComponent implements OnInit {
       console.log(r)
       this.currentEvent = r.events && r.events.length && r.events[0]
       console.log(this.currentEvent)
+      if(this.currentEvent.venue){
+        this.fetchVenues(this.currentEvent.venue)
+      }
       this.startDate = this.currentEvent.start_date
       this.endDate = this.currentEvent.end_date
       this.selectedFakeUrl 
