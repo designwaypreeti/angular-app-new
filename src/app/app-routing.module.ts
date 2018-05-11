@@ -41,7 +41,7 @@ const routes: Routes = [
     },
     {
         path: '',
-        component: DashboardComponent,
+        component: EventListComponent,
         canActivate: [AuthGuardService]
     },
     {

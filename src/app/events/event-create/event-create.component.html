@@ -126,11 +126,25 @@
                           Start time
                         </div>
                         <div class="fields form_full">
-                          <span>
-                            <input type="text" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
-                               class="form_input" placeholder="HH:MM" 
-                               [ngModel]="currentEvent.start_time" 
-                               name="start_time"
+                          <span class="timers">
+                            <input type="number"
+                                max="23"
+                                min="0"
+                                placeholder="HH"
+                               class="form_input"  
+                               [(ngModel)]="start.hours" 
+                               name="start_time.hours"
+                               number
+                               (keypress)="_keyPressHours($event,start.hours,1,'start')"
+                              required>
+                              <span>:</span>
+                              <input type="number"
+                                max="59"
+                                min="0"
+                               class="form_input" placeholder="MM" 
+                               [(ngModel)]="start.minutes" 
+                               (keypress)="_keyPressHours($event,start.minutes,2,'start')"
+                               name="start_time.minutes"
                               required>
                           </span>
                         </div>
@@ -174,9 +188,26 @@
                           End time
                         </div>
                         <div class="fields form_full">
-                          <span>
-                            <input type="text" class="form_input validreq" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$" class="form_input" placeholder="HH:MM"
-                              required [ngModel]="currentEvent.end_time" name="end_time">
+                          <span class="timers">
+                            <input type="number"
+                                max="23"
+                                min="0"
+                                placeholder="HH"
+                               class="form_input"  
+                               [(ngModel)]="end.hours" 
+                               name="end_time.hours"
+                               number
+                               (keypress)="_keyPressHours($event,end.hours,1,'end')"
+                              required>
+                              <span>:</span>
+                              <input type="number"
+                                max="59"
+                                min="0"
+                               class="form_input" placeholder="MM" 
+                               [(ngModel)]="end.minutes" 
+                               (keypress)="_keyPressHours($event,end.minutes,2,'end')"
+                               name="end_time.minutes"
+                              required>
                           </span>
                         </div>
                         <div class="err-msg" *ngIf="tabOneForm 

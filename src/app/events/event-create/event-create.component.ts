@@ -42,6 +42,14 @@ export class EventCreateComponent implements OnInit {
   selectedFile = null
   selectedFakeUrl
   user
+  start ={
+    hours:undefined,
+    minutes:undefined
+  }
+  end ={
+    hours:undefined,
+    minutes:undefined
+  }
   tickets = [
   ]
   reader = new FileReader()
@@ -59,7 +67,28 @@ export class EventCreateComponent implements OnInit {
     this.fetchVenues()
     this.fetchTickets()
   }
-
+  _keyPressHours(event: any, val, time, obj) {
+    const pattern = /[0-9\+\-\ ]/
+    const inputChar = String.fromCharCode(event.charCode)
+    // console.log(parseInt(inputChar))
+    if (!pattern.test(inputChar)) {
+      // invalid character, prevent input
+      event.preventDefault()
+    } else{
+      val = val + inputChar 
+      const value = parseInt(val)
+      console.log(value)
+      if(time==1) if(value>23) {
+        this[obj].hours = 23
+        event.preventDefault()
+      }
+      if(time==2) if(value>59) {
+        event.preventDefault()
+        this[obj].minutes = 59
+      }
+    }
+    
+}
   fetchTickets(){
     if(this.eId){
       this.mainService.getTicket(this.eId).subscribe(
@@ -149,6 +178,13 @@ export class EventCreateComponent implements OnInit {
     ticket.title = res.data.ticket
     this.tickets.push(ticket)
   }
+  splitTime(timeStr){
+    let arr = timeStr.split(':')
+    return{
+      hours:(arr && arr.length>=0 && arr[0]) || 0,
+      minutes:(arr && arr.length>0 && arr[1]) || 0
+    }
+  }
   getEvents() {
     if (!this.eId) return
     this.mainService.getEvent(this.eId).subscribe(r => {
@@ -156,6 +192,8 @@ export class EventCreateComponent implements OnInit {
       this.currentEvent = r.events && r.events.length && r.events[0]
       this.startDate = this.currentEvent.start_date
       this.endDate = this.currentEvent.end_date
+      this.start = this.splitTime(this.currentEvent.start_time)
+      this.end = this.splitTime(this.currentEvent.end_time)
       let x
       x = this.options.filter(x => {
         if (this.currentEvent.venue === x._id) return true
@@ -200,6 +238,9 @@ export class EventCreateComponent implements OnInit {
     const data = { ...f.form.value }
     data.category = this.categories[this.category]
     data.venueId = this.venue._id
+    //seeting times
+    data.start_time = this.start.hours+':'+ this.start.minutes
+    data.end_time = this.end.hours+':'+ this.end.minutes
     if (!this.selectedFile && !this.selectedFakeUrl) return
     //uploading file to cloudinary
     this.uploading = true

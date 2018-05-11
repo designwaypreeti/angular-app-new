@@ -7,16 +7,16 @@
 
     <div class="event_section">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#upcoming">UPCOMING</a></li>
-        <li><a data-toggle="tab" href="#completed">COMPLETED</a></li>
-        <li><a data-toggle="tab" href="#drafts">DRAFTS</a></li>
+        <li class="active"><a data-toggle="tab">UPCOMING</a></li>
+        <li><a data-toggle="tab">COMPLETED</a></li>
+        <li><a data-toggle="tab">DRAFTS</a></li>
       </ul>
 
       <div class="tab-content" *ngIf="events">
         <div id="upcoming" class="tab-pane fade in active">
           <div class="tab_the_section">
             <div class="row ">
-              <div class="col-sm-4 event-card" *ngFor="let event of events" [routerLink]="[event._id]">
+              <div class="col-sm-4 event-card" *ngFor="let event of events" [routerLink]="['/events',event._id]">
                 <div class="tablet">
                   <div class="top_sec">
                     <div class="date_field">
