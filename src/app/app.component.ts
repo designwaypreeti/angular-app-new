@@ -9,6 +9,8 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'
 export class AppComponent implements OnInit {
   title = 'app'
   loginPathHide = false
+  menu = false
+  menueMobile = false
   constructor(
     private route: ActivatedRoute,
     private router: Router) {
@@ -28,6 +30,13 @@ export class AppComponent implements OnInit {
   }
   path() {
     return (this.router.url !== '/login') ? false : true
+  }
+  toggleMenu(close?){
+    this.menu = close ? false : !this.menu
+  }
+  mobileToggle(close?){
+    this.menueMobile = close ? false : !this.menueMobile
+    console.log(close,this.menueMobile)
   }
   logout() {
     localStorage.clear()

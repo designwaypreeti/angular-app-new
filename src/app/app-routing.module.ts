@@ -12,6 +12,7 @@ import { EventCreateComponent } from './events/event-create/event-create.compone
 import { CheckTokenService } from './shared/guard/check-token.service'
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { EventListComponent } from './events/event-list/event-list.component';
+import { VenueListComponent } from './venue-list/venue-list.component';
 
 const routes: Routes = [
     {
@@ -57,6 +58,11 @@ const routes: Routes = [
     {
         path: 'events',
         component: EventListComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'venues',
+        component: VenueListComponent,
         canActivate: [AuthGuardService]
     },
 ]

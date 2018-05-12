@@ -5,3 +5,36 @@
   background-image: none;
   background-color: #F8F8F8;
 }
+.navbar-nav{
+  li{
+    cursor: pointer;
+  }
+}
+.menu-drop{
+  position: absolute;
+  background: white;
+  width: 100%;
+  border: 1px solid #F1F3F4;
+  border-bottom: none;
+  padding: 0px;
+  .menu-drop-item{
+    &:hover{
+      background-color: #eee;
+    }
+    cursor: pointer;
+    padding: 17px;
+    border-bottom: 1px solid #F1F3F4;
+  }
+}
+.menu-link{
+  cursor: pointer;
+}
+
+@media(max-width:767px) {
+  .navbar-collapse{
+    position: fixed;
+    width: 100%;
+    background: white;
+    z-index: 99;
+  }
+}

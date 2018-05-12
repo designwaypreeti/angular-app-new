@@ -38,7 +38,8 @@ import { DndDirective } from './shared/directives/dnd.directive'
 import { CloudinaryModule } from '@cloudinary/angular-5.x'
 import * as  Cloudinary from 'cloudinary-core';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
-import { EventListComponent } from './events/event-list/event-list.component'
+import { EventListComponent } from './events/event-list/event-list.component';
+import { VenueListComponent } from './venue-list/venue-list.component'
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { EventListComponent } from './events/event-list/event-list.component'
     VenueCreateModalComponent,
     DndDirective,
     EventDetailsComponent,
-    EventListComponent
+    EventListComponent,
+    VenueListComponent
   ],
   imports: [
     BrowserModule,

@@ -9,14 +9,24 @@
   <div class="card_details">
 
     <div class="div_control">
-      <div class="the_title">
+      <div class="the_title" (click)="patTest(bankF)">
         Bank name
       </div>
       <div class="fields form_full">
         <span>
-          <input type="text" class="form_input" name="bank_name" ngModel placeholder="Bank Name" required>
+          <input type="text" class="form_input" 
+          name="bank_name" ngModel 
+          pattern="^([a-zA-Z0-9\s\-]*)$"
+          placeholder="Bank Name" required>
         </span>
       </div>
+      <div class="err-msg" *ngIf="bankF 
+                                    && bankF.controls.bank_name 
+                                    && bankF.controls.bank_name.invalid 
+                                    && bankF.controls.bank_name.touched                                     
+                                    && bankF.controls.bank_name.dirty">
+                          Please enter a valid name without any special characters.
+        </div>
     </div>
 
     <div class="div_control">
@@ -36,7 +46,7 @@
       </div>
       <div class="fields">
         <span>
-          <input type="text" class="form_input" name="ifbn" placeholder="IFBN" ngModel required>
+          <input type="text" class="form_input" (keypress)="_keyPress_ifbn($event)" name="ifbn" placeholder="IFBN" ngModel required>
         </span>
       </div>
     </div>

@@ -26,6 +26,18 @@ export class ProfileBankDetailsComponent implements OnInit {
       event.preventDefault()
     }
 }
+_keyPress_ifbn(event: any) {
+  const pattern = /[0-9\+\-\ ]/
+  const inputChar = String.fromCharCode(event.charCode)
+
+  if (!pattern.test(inputChar) || inputChar===' ') {
+    // invalid character, prevent input
+    event.preventDefault()
+  }
+}
+patTest(f){
+  console.log(f.controls.bank_name.valid)
+}
   submitted(f) {
     console.log(f.form.value)
     const value = f.form.value
