@@ -98,6 +98,20 @@ body {
 }
 
 
+.sign_up {
+  .onboarding {
+    .centerdiv {
+      .img_container {
+        @media(min-width: 768px) {
+          margin: 60px 0 60px;
+        }
+      }
+    }
+  }
+}
+
+
+
 table {
   max-width: none;
 }
@@ -637,11 +651,22 @@ header {
         img {
           width: 40px;
         }
+        &.stubba {
+          img {
+            width: 110px;
+          }
+        }
         @media(min-width: 768px) {
           margin-right: 25px;
           margin-top: 13px;
           margin-bottom: 0;
           margin-left: 0;
+          &.stubba {
+            margin-top: 3px;
+            img {
+              width: 140px;
+            }
+          }
         }
         @media(min-width: 992px) {
           margin-right: 75px;
@@ -667,6 +692,40 @@ header {
             a {
             	color: #2886FF;
             }
+          }
+          .search_input {
+            width: 100%;
+            max-width: 100%;
+            margin-top: 10px;
+            text-align: center;
+            border: 0;
+            border-bottom: 1px solid #829399;
+            &:focus {
+              outline: none;
+            }
+            @media(min-width: 768px) {
+              width: 500px;
+              max-width: 100%;
+            }
+            @media(min-width: 768px) and (max-width: 991px) {
+              width: 320px;
+            }
+            @media(min-width: 1200px) {
+              margin-left: 50px;
+            }
+          }
+        }
+        &.navbar_menu_2 {
+          margin-top: 25px;
+          li {
+            padding: 0 15px;
+            @media(min-width: 768px) {
+              padding: 0;
+            }
+          }
+          @media(max-width: 768px) {
+            margin-top: 10px;
+            margin-bottom: 10px;
           }
         }
       }
@@ -865,113 +924,6 @@ header {
         margin-bottom: 60px;
       }
 
-      .card_details_container {
-        .text_saved_cards {
-          color: #000000;
-          font-size: 14px;
-          line-height: 24px;
-          margin-bottom: 22px;
-        }
-        .the_card {
-          border: 1px solid #C5CBD3;
-          border-radius: 4px;
-          background-color: #FFFFFF;
-          padding: 30px 20px;
-          position: relative;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          margin-bottom: 30px;
-          .name_card_flex {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            .image_container {
-              height: 21px;
-              overflow-y: visible;
-              img {
-                width: 60px;
-                &.mastercard {
-                  margin-top: -10px;
-                }
-              }
-            }
-            .button_ellipsis {
-              cursor: pointer;
-              padding: 0 5px;
-              i {
-
-              }
-            }
-          }
-          .card_number {
-            color: #000000;
-            font-size: 16px;
-            line-height: 29px;
-            margin: 50px 0 15px;
-            @media(min-width: 768px) and (max-width: 991px) {
-              font-size: 14px;
-            }
-          }
-          .card_expiry {
-            .ex_text {
-              color: #C5CBD3;
-              font-size: 12px;
-              line-height: 19px;
-              padding-right: 10px;
-            }
-            .ex_date {
-              color: #000000;
-                font-size: 14px;
-              line-height: 26px;
-            }
-          }
-          .hover_icon {
-            opacity: 0;
-            position: absolute;
-            bottom: -7px;
-            right: -10px;
-            transition: all 0.3s ease;
-            img {
-              width: 20px;
-            }
-          }
-          &:hover {
-            border: 1px solid #25A18E;
-            .hover_icon {
-              opacity: 1;
-            }
-          }
-        }
-        .add_card {
-          height: 200px;
-          position: relative;
-          border: 1px solid #C5CBD3;
-          border-radius: 4px;
-          background-color: #F1F3F4;
-          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
-          margin-bottom: 40px;
-          cursor: pointer;
-          .add_text {
-            position: absolute;
-            text-align: center;
-            width: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-            img {
-
-            }
-            .span_text {
-              padding-left: 10px;
-            	color: #2886FF;
-              font-size: 14px;
-              line-height: 26px;
-            }
-          }
-          @media(min-width: 768px) {
-            margin-bottom: 140px;
-          }
-        }
-      }
 
       .bank_details_container {
         .bank_details {
@@ -1045,6 +997,119 @@ header {
       }
     }
   }
+
+  .card_details_container {
+    .text_saved_cards {
+      color: #000000;
+      font-size: 14px;
+      line-height: 24px;
+      margin-bottom: 22px;
+    }
+    .the_card {
+      border: 1px solid #C5CBD3;
+      border-radius: 4px;
+      background-color: #FFFFFF;
+      padding: 30px 20px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+      .name_card_flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .image_container {
+          height: 21px;
+          overflow-y: visible;
+          img {
+            width: 60px;
+            &.mastercard {
+              margin-top: -10px;
+            }
+          }
+        }
+        .button_ellipsis {
+          cursor: pointer;
+          padding: 0 5px;
+          i {
+
+          }
+        }
+      }
+      .card_number {
+        color: #000000;
+        font-size: 16px;
+        line-height: 29px;
+        margin: 50px 0 15px;
+        @media(min-width: 768px) and (max-width: 991px) {
+          font-size: 14px;
+        }
+      }
+      .card_expiry {
+        .ex_text {
+          color: #C5CBD3;
+          font-size: 12px;
+          line-height: 19px;
+          padding-right: 10px;
+        }
+        .ex_date {
+          color: #000000;
+            font-size: 14px;
+          line-height: 26px;
+        }
+      }
+      .hover_icon {
+        opacity: 0;
+        position: absolute;
+        bottom: -7px;
+        right: -10px;
+        transition: all 0.3s ease;
+        img {
+          width: 20px;
+        }
+      }
+      &:hover {
+        border: 1px solid #25A18E;
+        .hover_icon {
+          opacity: 1;
+        }
+      }
+    }
+    .add_card {
+      height: 200px;
+      position: relative;
+      border: 1px solid #C5CBD3;
+      border-radius: 4px;
+      background-color: #F1F3F4;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+      cursor: pointer;
+      .add_text {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        img {
+
+        }
+        .span_text {
+          padding-left: 10px;
+          color: #2886FF;
+          font-size: 14px;
+          line-height: 26px;
+        }
+      }
+      @media(min-width: 768px) {
+        margin-bottom: 140px;
+        &.no_bottom_mar {
+          margin-bottom: 50px;
+        }
+      }
+    }
+  }
+
+
   .the_white_event_container {
     border-radius: 4px;
     background-color: #FFFFFF;
@@ -1254,7 +1319,7 @@ header {
                     // }
                     // &:after {
                     //   content: '';
-                    //     background-image: url('../images/euro.svg');
+                    //     background-image: url(/assets/images/euro.svg);
                     //     background-size: contain;
                     //     background-repeat: no-repeat;
                     //     background-position: center;
@@ -1557,6 +1622,174 @@ header {
               }
             }
           }
+          .t_title {
+            color: #000;
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            .caps {
+              font-size: 14px;
+              text-transform: uppercase;
+              display: inline-block;
+              vertical-align: middle;
+            }
+            img {
+              display: inline-block;
+              vertical-align: sub;
+              width: 11px;
+            }
+            &.t_bottom {
+              margin-bottom: 20px;
+            }
+          }
+          .buy_ticket_table {
+            .table-responsive {
+              border: 0;
+              margin-bottom: 30px;
+            }
+            table {
+              tr {
+                td {
+                  border: 0;
+                  padding: 4px;
+                  color: #829399;
+                  &.name {
+                    width: 55%;
+                  }
+                  &.status {
+                    width: 20%;
+                  }
+                  &.price {
+                    width: 15%;
+                  }
+                  &.qty {
+                    width: 10%;
+                  }
+                  &.total_amt {
+                    color: #1bacff;
+                  }
+                  &:first-child {
+                    padding-left: 0;
+                  }
+                }
+                &.active {
+                  td {
+                    background-color: transparent;
+                    &.name {
+                      color: #000;
+                    }
+                    &.status, &.price {
+                      color: #1bacff;
+                    }
+                  }
+                }
+                &.last {
+                  border-bottom: 1px solid #829399;
+                  td {
+                    padding-bottom: 15px;
+                  }
+                }
+                &.first {
+                  td {
+                    padding-top: 15px;
+                  }
+                }
+                &.button_container {
+                  td {
+                    padding-top: 35px;
+                    padding-right: 0;
+                    .btn_custom {
+                      border-radius: 0;
+                      color: #fff;
+                      background-color: #1bacff;
+                      padding: 10px 30px;
+                      text-transform: uppercase;
+                    }
+                    &.btn_td {
+                      padding-top: 25px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .your_tickets_table {
+            .table-responsive {
+              border: 0;
+              margin-bottom: 30px;
+            }
+            th {
+              border-bottom: 0;
+              color: #829399;
+              font-size: 12px;
+              line-height: 18px;
+              font-weight: 400;
+              &.wid_60 {
+                width: 60%
+              }
+              &.wid_20 {
+                width: 20%
+              }
+              &:first-child {
+                padding-left: 0;
+              }
+            }
+            td {
+              &:first-child {
+                padding-left: 0;
+              }
+            }
+          }
+          .the_para {
+            margin-bottom: 40px;
+            .t_title {
+              margin-bottom: 10px;
+            }
+            .descr {
+              color: #829399;
+              font-size: 13px;
+              line-height: 26px;
+              a {
+                color: #1bacff;
+              }
+            }
+            .descrip {
+              color: #5e6a6f;
+              font-size: 13px;
+              line-height: 26px;
+              margin: 20px 0;
+            }
+          }
+          .terms_div {
+            .the_terms_text {
+              border-bottom: 0;
+              color: #000;
+              font-size: 12px;
+              line-height: 18px;
+              font-weight: 400;
+              a {
+                color: #2886ff;
+              }
+            }
+            .the_btn_div {
+              text-align: right;
+              .btn-custom {
+                border-radius: 0;
+                color: #fff;
+                background-color: #1bacff;
+                padding: 10px 30px;
+                text-transform: uppercase;
+              }
+              .pay_icons {
+                margin-top: 10px;
+                img {
+                  width: 30px;
+                  margin-left: 3px;
+                }
+              }
+            }
+          }
         }
       }
       @media(min-width: 768px) {
@@ -1574,6 +1807,31 @@ header {
           color: #000000;
           font-size: 16px;
           line-height: 24px;
+          &.the_bold {
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+          }
+        }
+        .share_icons {
+          display: flex;
+          flex-wrap: wrap;
+          .icon {
+            width: 50px;
+            height: 50px;
+            background-color: #acafb6;
+            border-radius: 50%;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            position: relative;
+            img {
+              width: 20px;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
         }
         .fields {
           .down_arrow {
@@ -1616,6 +1874,16 @@ header {
         padding-bottom: 21px;
         border-top: 1px solid #F1F3F4;
         border-bottom: 1px solid #F1F3F4;
+        .the_title {
+          color: #000000;
+          font-size: 16px;
+          line-height: 24px;
+          &.the_bold {
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+          }
+        }
         .btn_right {
           color: #2886FF;
           font-size: 16px;
@@ -1632,6 +1900,13 @@ header {
             color: #C5CBD3;
             border: 1px solid #C5CBD3;
           }
+          &.bold_caps {
+            font-weight: 600;
+            text-transform: uppercase;
+          }
+        }
+        &.no_border_bottom {
+          border-bottom: 0;
         }
       }
       .location_div {

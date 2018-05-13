@@ -1,0 +1,77 @@
+<div class="ticket_sales">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="title">
+        Ticket Sales
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="btns_management">
+        <a [routerLink]="['/events','create']" [queryParams]="{id: eId}"class="edit">Edit tickets</a>
+        <a  class="btn order_manage">Order management</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="the_table">
+    <div class="top_section">
+      <div class="table_columns">
+        <div class="content">
+          <div class="heading">Tickets sold</div>
+          <div class="main">321<span>/500</span></div>
+        </div>
+      </div>
+      <div class="table_columns">
+        <div class="content">
+          <div class="heading">Revenue</div>
+          <div class="main">£12,545</div>
+        </div>
+      </div>
+      <div class="table_columns">
+        <div class="content">
+          <div class="heading">Days remaining till event</div>
+          <div class="main">4</div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom_section">
+      <div class="graph_head">Sales graph</div>
+    </div>
+  </div>
+
+  <div class="bottom_table">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Ticket Type</th>
+            <th>Amt. Sold</th>
+            <th>Price</th>
+            <th>Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Free</td>
+            <td>25</td>
+            <td>£0.00</td>
+            <td>£0.00</td>
+          </tr>
+          <tr>
+            <td>Early bird</td>
+            <td>170</td>
+            <td>£7.50</td>
+            <td>£7,500.00</td>
+          </tr>
+          <tr>
+            <td>Event Pass</td>
+            <td>126</td>
+            <td>£12.00</td>
+            <td>£5,045.00</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+  </div>
+
+</div>

@@ -31,116 +31,66 @@
                 {{currentEvent.event_description}}
               </div>
 
-              <div class="ticket_sales">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="title">
-                      Ticket Sales
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="btns_management">
-                      <a [routerLink]="['/events','create']" [queryParams]="{id: eId}"class="edit">Edit tickets</a>
-                      <a  class="btn order_manage">Order management</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="the_table">
-                  <div class="top_section">
-                    <div class="table_columns">
-                      <div class="content">
-                        <div class="heading">Tickets sold</div>
-                        <div class="main">321<span>/500</span></div>
-                      </div>
-                    </div>
-                    <div class="table_columns">
-                      <div class="content">
-                        <div class="heading">Revenue</div>
-                        <div class="main">£12,545</div>
-                      </div>
-                    </div>
-                    <div class="table_columns">
-                      <div class="content">
-                        <div class="heading">Days remaining till event</div>
-                        <div class="main">4</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bottom_section">
-                    <div class="graph_head">Sales graph</div>
-                  </div>
-                </div>
-
-                <div class="bottom_table">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Ticket Type</th>
-                          <th>Amt. Sold</th>
-                          <th>Price</th>
-                          <th>Revenue</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Free</td>
-                          <td>25</td>
-                          <td>£0.00</td>
-                          <td>£0.00</td>
-                        </tr>
-                        <tr>
-                          <td>Early bird</td>
-                          <td>170</td>
-                          <td>£7.50</td>
-                          <td>£7,500.00</td>
-                        </tr>
-                        <tr>
-                          <td>Event Pass</td>
-                          <td>126</td>
-                          <td>£12.00</td>
-                          <td>£5,045.00</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    </div>
-                </div>
-
-              </div>
+              <app-ticket-booking *ngIf="book == 'true'"></app-ticket-booking>
+              <app-ticket-sales *ngIf="book != 'true'"></app-ticket-sales>              
 
             </div>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="right_side">
-
-            <div class="div_control">
-              <div class="the_title">
-                Event status
+            <div *ngIf="book != 'true'">
+              <div class="div_control">
+                <div class="the_title">
+                  Event status
+                </div>
+                <div class="fields form_full">
+                  <span class="down_arrow">
+                    <select class="theme_select">
+                      <option value="Published">Published</option>
+                      <option value="Published">Draft</option>
+                      <option value="Published">Completed</option>                    
+                    </select>
+                  </span>
+                </div>
               </div>
-              <div class="fields form_full">
-                <span class="down_arrow">
-                  <select class="theme_select">
-                    <option value="Published">Published</option>
-                    <option value="Published">Draft</option>
-                    <option value="Published">Completed</option>                    
-                  </select>
-                </span>
+
+              <div class="event_status_desc">
+                Your event is live and visible on Stubba. Tickets can be purchased for this event
+              </div>
+
+              <a class="copysharelink">Copy share link</a>
+
+              <div class="btn_container">
+                <a  class="btn_right disabled">Attendee Check-in</a>
+                <a  class="btn_right"><span>More options</span></a>
               </div>
             </div>
+            <div *ngIf="book == 'true'">
+              <div class="div_control">
+                <div class="the_title the_bold">
+                  Share Event
+                </div>
+                <div class="share_icons">
+                  <div class="icon"><a href="#"><img src="images/facebook-logo.svg" class="img img-responsive" /></a></div>
+                  <div class="icon"><a href="#"><img src="images/messenger.svg" class="img img-responsive" /></a></div>
+                  <div class="icon"><a href="#"><img src="images/linkedin-logo.svg" class="img img-responsive" /></a></div>
+                  <div class="icon"><a href="#"><img src="images/twitter-logo-silhouette.svg" class="img img-responsive" /></a></div>
+                  <div class="icon"><img src="images/email.svg" class="img img-responsive" /></div>
+                </div>
+              </div>
 
-            <div class="event_status_desc">
-              Your event is live and visible on Stubba. Tickets can be purchased for this event
+
+              <a class="copysharelink">Copy share link</a>
+
+              <div class="btn_container no_border_bottom">
+                <div class="the_title the_bold">
+                  Event holder
+                </div>
+                <a href="#" class="btn_right disabled bold_caps">More Events</a>
+                <a href="#" class="btn_right bold_caps"><span>Contact</span></a>
+              </div>
             </div>
-
-            <a class="copysharelink">Copy share link</a>
-
-            <div class="btn_container">
-              <a  class="btn_right disabled">Attendee Check-in</a>
-              <a  class="btn_right"><span>More options</span></a>
-            </div>
-
             <div class="location_div">
               <div class="location_name">
                 <img src="/assets/images/locaicon.svg" />

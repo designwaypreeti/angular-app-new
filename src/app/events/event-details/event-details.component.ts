@@ -16,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EventDetailsComponent implements OnInit {
   eId 
   category 
+  book
   options
   tdStates
   currentEvent = new Event
@@ -34,6 +35,9 @@ export class EventDetailsComponent implements OnInit {
             ) { 
     this.user = JSON.parse(localStorage.getItem('user'))
     this.eId = this.route.snapshot.params && this.route.snapshot.params.id
+    this.book = route.snapshot.queryParams && route.snapshot.queryParams.booked
+    console.log(route.snapshot.queryParams)
+    
   }
 
   ngOnInit() {
