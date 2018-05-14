@@ -13,7 +13,7 @@
       <div class="the_venue_flex">
 
         <div class="map_div" id="map_location">
-          <agm-map [latitude]="map.lat" [longitude]="map.lng" (mapClick)="geoClick($event)">
+          <agm-map [latitude]="map.lat" [longitude]="map.lng">
             <agm-marker [latitude]="map.lat" [longitude]="map.lng"></agm-marker>
         </agm-map>
         </div>
