@@ -32,7 +32,7 @@
               </div>
 
               <app-ticket-booking *ngIf="book == 'true'"></app-ticket-booking>
-              <app-ticket-sales *ngIf="book != 'true'"></app-ticket-sales>              
+              <app-ticket-sales *ngIf="book != 'true'" [eId]="eId"></app-ticket-sales>              
 
             </div>
           </div>

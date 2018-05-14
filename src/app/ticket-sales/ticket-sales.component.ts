@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ticket-sales',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ticket-sales.component.less']
 })
 export class TicketSalesComponent implements OnInit {
-
+  @Input() eId 
   constructor() { }
 
   ngOnInit() {
