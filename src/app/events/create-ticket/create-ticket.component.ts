@@ -52,4 +52,13 @@ export class CreateTicketComponent implements OnInit {
       })
     
   }
+  _keyPress_price(event: any) {
+    const pattern = /[0-9\+\.\+\,\ ]/
+    const inputChar = String.fromCharCode(event.charCode)
+  
+    if (!pattern.test(inputChar) || inputChar === ' ') {
+      // invalid character, prevent input
+      event.preventDefault()
+    }
+  }
 }

@@ -15,13 +15,13 @@
       <div class="tab-content" *ngIf="events">
         <div id="upcoming" class="tab-pane fade in active">
           <div class="tab_the_section">
-            <div class="row ">
-              <div class="col-sm-4 event-card" *ngFor="let event of events" [routerLink]="['/events',event.info._id]">
+            <div class="row flex-row">
+              <div class="col-flex-4 event-card" *ngFor="let event of events | slice:0:max; let i = index" [routerLink]="['/events',event.info._id]">
                 <div class="tablet">
                   <div class="top_sec">
                     <div class="date_field">
-                      <div class="date">10</div>
-                      <div class="month">Jun</div>
+                      <div class="date">{{event.info && event.info.dateDay}}</div>
+                      <div class="month">{{event.info && event.info.dateMonth}}</div>
                     </div>
                     <div class="location_field">
                       <div class="name_event">{{event.info.event_name}}</div>
@@ -55,6 +55,9 @@
                   </div>
                 </div>
 
+              </div>  
+              <div class="more">
+                <button (click)="more()" *ngIf="events && events.length && max<events.length">Show More</button>
               </div>
             </div>
           </div>

@@ -5,9 +5,9 @@ import { Observable } from 'rxjs/Observable'
 import { startWith } from 'rxjs/operators/startWith'
 import { map } from 'rxjs/operators/map'
 import { Event } from '../../shared/models/event.model'
-import * as moment from 'moment';
-import * as momentTime from 'moment-timezone';
-import { Router, ActivatedRoute } from '@angular/router';
+import * as moment from 'moment'
+import * as momentTime from 'moment-timezone'
+import { Router, ActivatedRoute } from '@angular/router'
 // This is the parent component for the event's create page
 @Component({
   selector: 'app-event-create',
@@ -75,17 +75,31 @@ export class EventCreateComponent implements OnInit {
       // invalid character, prevent input
       event.preventDefault()
     } else{
+      if(inputChar ==" " || inputChar== "-"){
+        event.preventDefault()
+      }
       val = val + inputChar 
       const value = parseInt(val)
       console.log(value)
-      if(time==1) if(value>23) {
+      
+      if(time==1) {
+        if(value>23) {
         this[obj].hours = 23
         event.preventDefault()
-      }
-      if(time==2) if(value>59) {
+        } else if(value<0){
+          this[obj].hours = 0
+          event.preventDefault()
+        }
+    }
+      if(time==2) {
+        if(value>59) {
         event.preventDefault()
         this[obj].minutes = 59
-      }
+        }else if(value<0){
+          this[obj].hours = 0
+          event.preventDefault()
+        }
+    }
     }
     
 }

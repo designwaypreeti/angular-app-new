@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr'
 export class ProfileBankDetailsComponent implements OnInit {
   @Output() bankAdded = new EventEmitter<{ action: string, data: any }>()
   user
+  bankNameModel
   constructor(private mainService: MainService, private toastr: ToastrService) {
     this.user = JSON.parse(localStorage.getItem('user'))
   }
@@ -21,7 +22,7 @@ export class ProfileBankDetailsComponent implements OnInit {
     const pattern = /[0-9\+\-\ ]/
     const inputChar = String.fromCharCode(event.charCode)
 
-    if (!pattern.test(inputChar)) {
+    if (!pattern.test(inputChar) || inputChar===' ') {
       // invalid character, prevent input
       event.preventDefault()
     }
@@ -30,13 +31,16 @@ _keyPress_ifbn(event: any) {
   const pattern = /[0-9\+\-\ ]/
   const inputChar = String.fromCharCode(event.charCode)
 
-  if (!pattern.test(inputChar) || inputChar===' ') {
+  if (!pattern.test(inputChar) || inputChar === ' ') {
     // invalid character, prevent input
     event.preventDefault()
   }
 }
 patTest(f){
   console.log(f.controls.bank_name.valid)
+}
+blurHandle(name){
+  if(!this.bankNameModel.trim()) this.bankNameModel = undefined
 }
   submitted(f) {
     console.log(f.form.value)

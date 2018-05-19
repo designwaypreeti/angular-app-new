@@ -46,10 +46,10 @@
                 </div>
                 <div class="fields form_full">
                   <span class="down_arrow">
-                    <select class="theme_select">
+                    <select class="theme_select" [ngModel]="eventStatus" (change)="changeStatus($event)">
                       <option value="Published">Published</option>
-                      <option value="Published">Draft</option>
-                      <option value="Published">Completed</option>                    
+                      <option value="Draft">Draft</option>
+                      <option value="Completed">Completed</option>                    
                     </select>
                   </span>
                 </div>

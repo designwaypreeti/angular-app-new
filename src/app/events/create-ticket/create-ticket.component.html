@@ -55,7 +55,7 @@
                       {{ currency.name }}
                     </mat-option>
                   </mat-select>
-                <input type="text" name="price" ngModel class="price-input">
+                <input type="text" (keypress)="_keyPress_price($event)" name="price" ngModel class="price-input">
               </label>
             </div>
           </div>

@@ -60,7 +60,7 @@
                   </div>
                   <div class="fields form_full">
                     <span>
-                      <input type="password" class="form_input" ngModel name="oldpassword" placeholder="* * * * * * * * * * * *"  requried>
+                      <input type="password" class="form_input" [(ngModel)]="oldPass" name="oldpassword" placeholder="* * * * * * * * * * * *"  requried>
                     </span>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                   </div>
                   <div class="fields form_full">
                     <span>
-                      <input type="password" class="form_input" ngModel name="newpassword" placeholder="* * * * * * * * * * * *" requried>
+                      <input type="password" class="form_input" [(ngModel)]="newPass" name="newpassword" placeholder="* * * * * * * * * * * *" requried>
                     </span>
                   </div>
                 </div>
@@ -83,14 +83,13 @@
                       <input type="password" disabled class="form_input"  placeholder="* * * * * * * * * * * *">
                     </span>
                     <span class="pass pass_link">
-                      <a class="change_pass" (click)="changePass=!changePass">{{(changePass)?'Cancel':'Change password'}}</a>
+                      <a class="change_pass" (click)="changePass=!changePass; oldPass= NewPass= undefined">{{(changePass)?'Cancel':'Change password'}}</a>
                     </span>
                   </div>
                 </div>
               </div>
 
-              <button type="submit" [disabled]="gf.invalid" class="btn btn_custom_add">Save changes</button>
-
+              <button type="submit" [disabled]="gf.invalid ||  (changePass && (oldPass != newPass || (!oldPass || !newPass)))" class="btn btn_custom_add">Save changes</button>
             </form>
 
           </div>

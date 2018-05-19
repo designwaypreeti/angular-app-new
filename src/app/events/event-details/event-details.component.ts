@@ -26,6 +26,7 @@ export class EventDetailsComponent implements OnInit {
   currentState
   venue
   loc
+  eventStatus = 'Draft'
   selectedFakeUrl
   secure_url
   currentUrl
@@ -37,12 +38,21 @@ export class EventDetailsComponent implements OnInit {
     this.eId = this.route.snapshot.params && this.route.snapshot.params.id
     this.book = route.snapshot.queryParams && route.snapshot.queryParams.booked
     console.log(route.snapshot.queryParams)
-    
   }
 
   ngOnInit() {
     console.log(1)
     this.getEvents()
+  }
+  changeStatus(e){
+    console.log(e.target.value)
+    this.eventStatus = (e.target.value) ? e.target.value : "Draft"
+    const data = {
+      event_status : this.eventStatus
+    }
+    this.mainService.updateEvent(this.eId,data).subscribe(s=>{
+      console.log(s)
+    },e=>{})
   }
   fetchVenues(venue) {
     this.mainService.getAllVenue(this.user._id).subscribe(r => {
@@ -57,6 +67,8 @@ export class EventDetailsComponent implements OnInit {
     this.mainService.getEvent(this.eId).subscribe(r => {
       console.log(r)
       this.currentEvent = r.events && r.events.length && r.events[0]
+      this.eventStatus = (this.currentEvent.status) ? this.currentEvent.status : "Draft" 
+      
       console.log(this.currentEvent)
       if(this.currentEvent.venue){
         this.fetchVenues(this.currentEvent.venue)

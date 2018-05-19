@@ -15,9 +15,11 @@
       <div class="fields form_full">
         <span>
           <input type="text" class="form_input" 
-          name="bank_name" ngModel 
+          name="bank_name" [(ngModel)]="bankNameModel"
           pattern="^([a-zA-Z0-9\s\-]*)$"
-          placeholder="Bank Name" required>
+          placeholder="Bank Name" 
+          (blur)="blurHandle(bankNameModel)"
+          required>
         </span>
       </div>
       <div class="err-msg" *ngIf="bankF 
