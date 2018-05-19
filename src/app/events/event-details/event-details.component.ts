@@ -57,7 +57,7 @@ export class EventDetailsComponent implements OnInit {
   fetchVenues(venue) {
     this.mainService.getAllVenue(this.user._id).subscribe(r => {
       this.venue = r.venues.find(x=> x._id === venue)
-      console.log(this.venue.location)
+      console.log(this.venue)
       this.loc = JSON.parse(this.venue.location)
       //fetching event detais if event id is provided, function returns if its not
     }, e => { })
