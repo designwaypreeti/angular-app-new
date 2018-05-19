@@ -41,7 +41,8 @@ import { EventDetailsComponent } from './events/event-details/event-details.comp
 import { EventListComponent } from './events/event-list/event-list.component';
 import { VenueListComponent } from './venue-list/venue-list.component';
 import { TicketSalesComponent } from './ticket-sales/ticket-sales.component';
-import { TicketBookingComponent } from './ticket-booking/ticket-booking.component'
+import { TicketBookingComponent } from './ticket-booking/ticket-booking.component';
+import { CleanInputDirective } from './shared/directives/clean-input.directive'
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { TicketBookingComponent } from './ticket-booking/ticket-booking.componen
     EventListComponent,
     VenueListComponent,
     TicketSalesComponent,
-    TicketBookingComponent
+    TicketBookingComponent,
+    CleanInputDirective
   ],
   imports: [
     BrowserModule,

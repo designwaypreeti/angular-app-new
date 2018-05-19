@@ -2,6 +2,9 @@
     cursor: pointer;
     width: 33%;
     padding: 14px;
+    .tablet{
+        min-height: 325px;
+    }
 }
 .flex-row{
     display: flex;
@@ -19,6 +22,31 @@
         padding: 10px 25px;
     }
 }
+.mid_sec{
+    display: flex;
+    justify-content: space-between;
+}
+.top_sec{
+    display: flex;
+}
+.center_state_div .event_section .tab-content .tab_the_section .tablet{
+    .mid_sec{
+        .sold.revenue {
+            width: 50%;
+        }  
+    } 
+    .top_sec {
+        .date_field {
+            height: 50px;
+        }
+        .location_field {
+            width: 64%;
+            .name_event {
+                word-break: break-word;
+            }
+        }
+    }
+} 
 @media(max-width:767px) {
     .event-card{
         cursor: pointer;

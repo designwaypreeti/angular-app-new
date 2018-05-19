@@ -56,6 +56,23 @@
                 </div>
 
               </div>  
+              <div class="col-flex-4 event-card" [routerLink]="['create']" *ngIf="!(events && events.length && max<events.length)">
+
+                <div class="tablet the_last">
+
+                  <div class="center_the_div">
+                    <div class="text">
+                      There’s not much happening
+                    </div>
+                    <a href="#" class="the_tag">
+                      <img src="/assets/images/plus.svg">
+                      <span>Create another event</span>
+                    </a>
+                  </div>
+
+                </div>
+
+              </div>
               <div class="more">
                 <button (click)="more()" *ngIf="events && events.length && max<events.length">Show More</button>
               </div>
