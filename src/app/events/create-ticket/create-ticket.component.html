@@ -10,7 +10,7 @@
           </div>
           <div class="fields form_full">
             <span>
-              <input type="text"  name="title" (blur)="blurHandle()" [(ngModel)]="titleModel" class="form_input">
+              <input type="text"  name="title" (blur)="blurHandle()" [(ngModel)]="titleModel" class="form_input" required>
             </span>
           </div>
         </div>
@@ -55,7 +55,7 @@
                       {{ currency.name }}
                     </mat-option>
                   </mat-select>
-                <input type="text" (keypress)="_keyPress_price($event)" name="price" ngModel class="price-input">
+                <input type="text" (keypress)="_keyPress_price($event)" name="price" ngModel class="price-input" required>
               </label>
             </div>
           </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="fields form_full">
               <span>
-                <input type="text" name="quantity" (keypress)="_keyPress_price($event,1)" ngModel class="form_input">
+                <input type="text" name="quantity" (keypress)="_keyPress_price($event,1)" ngModel class="form_input" required>
               </span>
             </div>
           </div>
@@ -80,6 +80,6 @@
     </div>
   </div>
   
-  <button type="submit" class="btn btn_custom_acsetting adjust_margin_next_step">Save ticket</button>
+  <button type="submit" [disabled]="tabTwoForm.form.invalid" class="btn btn_custom_acsetting adjust_margin_next_step">Save ticket</button>
 
 </form>
