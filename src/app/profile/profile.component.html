@@ -89,7 +89,7 @@
                 </div>
               </div>
 
-              <button type="submit" [disabled]="gf.invalid ||  (changePass && (oldPass != newPass || (!oldPass || !newPass)))" class="btn btn_custom_add">Save changes</button>
+              <button type="submit" [disabled]="gf.invalid ||  (changePass &&  (!oldPass || !newPass))" class="btn btn_custom_add">Save changes</button>
             </form>
 
           </div>

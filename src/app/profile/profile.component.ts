@@ -116,20 +116,20 @@ export class ProfileComponent implements OnInit {
       newpassword: f.value.newpassword ? f.value.newpassword : undefined
 
     }
-    // this.mainService.updateProfile(user, this.user._id).subscribe(
-    //   r => {
-    //     console.log(r)
-    //     this.user = r.result
-    //     this.toastr.success('User Details Updated', '', {
-    //       timeOut: 3000,
-    //     })
-    //   }
-    //   , e => {
-    //     console.log(e)
-    //     this.toastr.error('Couldnt Update User', '', {
-    //       timeOut: 3000,
-    //     })
-    //   })
+    this.mainService.updateProfile(user, this.user._id).subscribe(
+      r => {
+        console.log(r)
+        this.user = r.result
+        this.toastr.success('User Details Updated', '', {
+          timeOut: 3000,
+        })
+      }
+      , e => {
+        console.log(e)
+        this.toastr.error('Couldnt Update User', '', {
+          timeOut: 3000,
+        })
+      })
   }
   changeTab(n) {
     this.tab = n
