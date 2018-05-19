@@ -12,6 +12,8 @@ export class ProfileComponent implements OnInit {
   tab: number
   shown: boolean
   user: any
+  oldPass
+  newPass
   changePass = false
   cards = [
     {
