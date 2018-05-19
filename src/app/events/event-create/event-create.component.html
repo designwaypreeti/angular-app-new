@@ -66,7 +66,7 @@
                       </div>
                       <div class="fields form_full">
                         <span>
-                          <input type="text" class="form_input" [(ngModel)]='currentEvent.event_name' name="name" (appCleanInput)='ngModelChange' required>
+                          <input type="text" class="form_input" [(ngModel)]='currentEvent.event_name' name="name" required>
                         </span>
                       </div>
                     </div>
@@ -250,7 +250,7 @@
                                  matInput [matAutocomplete]="auto"
                                  name="state"
                                  #state="ngModel" [(ngModel)]="currentState" 
-                                 (appCleanInput)='ngModelChange'
+                                
                                  (blur)="detectChange()"
                                  (ngModelChange)="tdStates = filterStates(currentState)" [disabled]="options.length==0">
                           <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption >
@@ -374,7 +374,6 @@
                 <button type="submit" 
                       [disabled]="tabOneForm.form.invalid || invalidVenue || !selectedFakeUrl"
                        class="btn btn_custom_acsetting adjust_margin_next_step"
-                       
                        >Next step : Tickets</button>
                 <div class="draft">
                   Save as draft
