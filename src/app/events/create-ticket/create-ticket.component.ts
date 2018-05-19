@@ -11,6 +11,7 @@ export class CreateTicketComponent implements OnInit {
   @Output() ticketCreated = new EventEmitter<{ action: string, data: any }>()
   @Input() uId   
   @Input() eId   //5add87517d177b2d9c022739
+  titleModel
   types = [
     { id: '1', name: 'General' },
     { id: '2', name: 'VIP' }
@@ -52,13 +53,23 @@ export class CreateTicketComponent implements OnInit {
       })
     
   }
-  _keyPress_price(event: any) {
-    const pattern = /[0-9\+\.\+\,\ ]/
+  _keyPress_price(event: any, called?) {
+    let pattern 
+    pattern = /[0-9\+\.\+\,\ ]/
+    if(called===1){
+    pattern = /[0-9\ ]/
+
+    }
     const inputChar = String.fromCharCode(event.charCode)
   
     if (!pattern.test(inputChar) || inputChar === ' ') {
       // invalid character, prevent input
       event.preventDefault()
     }
+  }
+  blurHandle(){
+    if(!this.titleModel) return
+    if(!this.titleModel.trim()) this.titleModel = undefined 
+    else  this.titleModel = this.titleModel.trim()
   }
 }
