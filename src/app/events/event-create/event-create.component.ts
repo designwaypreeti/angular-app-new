@@ -265,6 +265,7 @@ export class EventCreateComponent implements OnInit {
       this.uploading = false
       //updating/creating event
       data.image = this.secure_url
+      data.event_status = "Draft"
       if (this.eId) this.updateEvent(data)
       else this.createEvent(this.user._id, data)
     },
@@ -279,9 +280,10 @@ export class EventCreateComponent implements OnInit {
       else this.createEvent(this.user._id, data)
     }
   }
-  submitFinal(f){
+  submitFinal(f, isDraft?){
 
     const data = { ...f.form.value }
+    data.event_status = isDraft==1 ? "Draft" : "Published"
     if (this.eId) this.updateEvent(data,3)
   }
   createEvent(uid, data) {

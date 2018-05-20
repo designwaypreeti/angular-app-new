@@ -375,7 +375,7 @@
                       [disabled]="tabOneForm.form.invalid || invalidVenue || !selectedFakeUrl"
                        class="btn btn_custom_acsetting adjust_margin_next_step"
                        >Next step : Tickets</button>
-                <div class="draft">
+                <div class="draft" (click)="submitted(tabOneForm)">
                   Save as draft
                 </div>
               </div>
@@ -413,7 +413,7 @@
               <a class="btn btn_custom_acsetting adjust_margin_next_step"
                  (click)="tab=3"
               >Next step : Settings</a>
-              <div class="draft">
+              <div class="draft" (click)="tab=3">
                 Save as draft
               </div>
             </div>
@@ -479,7 +479,7 @@
 
               <div class="buttons_events_page   events_page_three">
                 <button type="submit" class="btn btn_custom_acsetting adjust_margin_next_step">Publish the event</button>
-                <div class="draft">
+                <div class="draft" (click)="submitFinal(tabThreeForm,1)">
                   Save as draft
                 </div>
               </div>
