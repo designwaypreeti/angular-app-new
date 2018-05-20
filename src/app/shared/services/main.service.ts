@@ -112,6 +112,22 @@ export class MainService {
     )
       .map(r => r)
   }
+  bookTicket(eid,uid,tickets,total){
+    this.setHeader()
+    // console.log(data)
+    const  dateNow= new Date()
+    const data = {
+      total,
+      tickets,
+      dateNow,
+      status:'booked'
+    }
+    return this.http.post<any>(`${URL}/event/booking?uid=${uid}&eventid=${eid}`,
+      data,
+      { headers: this.headers }
+    )
+      .map(r => r)
+  }
   createVenue(uid,data){
     this.setHeader()
     console.log(data)

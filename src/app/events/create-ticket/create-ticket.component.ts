@@ -31,7 +31,8 @@ export class CreateTicketComponent implements OnInit {
     console.log(f.form)
     const data = {
       ticket: f.form.value.title || 'Exclusive Access',
-      price: this.selectedCurrency.name + f.form.value.price,
+      // this.selectedCurrency.name + 
+      price: f.form.value.price,
       ticket_type: f.form.value.ticketType || 'Paid ticket',
       quantity: f.form.value.quantity || '100',
       eventId: this.eId

@@ -68,17 +68,15 @@ export class EventDetailsComponent implements OnInit {
       console.log(r)
       this.currentEvent = r.events && r.events.length && r.events[0]
       this.eventStatus = (this.currentEvent.status) ? this.currentEvent.status : "Draft" 
-      
       console.log(this.currentEvent)
       if(this.currentEvent.venue){
         this.fetchVenues(this.currentEvent.venue)
       }
       this.startDate = this.currentEvent.start_date
       this.endDate = this.currentEvent.end_date
-      this.selectedFakeUrl 
-      = this.currentEvent.event_image
-        ? this.currentEvent.event_image
-        : undefined
+      this.selectedFakeUrl= this.currentEvent.event_image
+                            ? this.currentEvent.event_image
+                            : undefined
       
       console.log(this.currentState)
     }, e => { })

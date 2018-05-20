@@ -50,7 +50,7 @@
             </div>
             <div class="fields form_full">
               <label class="price_contain">
-                <mat-select placeholder="" required [(value)]="selectedCurrency.name" name="curr" class="price-input no-carret-sel one">
+                <mat-select [disabled]="true" placeholder="" required [(value)]="selectedCurrency.name" name="curr" class="price-input no-carret-sel one">
                     <mat-option *ngFor="let currency of currencies" [value]="currency.name">
                       {{ currency.name }}
                     </mat-option>

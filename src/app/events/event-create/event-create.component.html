@@ -402,10 +402,12 @@
 
               <div class="cards_container">
                 <div class="cards_container_inner">
-                  <app-ticket-card *ngFor="let ticket of tickets" [ticket]="ticket"></app-ticket-card>
-                </div>
-              </div>
 
+                    <app-ticket-card class="single_card_outer" *ngFor="let ticket of tickets"  [ticket]="ticket"></app-ticket-card>
+                </div>
+
+              </div>
+              
             </div>
             <div class="buttons_events_page events_page_two">
               <a class="btn btn_custom_acsetting adjust_margin_next_step"
