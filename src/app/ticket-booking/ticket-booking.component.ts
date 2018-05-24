@@ -26,6 +26,7 @@ export class TicketBookingComponent implements OnInit {
    }
 
   ngOnInit() {
+    console.log(this.venue)
     this.fetchTickets()
   }
 
