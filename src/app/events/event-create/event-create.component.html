@@ -387,12 +387,16 @@
           <div id="step2" class="tab-pane fade" [ngClass]="{'in active':tab === 2}">
 
             <div class="tab_heading">
-              <h3>Add event tickets</h3>
+              <h3>{{selectedTicket._id ?'Update':'Add'}} event tickets</h3>
               <div class="subs">Create tickets for your event based on your pricing tiers</div>
             </div>
 
             <div class="tab_one_form">
-              <app-create-ticket (ticketCreated)="ticketCreated($event)" [uId]="user && user._id" [eId]="eId"></app-create-ticket>
+              <app-create-ticket (ticketCreated)="ticketCreated($event)" 
+                [selectedTicket]="selectedTicket"
+                [uId]="user && user._id" 
+                [eId]="eId">
+              </app-create-ticket>
             </div>
             <div class="saved_cards">
               <div class="tab_heading">
@@ -403,7 +407,11 @@
               <div class="cards_container">
                 <div class="cards_container_inner">
 
-                    <app-ticket-card class="single_card_outer" *ngFor="let ticket of tickets"  [ticket]="ticket"></app-ticket-card>
+                    <app-ticket-card class="single_card_outer" 
+                          *ngFor="let ticket of tickets"  
+                          [ticket]="ticket" 
+                          (click)=selectTicket(ticket)>
+                    </app-ticket-card>
                 </div>
 
               </div>

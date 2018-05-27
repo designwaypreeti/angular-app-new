@@ -15,7 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router'
   styleUrls: ['./event-create.component.less']
 })
 export class EventCreateComponent implements OnInit {
-  tab = 1
+  tab = 2
   category = 1
   shown = false
   eId //= '5af2a1d12c82b9000475ac32'
@@ -52,6 +52,14 @@ export class EventCreateComponent implements OnInit {
   }
   tickets = [
   ]
+  selectedTicket = {
+    _id: undefined,
+    eventId: undefined,
+    price:undefined,
+    quantity:undefined,
+    title: undefined,
+    type:undefined,
+  }
   reader = new FileReader()
 
   constructor(private mainService: MainService,
@@ -104,25 +112,29 @@ export class EventCreateComponent implements OnInit {
     
 }
   fetchTickets(){
-    if(this.eId){
-      this.mainService.getTicket(this.eId).subscribe(
-        r=>{
-          console.log(r)
-          if(!r.tickets || r.tickets.length ===0) return
-          this.tickets = r.tickets.map(ele=>{
-            return {
-              price:ele.ticket_price,
-              quantity: ele.quantity,
-              title:ele.ticket_name,
-              type:ele.ticket_type,
-              eventId: this.eId
-            }
-          })
-        }
-        ,e=>{})
+      if(this.eId){
+        this.mainService.getTicket(this.eId).subscribe(
+          r=>{
+            console.log(r)
+            if(!r.tickets || r.tickets.length ===0) return
+            this.tickets = r.tickets.map(ele=>{
+              return {
+                _id: ele._id,
+                price:ele.ticket_price,
+                quantity: ele.quantity,
+                title:ele.ticket_name,
+                ticket_type:ele.ticket_type,
+                eventId: this.eId
+              }
+            })
+          }
+          ,e=>{})
+      }
+  }    
+
+  selectTicket(ticket){
+    this.selectedTicket = {...ticket}
   }
-  }
-  
   fetchVenues() {
     this.mainService.getAllVenue(this.user._id).subscribe(r => {
       console.log(r.venues)
@@ -187,10 +199,42 @@ export class EventCreateComponent implements OnInit {
     console.log(this.selectedFile, this.selectedFakeUrl)
   }
   ticketCreated(res) {
-    console.log(res.data)
-    let ticket = res.data
-    ticket.title = res.data.ticket
-    this.tickets.push(ticket)
+    if(res.action==='CANCEL'){
+      this.selectedTicket = {
+        _id: undefined,
+        eventId: undefined,
+        price:undefined,
+        quantity:undefined,
+        title: undefined,
+        type:undefined,
+      }
+      return
+    } else if(res.action==='UPDATE'){
+       console.log(res.data)
+      this.tickets = this.tickets.map(ticket=>{
+        if(ticket._id===this.selectedTicket._id) {
+          return res.data
+        }
+        return ticket
+      })
+      this.selectedTicket = {
+        _id: undefined,
+        eventId: undefined,
+        price:undefined,
+        quantity:undefined,
+        title: undefined,
+        type:undefined,
+      }
+     
+    }else if(res.action==='DELETE'){
+
+    }else if(res.action==='CREATE'){
+      let ticket = res.data
+      ticket.title = res.data.ticket
+      this.tickets.unshift(ticket)
+    }
+    console.log(this.tickets)
+    
   }
   splitTime(timeStr){
     let arr = timeStr.split(':')
@@ -294,7 +338,7 @@ export class EventCreateComponent implements OnInit {
           timeOut: 3000,
         })
         this.eId = r.result._id
-        this.tab = 2
+        this.tab = 1
         // f.resetForm()
       }
       , e => {

@@ -13,6 +13,7 @@ import { CheckTokenService } from './shared/guard/check-token.service'
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { EventListComponent } from './events/event-list/event-list.component';
 import { VenueListComponent } from './venue-list/venue-list.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
     {
@@ -38,6 +39,11 @@ const routes: Routes = [
     {
         path: 'profile',
         component: ProfileComponent,
+        canActivate: [AuthGuardService, CheckTokenService]
+    },
+    {
+        path: 'orders',
+        component: OrdersComponent,
         canActivate: [AuthGuardService, CheckTokenService]
     },
     {

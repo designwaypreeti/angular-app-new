@@ -36,7 +36,6 @@ export class AppComponent implements OnInit {
   }
   mobileToggle(close?){
     this.menueMobile = close ? false : !this.menueMobile
-    console.log(close,this.menueMobile)
   }
   logout() {
     localStorage.clear()

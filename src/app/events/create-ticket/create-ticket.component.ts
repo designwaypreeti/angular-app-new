@@ -10,8 +10,15 @@ import { ToastrService } from 'ngx-toastr'
 export class CreateTicketComponent implements OnInit {
   @Output() ticketCreated = new EventEmitter<{ action: string, data: any }>()
   @Input() uId   
+  @Input() selectedTicket = {
+    _id: undefined,
+    eventId: undefined,
+    price:undefined,
+    quantity:undefined,
+    title: undefined,
+    type:undefined,
+  }
   @Input() eId   //5add87517d177b2d9c022739
-  titleModel
   types = [
     { id: '1', name: 'General' },
     { id: '2', name: 'VIP' }
@@ -27,7 +34,10 @@ export class CreateTicketComponent implements OnInit {
 
   ngOnInit() {
   }
-  submitted(f) {
+  test(){
+    console.log(this.selectedTicket)
+  }
+  submitted(f,action) {
     console.log(f.form)
     const data = {
       ticket: f.form.value.title || 'Exclusive Access',
@@ -37,21 +47,62 @@ export class CreateTicketComponent implements OnInit {
       quantity: f.form.value.quantity || '100',
       eventId: this.eId
     }
-    this.mainService.createTicket(this.eId,this.uId,data).subscribe(
-      r => {
-        console.log(r)
-        this.toastr.success('Ticket Created', '', {
-          timeOut: 3000,
-        })
-        this.ticketCreated.emit({ action: 'SUBMIT', data })
-        f.resetForm()
+    if(action==='CANCEL') {
+      this.ticketCreated.emit({ action: 'CANCEL', data })
+      f.resetForm()  
+      return  
+    }
+    if(this.selectedTicket._id){
+      console.log(f.form)
+      const updateData = {
+        ticket_name: f.form.value.title || 'Exclusive Access',
+        // this.selectedCurrency.name + 
+        ticket_price: f.form.value.price,
+        ticket_type: f.form.value.ticketType || 'Paid ticket',
+        quantity: f.form.value.quantity || '100',
+        eventId: this.eId
       }
-      , e => {
-        console.log(e)
-        this.toastr.error('Error Saving Ticket', '', {
-          timeOut: 3000,
+      // updateTicket
+      this.mainService.updateTickets(updateData, this.selectedTicket._id).subscribe(
+        r => {
+          console.log(r)
+          this.toastr.success('Ticket Updated', '', {
+            timeOut: 3000,
+          })
+          const dataPassed = {
+            title: f.form.value.title || 'Exclusive Access',
+            // this.selectedCurrency.name + 
+            price: f.form.value.price,
+            ticket_type: f.form.value.ticketType || 'Paid ticket',
+            quantity: f.form.value.quantity || '100',
+            eventId: this.eId
+          }
+          this.ticketCreated.emit({ action: 'UPDATE', data: dataPassed })
+          f.resetForm()
+        }
+        , e => {
+          console.log(e)
+          this.toastr.error('Error Saving Ticket', '', {
+            timeOut: 3000,
+          })
         })
-      })
+    } else{
+      this.mainService.createTicket(this.eId,this.uId,data).subscribe(
+        r => {
+          console.log(r)
+          this.toastr.success('Ticket Created', '', {
+            timeOut: 3000,
+          })
+          this.ticketCreated.emit({ action: 'CREATE', data })
+          f.resetForm()
+        }
+        , e => {
+          console.log(e)
+          this.toastr.error('Error Saving Ticket', '', {
+            timeOut: 3000,
+          })
+        })
+    }
     
   }
   _keyPress_price(event: any, called?) {
@@ -69,8 +120,8 @@ export class CreateTicketComponent implements OnInit {
     }
   }
   blurHandle(){
-    if(!this.titleModel) return
-    if(!this.titleModel.trim()) this.titleModel = undefined 
-    else  this.titleModel = this.titleModel.trim()
+    if(!this.selectedTicket.title) return
+    if(!this.selectedTicket.title.trim()) this.selectedTicket.title = undefined 
+    else  this.selectedTicket.title = this.selectedTicket.title.trim()
   }
 }

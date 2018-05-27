@@ -1,16 +1,16 @@
-<form (ngSubmit)="submitted(tabTwoForm)" #tabTwoForm="ngForm">
+<form (ngSubmit)="submitted(tabTwoForm,'SUBMIT')" #tabTwoForm="ngForm">
   
   <div class="row the_flex_row">
     <div class="col-sm-8">
       <div class="forms">
   
         <div class="div_control">
-          <div class="the_title">
+          <div class="the_title" (click)="test()">
             Ticket name
           </div>
           <div class="fields form_full">
             <span>
-              <input type="text"  name="title" (blur)="blurHandle()" [(ngModel)]="titleModel" class="form_input"  required>
+              <input type="text"  name="title" (blur)="blurHandle()" [(ngModel)]="selectedTicket.title" class="form_input"  required>
             </span>
           </div>
         </div>
@@ -36,7 +36,7 @@
             </div>
             <div class="fields form_full">
               <span >
-                  <mat-select placeholder="Type" required name="ticketType" ngModel >
+                  <mat-select placeholder="Type" required name="ticketType" [ngModel]="selectedTicket.ticket_type" >
                       <mat-option *ngFor="let type of types" [value]="type.name">
                         {{ type.name }}
                       </mat-option>
@@ -55,7 +55,7 @@
                       {{ currency.name }}
                     </mat-option>
                   </mat-select>
-                <input type="text" (keypress)="_keyPress_price($event)" name="price" ngModel class="price-input" required>
+                <input type="text" (keypress)="_keyPress_price($event)" name="price" [ngModel]="selectedTicket.price" class="price-input" required>
               </label>
             </div>
           </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="fields form_full">
               <span>
-                <input type="text" name="quantity" (keypress)="_keyPress_price($event,1)" ngModel class="form_input" required>
+                <input type="text" name="quantity" (keypress)="_keyPress_price($event,1)" [ngModel]="selectedTicket.quantity" class="form_input" required>
               </span>
             </div>
           </div>
@@ -81,5 +81,6 @@
   </div>
   
   <button type="submit" [disabled]="tabTwoForm.form.invalid" class="btn btn_custom_acsetting adjust_margin_next_step">Save ticket</button>
-
+  <button (click)="submitted(tabTwoForm,'CANCEL')" *ngIf="selectedTicket._id" class="btn btn_custom_acsetting adjust_margin_next_step">Cancel</button>
+  
 </form>

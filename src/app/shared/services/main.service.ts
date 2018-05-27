@@ -112,6 +112,13 @@ export class MainService {
     )
       .map(r => r)
   }
+  updateTickets(data,_id){
+    return this.http.put<any>(`${URL}/event/ticket/${_id}`,
+      data,
+      { headers: this.headers }
+    )
+      .map(r => r)
+  }
   bookTicket(eid,uid,tickets,total){
     this.setHeader()
     // console.log(data)
@@ -139,6 +146,13 @@ export class MainService {
   }
   getAllVenue(uid){
     return this.http.get<any>(`${URL}/venue/getall/${uid}`,
+      { headers: this.headers }
+    )
+      .map(r => r)
+  }
+  getOrders(uId,eId){
+    this.setHeader()
+    return this.http.get<any>(`${URL}/event/booking?uid=${uId}&eventid=${eId}`,
       { headers: this.headers }
     )
       .map(r => r)
