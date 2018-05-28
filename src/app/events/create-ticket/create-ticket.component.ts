@@ -16,7 +16,7 @@ export class CreateTicketComponent implements OnInit {
     price:undefined,
     quantity:undefined,
     title: undefined,
-    type:undefined,
+    ticket_type:undefined,
   }
   @Input() eId   //5add87517d177b2d9c022739
   types = [

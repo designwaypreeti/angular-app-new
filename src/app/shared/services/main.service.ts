@@ -150,9 +150,9 @@ export class MainService {
     )
       .map(r => r)
   }
-  getOrders(uId,eId){
+  getOrders(uId){
     this.setHeader()
-    return this.http.get<any>(`${URL}/event/booking?uid=${uId}&eventid=${eId}`,
+    return this.http.get<any>(`${URL}/event/orders?uid=${uId}`,
       { headers: this.headers }
     )
       .map(r => r)

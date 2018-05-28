@@ -58,7 +58,7 @@ export class EventCreateComponent implements OnInit {
     price:undefined,
     quantity:undefined,
     title: undefined,
-    type:undefined,
+    ticket_type:undefined,
   }
   reader = new FileReader()
 
@@ -206,7 +206,7 @@ export class EventCreateComponent implements OnInit {
         price:undefined,
         quantity:undefined,
         title: undefined,
-        type:undefined,
+        ticket_type:undefined,
       }
       return
     } else if(res.action==='UPDATE'){
@@ -223,7 +223,7 @@ export class EventCreateComponent implements OnInit {
         price:undefined,
         quantity:undefined,
         title: undefined,
-        type:undefined,
+        ticket_type:undefined,
       }
      
     }else if(res.action==='DELETE'){

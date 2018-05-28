@@ -9,16 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class OrdersComponent implements OnInit {
   orders
-  eId=`5b0298df5ded2b0004a46ece`
   uId
   user
   constructor( private mainService: MainService, private route: ActivatedRoute) {
-    this.eId = route.snapshot.queryParams && route.snapshot.queryParams.id
     this.user = JSON.parse(localStorage.getItem('user'))
    }
 
   ngOnInit() {
-    this.mainService.getOrders(this.user._id, this.eId).subscribe(r=>{
+    this.mainService.getOrders(this.user._id).subscribe(r=>{
       console.log(r)
     },e=>{
       console.log(e)
