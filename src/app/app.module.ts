@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatSelectModule } from '@angular/material/select'
 import { MatDatepickerModule } from '@angular/material/datepicker'
-import { MatNativeDateModule, MatInputModule } from '@angular/material'
+import { MatNativeDateModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material'
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { ToastrModule } from 'ngx-toastr'
 import { ProfileCardComponent } from './profile/profile-card/profile-card.component'
@@ -80,6 +80,7 @@ import { OrdersComponent } from './orders/orders.component'
     BrowserAnimationsModule,
     MatSelectModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,

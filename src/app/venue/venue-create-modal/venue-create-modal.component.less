@@ -30,6 +30,18 @@
     .map-contain{
         height: 145px;
         background: #C5CBD3;
+        position: relative;
+        .spinner_container{
+            width: 100%;
+            position: absolute;
+            z-index: 99;
+            height: 145px;
+            background-color: rgba(248, 247, 216, 0.7);
+            mat-spinner{
+                margin: auto;
+                margin-top: 20px;
+            }
+        }
         agm-map{
           height: 145px;       
         }

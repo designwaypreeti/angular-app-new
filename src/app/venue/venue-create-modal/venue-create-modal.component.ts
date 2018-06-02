@@ -9,10 +9,11 @@ import { ToastrService } from 'ngx-toastr'
   styleUrls: ['./venue-create-modal.component.less']
 })
 export class VenueCreateModalComponent implements OnInit {
-  @Input() shown = false
+  @Input() shown = true
   @Output() hideModal = new EventEmitter<{ shown: boolean }>()
   @Output() venueCreated = new EventEmitter<{ done: boolean }>()
   title: string = 'My first AGM project'
+  mapSpinner = false
   lat: number = 51.678418
   lng: number = 7.809007
   markLat: number
@@ -48,6 +49,28 @@ export class VenueCreateModalComponent implements OnInit {
   hideCard() {
     this.hideModal.emit({ shown: false })
     this.renderer.removeClass(document.body, 'modal-open')
+  }
+  doneTyping(f){
+    this.mapSpinner = true
+    const data = {... f.form.value}
+    console.log(data)
+    const {address , postal} = data
+    if(address) this.mainService.addressFetchGeo(address,postal? postal : '').subscribe(succ=>{
+      console.log(succ)
+      let coord = succ.info
+                  && succ.info.results[0]
+                  && succ.info.results[0].geometry
+                  && succ.info.results[0].geometry.location
+      console.log(coord)
+      if(coord){
+          this.lat = this.markLat = coord.lat
+          this.lng = this.markLng = coord.lng
+      }
+    },err=>{
+      console.log(err)
+    },()=>{
+     this.mapSpinner = false
+    })
   }
   geoClick(e) {
     console.log(e)

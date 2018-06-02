@@ -34,7 +34,7 @@
               </div>
               <div class="fields form_full">
                 <span>
-                  <input type="text" name="address" ngModel class="form_input" required>
+                  <input type="text" name="address" ngModel class="form_input" required (blur)="doneTyping(modalf)">
                 </span>
               </div>
             </div>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="fields form_full">
                       <span>
-                        <input type="number" name="postal" ngModel class="form_input" required>
+                        <input type="number" name="postal" ngModel class="form_input" required (blur)="doneTyping(modalf)">
                       </span>
                     </div>
                   </div>
@@ -78,7 +78,10 @@
             </div>
             <div class="div_control">
               <div class="map-contain">
-                  <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="geoClick($event)">
+                <div class="spinner_container" *ngIf="mapSpinner">
+                  <mat-spinner></mat-spinner>
+                </div>
+                  <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="geoClick($event)" [zoom]="8">
                       <agm-marker [latitude]="markLat" [longitude]="markLng"></agm-marker>
                   </agm-map>
               </div>

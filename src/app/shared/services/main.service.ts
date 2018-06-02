@@ -144,6 +144,18 @@ export class MainService {
     )
       .map(r => r)
   }
+  addressFetchGeo(address,postal){
+    address = {
+                  address,
+                  postal
+                }    
+    this.setHeader()
+    return this.http.post<any>(`${URL}/venue/coordinates`,
+    address,
+      { headers: this.headers }
+    )
+      .map(r => r)
+  }
   getAllVenue(uid){
     return this.http.get<any>(`${URL}/venue/getall/${uid}`,
       { headers: this.headers }
