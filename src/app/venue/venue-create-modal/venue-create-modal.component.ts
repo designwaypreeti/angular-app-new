@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr'
   styleUrls: ['./venue-create-modal.component.less']
 })
 export class VenueCreateModalComponent implements OnInit {
-  @Input() shown = true
+  @Input() shown = false
   @Output() hideModal = new EventEmitter<{ shown: boolean }>()
   @Output() venueCreated = new EventEmitter<{ done: boolean }>()
   title: string = 'My first AGM project'
