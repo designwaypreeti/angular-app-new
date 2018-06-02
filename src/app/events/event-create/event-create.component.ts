@@ -17,7 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 export class EventCreateComponent implements OnInit {
   tab = 1
   category = 1
-  shown = true
+  shown = false
   eId //= '5af2a1d12c82b9000475ac32'
   currentEvent = new Event
   secure_url
