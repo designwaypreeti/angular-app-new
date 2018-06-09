@@ -89,14 +89,14 @@
   </div>
 
   <div class="overlay-here" (click)="close()" [ngClass]="{
-    'in': selectedBooking!=unefined,
+    'in': selectedBooking!=undefined,
     'hidden': selectedBooking == undefined
       }">
 
   </div>
 
   <div id="ticketModal" class="ticket_modal modal fade" [ngClass]="{
-    'in': selectedBooking!=unefined,
+    'in': selectedBooking!=undefined,
     'hidden': selectedBooking == undefined
       }">
       <div class="modal-dialog">
