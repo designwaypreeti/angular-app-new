@@ -34,6 +34,7 @@ export class SubscriptionComponent implements OnInit {
   reader = new FileReader()
   secure_url;
   uploading;
+  shown:boolean=false;
   constructor(private fb: FormBuilder,
               private adminService:SuperadminService,
               private route:ActivatedRoute,
@@ -114,6 +115,7 @@ export class SubscriptionComponent implements OnInit {
             .subscribe(res => {
               console.log(res)
             })
+            this.shown= true;
           this.router.navigate(['/superadmin', 'subscription'])
         },
           e => {
