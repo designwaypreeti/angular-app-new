@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { AppComponent } from './app.component'
-import { NgForm, FormsModule } from '@angular/forms'
+import { NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {ColorPickerModule } from 'ngx-color-picker';
 
 import { LoginComponent } from './login/login.component'
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'
@@ -43,7 +44,16 @@ import { VenueListComponent } from './venue-list/venue-list.component';
 import { TicketSalesComponent } from './ticket-sales/ticket-sales.component';
 import { TicketBookingComponent } from './ticket-booking/ticket-booking.component';
 import { CleanInputDirective } from './shared/directives/clean-input.directive';
-import { OrdersComponent } from './orders/orders.component'
+import { OrdersComponent } from './orders/orders.component';
+import { DialogComponent } from './shared/dialog/dialog.component';
+import { SuperadminComponent } from './superadmin/superadmin.component';
+import { SuperadminDashboardComponent } from './superadmin/superadmin-dashboard/superadmin-dashboard.component';
+import { SubscriptionComponent } from './superadmin/subscription/subscription.component';
+import { SuperadminHeaderComponent } from './superadmin-header/superadmin-header.component';
+import { SubscriptionListComponent } from './superadmin/subscription-list/subscription-list.component'
+import { SuperadminService } from "./shared/services/superadmin.service";
+import { AdminGuardService } from "./shared/guard/admin-guard.service";
+import { OrganiserGuardService } from "./shared/guard/organiser-guard.service";
 
 @NgModule({
   declarations: [
@@ -70,7 +80,13 @@ import { OrdersComponent } from './orders/orders.component'
     TicketSalesComponent,
     TicketBookingComponent,
     CleanInputDirective,
-    OrdersComponent
+    OrdersComponent,
+    DialogComponent,
+    SuperadminComponent,
+    SuperadminDashboardComponent,
+    SubscriptionComponent,
+    SuperadminHeaderComponent,
+    SubscriptionListComponent
   ],
   imports: [
     BrowserModule,
@@ -84,18 +100,24 @@ import { OrdersComponent } from './orders/orders.component'
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCZtIhJkaK4XblD4GF9NQ6fm5D0XlB7T_A'
     }),
     CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'rubiq-solutions'}),
+    ColorPickerModule
   ],
   providers: [
     AuthGuardService,
     IsLoggedinService,
     CheckTokenService,
-    MainService
+    MainService,
+    SuperadminService,
+    AdminGuardService,
+    OrganiserGuardService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

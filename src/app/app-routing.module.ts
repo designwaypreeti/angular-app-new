@@ -14,6 +14,11 @@ import { EventDetailsComponent } from './events/event-details/event-details.comp
 import { EventListComponent } from './events/event-list/event-list.component';
 import { VenueListComponent } from './venue-list/venue-list.component';
 import { OrdersComponent } from './orders/orders.component';
+import { SuperadminComponent } from './superadmin/superadmin.component';
+import { SubscriptionComponent } from './superadmin/subscription/subscription.component';
+import { AdminGuardService } from './shared/guard/admin-guard.service';
+import { OrganiserGuardService } from './shared/guard/organiser-guard.service';
+import { SubscriptionListComponent } from './superadmin/subscription-list/subscription-list.component';
 
 const routes: Routes = [
     {
@@ -39,17 +44,12 @@ const routes: Routes = [
     {
         path: 'profile',
         component: ProfileComponent,
-        canActivate: [AuthGuardService, CheckTokenService]
+        canActivate: [AuthGuardService, CheckTokenService, OrganiserGuardService]
     },
     {
         path: 'orders',
         component: OrdersComponent,
-        canActivate: [AuthGuardService, CheckTokenService]
-    },
-    {
-        path: '',
-        component: EventListComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, CheckTokenService,OrganiserGuardService]
     },
     {
         path: 'events/create',
@@ -59,18 +59,43 @@ const routes: Routes = [
     {
         path: 'events/:id',
         component: EventDetailsComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, OrganiserGuardService]
     },
     {
         path: 'events',
         component: EventListComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, OrganiserGuardService]
     },
     {
         path: 'venues',
         component: VenueListComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, OrganiserGuardService]
     },
+    {
+        path: 'superadmin',
+        component: SuperadminComponent,
+        canActivate: [AuthGuardService, AdminGuardService]
+    },
+    {
+        path: 'superadmin/subscription',
+        component: SubscriptionListComponent,
+        canActivate: [AuthGuardService, AdminGuardService]
+    }, 
+    {
+        path: 'superadmin/subscription/create',
+        component: SubscriptionComponent,
+        canActivate: [AuthGuardService, AdminGuardService]
+    },
+    {
+        path: 'superadmin/subscription/update/:id',
+        component: SubscriptionComponent,
+        canActivate: [AuthGuardService, AdminGuardService]
+    },
+    {
+        path: '',
+        component: EventListComponent,
+        canActivate: [AuthGuardService]
+    }
 ]
 
 @NgModule({

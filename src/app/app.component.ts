@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   loginPathHide = false
   menu = false
   menueMobile = false
+  superAdminHeader:any;
   constructor(
     private route: ActivatedRoute,
     private router: Router) {
@@ -25,6 +26,8 @@ export class AppComponent implements OnInit {
           || e.url.includes('/forgot-password')
           || e.url.includes('/reset-password') ? false : true
         console.log(this.loginPathHide)
+        this.superAdminHeader = e.url.includes('/superadmin')?true:false;
+        console.log(this.superAdminHeader)
       }
     })
   }

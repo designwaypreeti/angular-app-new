@@ -27,3 +27,5 @@ export const YEAR = [
     { value: '2029', viewValue: '2029' },
     { value: '2030', viewValue: '2030' },
 ]
+export const planTypes = ['Free', 'Basic', 'Advanced', 'Premium'];
+export const Currencies = ['USD','Rupee','EUR','GBP'];

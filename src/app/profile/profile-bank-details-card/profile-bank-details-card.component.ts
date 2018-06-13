@@ -1,4 +1,7 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core'
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { MatDialog } from "@angular/material";
+import { DialogComponent } from "../../shared/dialog/dialog.component";
+
 
 @Component({
   selector: 'app-profile-bank-details-card',
@@ -14,8 +17,10 @@ export class ProfileBankDetailsCardComponent implements OnInit {
       value: 'delete',
       viewValue: 'Delete'
     },
-  ]
-  constructor() { }
+  ];
+  question: any = 'Do you want to delete the saved card?';
+  answer: boolean = false;
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     console.log(this.bank)
@@ -25,7 +30,19 @@ export class ProfileBankDetailsCardComponent implements OnInit {
     this.deleteBank.emit({ bank: this.bank }) 
   }
   onSelectedObjChanged(e){
-    this.delete()
-    return
+    let dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      height: '170px',
+      data: { ques: this.question, ans: this.answer }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.answer = result;
+      if(result){
+        this.delete()
+      }
+      console.log(this.answer);
+    });
   }
 }

@@ -22,9 +22,15 @@ export class LoginComponent implements OnInit {
       .subscribe(r => {
         console.log(r)
         const user = r.user && r.user[0]
+        const role = r.user[0].role[0];
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('token', r.token)
+        localStorage.setItem('role',role);
+        if(localStorage.getItem('role')== 'admin'){
+          this.router.navigate(['superadmin']);
+        }else if(localStorage.getItem('role')== 'event_organiser'){
         this.router.navigate(['profile'])
+        }
       },
         e => {
           const message = e._body && JSON.parse(e._body)

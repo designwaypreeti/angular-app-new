@@ -2,7 +2,7 @@
   <div class="container">
     <div class="main_title_container">
       <h1 class="the_title_left no_bottom_margin">Events</h1>
-      <a [routerLink]="['create']" class="btn btn_custom_acsetting adjust_margin_next_step">Create event</a>
+      <a [routerLink]="['/events/create']" class="btn btn_custom_acsetting adjust_margin_next_step">Create event</a>
     </div>
 
     <div class="event_section">
@@ -56,7 +56,7 @@
                 </div>
 
               </div>  
-              <div class="col-flex-4 event-card" [routerLink]="['create']" *ngIf="!(events && events.length && max<events.length)">
+              <div class="col-flex-4 event-card" [routerLink]="['/events/create']" *ngIf="!(events && events.length && max<events.length)">
 
                 <div class="tablet the_last">
 
@@ -64,7 +64,7 @@
                     <div class="text">
                       There’s not much happening
                     </div>
-                    <a href="#" class="the_tag">
+                    <a [routerLink]="['/events/create']" class="the_tag">
                       <img src="/assets/images/plus.svg">
                       <span>Create another event</span>
                     </a>

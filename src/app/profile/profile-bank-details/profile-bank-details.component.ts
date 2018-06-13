@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core'
 import { MainService } from '../../shared/services/main.service'
 import { ToastrService } from 'ngx-toastr'
+import { MatDialog } from "@angular/material";
+import { DialogComponent } from "../../shared/dialog/dialog.component";
 
 
 @Component({
@@ -12,7 +14,9 @@ export class ProfileBankDetailsComponent implements OnInit {
   @Output() bankAdded = new EventEmitter<{ action: string, data: any }>()
   user
   bankNameModel
-  constructor(private mainService: MainService, private toastr: ToastrService) {
+  question:any= 'do you want del';
+  answer:boolean=false;
+  constructor(private mainService: MainService, private toastr: ToastrService, public dialog: MatDialog) {
     this.user = JSON.parse(localStorage.getItem('user'))
   }
 
@@ -41,6 +45,10 @@ patTest(f){
 }
 blurHandle(name){
   if(!this.bankNameModel.trim()) this.bankNameModel = undefined
+}
+
+checkDelete(){
+  
 }
   submitted(f) {
     console.log(f.form.value)

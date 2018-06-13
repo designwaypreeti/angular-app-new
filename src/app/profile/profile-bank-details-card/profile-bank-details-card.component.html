@@ -12,8 +12,8 @@
   
   <div class="the_third opt">
       <mat-form-field class="mat-set">
-          <mat-select [ngModel]="selectedCard" (ngModelChange)="onSelectedObjChanged($event)"  class="no-carret-sel">
-            <mat-option *ngFor="let cardOption of cardOptions" [value]="cardOption.value">
+          <mat-select [ngModel]="selectedCard" class="no-carret-sel">
+            <mat-option (click)="onSelectedObjChanged($event)" *ngFor="let cardOption of cardOptions" [value]="cardOption.value">
                 {{ cardOption.viewValue }}
             </mat-option>
           </mat-select>
