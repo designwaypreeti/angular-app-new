@@ -1,0 +1,197 @@
+<div class="container">
+ 
+</div>
+
+<div class="center_state_div">
+  <div class="container">
+  <div class="row">
+    <div class="col-md-8 col-sm-8 col-lg-8">
+        <div class="the_white_container top-margin">
+          <div class="acsetting">
+            <div class="top_title">
+              <div *ngIf="planId; else updateP">
+                 Update Subscription Plan
+              </div>
+              <ng-template #updateP> 
+                 Create Subscription Plan
+              </ng-template>
+            
+            </div>
+            <div class="sub_title">
+              You can create and customize plans here
+            </div>
+          </div>
+          <div class="tab-content">
+            <form [formGroup]="subscribeForm">
+        
+              <div class="div_control_containers">
+                <div class="div_control">
+                  <div class="the_title">
+                    Plan Type
+                  </div>
+                  <div class="fields form_full">
+                  <span>
+                    <mat-select placeholder="Plan type" required  formControlName="subscription_plan">
+                      <mat-option *ngFor="let plan of planType" [value]="plan">
+                        {{ plan }}
+                      </mat-option>
+                    </mat-select>
+                  </span>
+                  </div>
+                  <small *ngIf="subscribeForm.get('subscription_plan').hasError('required') &&
+                                                                       subscribeForm.get('subscription_plan').touched" class="mat-text-warn err">
+                    Plan is required
+                  </small>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="div_control">
+                      <div class="the_title">
+                        Currency Type
+                      </div>
+                      <div class="fields form_full">
+                        <span>
+                          <mat-select placeholder="currency" required formControlName="currency">
+                            <mat-option *ngFor="let currency of currencies" [value]="currency">
+                              {{ currency }}
+                            </mat-option>
+                          </mat-select>
+                        </span>
+                      </div>
+                      <small *ngIf="subscribeForm.get('currency').hasError('required') &&subscribeForm.get('currency').touched" class="mat-text-warn err">
+                        Currency is required
+                      </small>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="div_control">
+                      <div class="the_title">
+                        Amount
+                      </div>
+                      <div class="fields form_full">
+                        <span>
+                          <input type="text" class="form_input" placeholder="Amount" formControlName="amount" required>
+                        </span>
+                      </div>
+                      <small *ngIf="subscribeForm.get('amount').hasError('required') && subscribeForm.get('amount').touched" class="mat-text-warn err">
+                        Amount is required
+                      </small>
+                      <div *ngIf="subscribeForm.get('amount').errors != null" class="age-err">
+                        <small *ngIf="subscribeForm.get('amount').errors.num && subscribeForm.get('amount').touched " class="mat-text-warn err">
+                          Amount must be a number
+                        </small>
+                    </div>
+                    
+                  </div>
+                  </div> 
+                  <div class="col-md-6">
+                    <div class="div_control">
+                      <div class="the_title">
+                        Color Scheme
+                      </div>
+                      <div class="fields form_full">
+                        <span>
+                          <input [(ngModel)]="color" [(colorPicker)]="color"  class="form_input" [style.background]="color" formControlName="color_scheme"/>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="div_control">
+                      <div class="the_title">
+                        Number of events
+                      </div>
+                      <div class="fields form_full">
+                        <span>
+                          <input type="text" class="form_input" placeholder="no. of events" formControlName="no_of_events" required>
+                        </span>
+                      </div>
+                      <small *ngIf="subscribeForm.get('no_of_events').hasError('required') && subscribeForm.get('no_of_events').touched" class="mat-text-warn err">
+                        required
+                      </small>
+                      <div *ngIf="subscribeForm.get('no_of_events').errors != null" class="age-err">
+                        <small *ngIf="subscribeForm.get('no_of_events').errors.num && subscribeForm.get('no_of_events').touched " class="mat-text-warn err">
+                           must be a number
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                  <div class="div_control">
+                    <div class="the_title">
+                      Number of tickets
+                    </div>
+                    <div class="fields form_full">
+                      <span>
+                        <input type="text" class="form_input" placeholder="no. of tickets" formControlName="no_of_tickets" required>
+                      </span>
+                    </div>
+                    <small *ngIf="subscribeForm.get('no_of_tickets').hasError('required') && subscribeForm.get('no_of_tickets').touched" class="mat-text-warn err">
+                       required
+                    </small>
+                    <div *ngIf="subscribeForm.get('no_of_tickets').errors != null" class="age-err">
+                      <small *ngIf="subscribeForm.get('no_of_tickets').errors.num && subscribeForm.get('no_of_tickets').touched " class="mat-text-warn err">
+                         must be a number
+                      </small>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="col-md-4">
+                  <div class="div_control">
+                    <div class="the_title">
+                      Booking Fee
+                    </div>
+                    <div class="fields form_full">
+                      <span>
+                        <input type="text" class="form_input" placeholder="booking fee" formControlName="booking_fee" required>
+                      </span>
+                    </div>
+                    <small *ngIf="subscribeForm.get('booking_fee').hasError('required') && subscribeForm.get('booking_fee').touched" class="mat-text-warn err">
+                      fee is required
+                    </small>
+                    <div *ngIf="subscribeForm.get('booking_fee').errors != null" class="age-err">
+                      <small *ngIf="subscribeForm.get('booking_fee').errors.num && subscribeForm.get('booking_fee').touched " class="mat-text-warn err">
+                        fee must be a number
+                      </small>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <div class="div_control">
+                  <div class="the_title">
+                    Event image
+                  </div>
+                  <div class="dropzone" appDnd (fileUploaded)="fileDragged($event)" (click)="file.click()">
+                    <div class="text-wrapper">
+                      <div class="centered">
+                        <span>Upload an image</span> or drag it here</div>
+                    </div>
+                  </div>
+                  <div class="imagezone" *ngIf="selectedFakeUrl">
+                    <img [src]="selectedFakeUrl" alt="">
+                    <div class="img-overlay" (click)="selectedFakeUrl=undefined">
+                      <span>Cancel</span>
+                    </div>
+                  </div>
+                  <input class="hidden" type="file" (change)="fileChange($event)" accept="image/*" #file>
+                </div>
+              </div>
+              <div *ngIf="planId; else created">
+              <button [disabled]="!subscribeForm.valid" type="submit" (click)="onSubmitPut()" class="btn btn_custom_add">Update Plan</button>
+              </div>
+              <ng-template #created>
+                <button [disabled]="!subscribeForm.valid" type="submit" (click)="onSubmit()" class="btn btn_custom_add">Create Plan</button>
+              </ng-template>
+        
+              
+            </form>
+          </div>
+          <app-card-modal *ngIf="shown" [shown]="shown" (cardAdded)="cardAdded($event)" (hideModal)="hideModal($event)"></app-card-modal>
+        
+        </div>
+    </div>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="center_state_div">
+  <div class="container">
+    <div class="main_title_container">
+      <h1 class="the_title_left no_bottom_margin">Subscription plans</h1>
+      <a [routerLink]="['/superadmin/subscription/create']" class="btn btn_custom_acsetting adjust_margin_next_step">Create Subscription</a>
+    </div>
+
+    <div class="event_section">
+      <div class="tab-content" *ngIf="plans">
+        <div id="upcoming" class="tab-pane fade in active">
+          <div class="tab_the_section">
+            <div class="row flex-row">
+              <div class="col-flex-4 col-md-4 col-sm-4 event-card" *ngFor="let plan of plans; let i = index" [routerLink]="['/superadmin/subscription/update/',plan._id]"
+                >
+              
+                 <!-- [queryParams]="{booked: 'true'}" -->
+                <div class="tablet">
+                  <div class="top_sec">
+                  
+                  </div>
+                  <div class="heading">
+                    <h3>{{plan.subscription_plan}}</h3>
+                  </div>
+                  <div class="mid_sec">
+                    <div class="sold">
+                      <div class="short_title">
+                        Number of Tickets
+                      </div>
+                      <div class="the_figure">
+                        <div *ngIf="!ticketLimitUld; else unlimitedTickets">
+                           {{plan.no_of_tickets}}
+                        </div>
+                        <ng-template #unlimitedTickets >
+                          Unlimited
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="sold revenue">
+                      <div class="short_title">
+                        Number of Events
+                      </div>
+                      <div class="the_figure">
+                        <div *ngIf="!ticketLimitUld; else unlimitedEvents">
+                          {{plan.no_of_events}}
+                        </div>
+                        <ng-template #unlimitedEvents>
+                          Unlimited
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bottom_sec">
+                    <p>Booking fees</p>
+                    {{plan.booking_fee}}
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-flex-4 col-md-4 col-sm-4 event-card" [routerLink]="['/superadmin','subscription','create']" *ngIf="!(events && events.length && max<events.length)">
+
+                <div class="tablet the_last">
+
+                  <div class="center_the_div">
+                    <div class="text">
+                      <!-- There’s not much happening -->
+                    </div>
+                    <a [routerLink]="['/superadmin','subscription','create']" class="the_tag">
+                      <img src="/assets/images/plus.svg">
+                      <span>Create subscription plan</span>
+                    </a>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="more">
+                <button (click)="more()" *ngIf="events && events.length && max<events.length">Show More</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+       
+      </div>
+
+    </div>
+  </div>
+</div>
