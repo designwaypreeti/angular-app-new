@@ -28,7 +28,7 @@ export class SubscriptionComponent implements OnInit {
   currencies: any = Currencies;
   planId:string;
   planData:any;
-  private color: string = "#127bdc";
+  color: string = "#127bdc";
   selectedFakeUrl:any;
   selectedFile:any;
   reader = new FileReader()
