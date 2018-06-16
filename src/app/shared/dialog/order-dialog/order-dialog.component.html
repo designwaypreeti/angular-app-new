@@ -1,0 +1,96 @@
+
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="close()">
+          <img src="/assets/images/close.svg">
+        </button>
+        <h4 class="modal-title">Ticket 71-0065</h4>
+        <div class="sub_modal_title">Wolfpack Wednesdays</div>
+      </div>
+      <div class="modal-body">
+        <div class="tab-content">
+          <mat-tab-group [disableRipple]=true [backgroundColor]="white">
+            <div id="home" class="tab-pane fade in active">
+              <mat-tab label="Tickets">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>TICKET CODE</th>
+                        <th>ATTENDEE NAME</th>
+                        <th>PHONE NUMBER</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ticket of bookingData.bookingInfo.tickets">
+                          <div *ngIf="userAvailable">
+                            <td>{{ticket.ticketid}} </td>
+                            <td>{{ bookedBy.name }}</td>
+                            <td>{{ bookedBy.phone }}
+                            </td>
+                          </div>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </mat-tab>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+              <mat-tab label="Order Details">
+              <div *ngFor="let ticket of bookingData.bookingInfo.tickets">
+                <div class="order_details pad">
+                  <div class="details_list">
+                    <div class="pre_text"><b>Date and time of order</b></div>
+                    <div class="main_text">{{ bookingData.bookingInfo.bookingdate }}</div>
+                  </div>
+                  <div class="details_list">
+                    <div class="pre_text"><b>Ticket type</b></div>
+                    <div class="main_text">{{ ticket.type }}</div>
+                  </div>
+                  <div class="details_list">
+                    <div class="pre_text"><b> Payment method </b></div>
+                    <div class="main_text"> #Credit card</div>
+                  </div>
+                  <div class="details_list">
+                    <div class="pre_text"> <b> Transaction ID </b></div>
+                    <div class="main_text"> #129838912374</div>
+                  </div>
+                </div>
+                </div>
+              </mat-tab>
+
+            </div>
+            <div id="menu2" class="tab-pane fade">
+              <mat-tab label="Ticket Details">
+                <div class="order_details pad" *ngIf="userAvailable">
+                  <div class="details_list">
+                    <div class="pre_text"><b>Buyer name</b></div>
+                    <div class="main_text">{{ bookedBy.name }}</div>
+                  </div>
+                  <div class="details_list">
+                    <div class="pre_text"><b>Email</b></div>
+                    <div class="main_text">{{ bookedBy.email }}</div>
+                  </div>
+                  <div class="details_list">
+                    <div class="pre_text"><b>PMobile no.</b></div>
+                    <div class="main_text">{{ bookingData.eventInfo.user.phone }}</div>
+                  </div>
+                  <div class="details_list">
+                    <div class="pre_text"><b>Address</b></div>
+                    <div class="main_text">#47 Bishopthorpe Road</div>
+                    <div class="main_text">Penare</div>
+                    <div class="main_text">PL26 5AJ</div>
+                  </div>
+                </div>
+              </mat-tab>
+            </div>
+          </mat-tab-group>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>

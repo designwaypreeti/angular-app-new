@@ -12,6 +12,7 @@ export class MainService {
   }
   setHeader() {
     const token = localStorage.getItem('token')
+    this.headers = new HttpHeaders().set('Content-Type', `application/json`)
     this.headers = new HttpHeaders().set( 'Authorization', `Bearer ${token}`)
   }
   getProfile(id) {
@@ -163,9 +164,9 @@ export class MainService {
       .map(r => r)
   }
   getOrders(uId){
+    let data ={};
     this.setHeader()
-    return this.http.get<any>(`${URL}/event/orders?uid=${uId}`,
-      { headers: this.headers }
+    return this.http.post<any>(`${URL}/event/orders?uid=${uId}`, data ,{ headers:this.headers }
     )
       .map(r => r)
   }

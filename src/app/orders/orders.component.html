@@ -11,8 +11,8 @@
           <li>Wolfpack Wednesdays</li>
           <li>Order management</li>
         </ul>
-      </div>
-
+      </div> 
+      
       <div class="order_management_table">
         <div class="management_top">
           <div class="row">
@@ -71,13 +71,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr  data-toggle="modal" data-target="#ticketModal" *ngFor="let booking of bookings" (click)="selectBooking(booking)">
-                  <td>{{booking && booking.bookingInfo && (booking.bookingInfo.bookingdate | date:'dd MMM yyyy')}}</td>
-                  <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].code)}}</td>
-                  <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].type)}}</td>
-                  <td>{{booking && booking.bookingInfo && booking.eventInfo && booking.eventInfo.user && booking.eventInfo.user.name }}</td>
-                  <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].quantity)}}</td>
-                  <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].price)}}</td>
+                 <tr data-toggle="modal" *ngFor="let booking of bookings" (click)="selectBooking(booking)">
+                   
+                <!-- <td>{{booking && booking.bookingInfo && (booking.bookingInfo.bookingdate | date:'dd MMM yyyy')}}</td> -->
+                <td>{{booking.bookingInfo.bookingdate}}</td>
+                <td>{{booking.bookingInfo.tickets[0].ticketid}}</td>
+                <!-- <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].type)}}</td> -->
+                <td># General</td>
+                <td># Ben Steffens</td>
+                <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].quantity)}}</td>
+                <td># $ 50 </td>
                 </tr>
               </tbody>
             </table>
@@ -88,108 +91,4 @@
 
   </div>
 
-  <div class="overlay-here" (click)="close()" [ngClass]="{
-    'in': selectedBooking!=undefined,
-    'hidden': selectedBooking == undefined
-      }">
-
-  </div>
-
-  <div id="ticketModal" class="ticket_modal modal fade" [ngClass]="{
-    'in': selectedBooking!=undefined,
-    'hidden': selectedBooking == undefined
-      }">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" (click)="close()"><img src="/assets/images/close.svg"  ></button>
-            <h4 class="modal-title">Ticket 71-0065</h4>
-            <div class="sub_modal_title">Wolfpack Wednesdays</div>
-          </div>
-          <div class="modal-body">
-    
-            <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#home">TICKETS</a></li>
-              <li><a data-toggle="tab" href="#menu1">ORDER DETAILS</a></li>
-              <li><a data-toggle="tab" href="#menu2">BUYER DETAILS</a></li>
-            </ul>
-    
-            <div class="tab-content">
-              <div id="home" class="tab-pane fade in active">
-    
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>TICKET CODE</th>
-                        <th>ATTENDEE NAME</th>
-                        <th>PHONE NUMBER</th>
-                      </tr>
-                    </thead>
-                    <tbody *ngIf="selectedBooking">
-                      <tr *ngFor="let ticket of selectedBooking.tickets">
-                        <td>{{ticket.code}} #1</td>
-                        <td>{{selectedBooking && selectedBooking.bookingInfo && selectedBooking.eventInfo && selectedBooking.eventInfo.user && selectedBooking.eventInfo.user.name }}</td>
-                        <td>{{selectedBooking && selectedBooking.bookingInfo && selectedBooking.eventInfo && selectedBooking.eventInfo.user && selectedBooking.eventInfo.user.phone }}</td>
-                      </tr>
-                     
-                    </tbody>
-                  </table>
-                </div>
-    
-              </div>
-              <div id="menu1" class="tab-pane fade">
-                <div class="order_details">
-                  <div class="details_list">
-                    <div class="pre_text">Date and time of order</div>
-                    <div class="main_text">21 June 2017 • 11:08am</div>
-                  </div>
-                  <div class="details_list">
-                    <div class="pre_text">Ticket type</div>
-                    <div class="main_text">General Admission</div>
-                  </div>
-                  <div class="details_list">
-                    <div class="pre_text">Payment method</div>
-                    <div class="main_text">Credit card</div>
-                  </div>
-                  <div class="details_list">
-                    <div class="pre_text">Transaction ID</div>
-                    <div class="main_text">129838912374</div>
-                  </div>
-                </div>
-    
-              </div>
-              <div id="menu2" class="tab-pane fade">
-                <div class="order_details">
-                  <div class="details_list">
-                    <div class="pre_text">Buyer name</div>
-                    <div class="main_text">Ben Steffens</div>
-                  </div>
-                  <div class="details_list">
-                    <div class="pre_text">Email</div>
-                    <div class="main_text">ben@email.com</div>
-                  </div>
-                  <div class="details_list">
-                    <div class="pre_text">PMobile no.</div>
-                    <div class="main_text">+44 123 456 7890</div>
-                  </div>
-                  <div class="details_list">
-                    <div class="pre_text">Address</div>
-                    <div class="main_text">47 Bishopthorpe Road</div>
-                    <div class="main_text">Penare</div>
-                    <div class="main_text">PL26 5AJ</div>
-                  </div>
-                </div>
-    
-              </div>
-            </div>
-    
-    
-          </div>
-        </div>
-    
-      </div>
-    </div>
-    
 </div>
