@@ -181,4 +181,8 @@ export class MainService {
     return this.http.post<any>(`https://api.cloudinary.com/v1_1/${cloud}/upload`, params, {headers})
     .map(data => data)
   }
+  getTicketInfo(ticketId){
+    return this.http.get<any>(`${URL}/event/ticket/view/${ticketId}`, { headers: this.headers})
+    .map(r=>r)
+  }
 }

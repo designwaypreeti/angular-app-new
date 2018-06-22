@@ -5,6 +5,8 @@ import { AppComponent } from './app.component'
 import { NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ColorPickerModule } from 'ngx-color-picker';
 import { MatTabsModule, MatDialog, MatDialogRef } from '@angular/material';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { LoginComponent } from './login/login.component'
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'
@@ -55,7 +57,7 @@ import { SubscriptionListComponent } from './superadmin/subscription-list/subscr
 import { SuperadminService } from "./shared/services/superadmin.service";
 import { AdminGuardService } from "./shared/guard/admin-guard.service";
 import { OrganiserGuardService } from "./shared/guard/organiser-guard.service";
-import { OrderDialogComponent } from './shared/dialog/order-dialog/order-dialog.component';
+import { OrderDialogComponent } from "./orders/order-dialog/order-dialog.component";
 
 @NgModule({
   declarations: [
@@ -110,7 +112,9 @@ import { OrderDialogComponent } from './shared/dialog/order-dialog/order-dialog.
     }),
     CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'rubiq-solutions'}),
     ColorPickerModule,
-    MatTabsModule
+    MatTabsModule,
+    ModalModule.forRoot(),
+    TabsModule.forRoot()
   ],
   providers: [
     AuthGuardService,

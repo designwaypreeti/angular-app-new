@@ -19,6 +19,7 @@ export class OrderDialogComponent implements OnInit {
   ngOnInit() {
     this.bookingData = this.data.booking;
     this.getUser(this.bookingData.bookingInfo.bookedby)
+    this.getTicketDetails(this.bookingData.bookingInfo.tickets[0].ticketid)
   }
   getUser(id:string){
     this.service.getProfile(id)
@@ -27,6 +28,13 @@ export class OrderDialogComponent implements OnInit {
         this.bookedBy = res.user;
         this.userAvailable = true;
       }
+    })
+  }
+  getTicketDetails(id){
+    console.log(id)
+    this.service.getTicket(id)
+    .subscribe(res=>{
+        console.log(res)
     })
   }
   close() {

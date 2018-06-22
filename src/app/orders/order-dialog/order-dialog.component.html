@@ -1,0 +1,106 @@
+<!-- Modal -->
+<div id="ticketModal" class="modal-header ticket_modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="mod">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Ticket 71-0065</h4>
+        <div class="sub_modal_title">Wolfpack Wednesdays</div>
+      </div>
+      <div class="modal-body">
+
+        <ul class="nav nav-tabs">
+          <li class="">
+            <a data-toggle="tab" (click)="selectTab(0)">TICKETS</a>
+          </li>
+          <li>
+            <a data-toggle="tab" (click)="selectTab(1)">ORDER DETAILS</a>
+          </li>
+          <li>
+            <a data-toggle="tab"(click)="selectTab(2)">BUYER DETAILS</a>
+          </li>
+        </ul>            
+          <tabset #staticTabs>      
+              <div class="tab-content">
+
+                <tab  class="tab-pane  in">
+              
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>TICKET CODE</th>
+                          <th>ATTENDEE NAME</th>
+                          <th>PHONE NUMBER</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <!-- <pre>{{ bookings.bookingInfo | json }}</pre> -->
+                        <tr *ngFor="let ticket of bookings.bookingInfo.tickets; let i = index">
+                          <td>{{bookings.bookingInfo.bookingid}} # {{i+1}}</td>
+                          <!-- <td>{{bookedBy.name}}</td> -->
+                          <td>+44 123 456 7890</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+              
+                </tab>
+                <tab  class="tab-pane">
+                  <div class="order_details">
+                    <div class="details_list">
+                      <div class="pre_text">Date and time of order</div>
+                      <div class="main_text">21 June 2017 • 11:08am</div>
+                    </div>
+                    <div class="details_list">
+                      <div class="pre_text">Ticket type</div>
+                      <div class="main_text">{{ticketType}}</div>   
+                    </div>
+                    <div class="details_list">
+                      <div class="pre_text">Payment method</div>
+                      <div class="main_text">#Credit card</div>
+                    </div>
+                    <div class="details_list">
+                      <div class="pre_text">Transaction ID</div>
+                      <div class="main_text">#129838912374</div>
+                    </div>
+                  </div>
+              
+                </tab>
+                <tab  >
+                 <div class="tab-pane">
+                    <div class="order_details" *ngIf="bookedBy">
+                      <div class="details_list" >
+                        <div class="pre_text">Buyer name</div>
+                        <div class="main_text"> {{bookedBy.name}} </div> 
+                      </div>
+                      <div class="details_list">
+                        <div class="pre_text">Email</div>
+                        <div class="main_text"> {{bookedBy.email}} </div>
+                      </div>
+                      <div class="details_list">
+                        <div class="pre_text">PMobile no.</div>
+                        <div class="main_text">{{bookedBy.mobile}}</div>
+                      </div>
+                      <div class="details_list">
+                        <div class="pre_text">Address</div>
+                        <div class="main_text">{{bookedBy.address}}</div>
+                        <!-- <div class="main_text">Penare</div>
+                        <div class="main_text">PL26 5AJ</div> -->
+                      </div>
+                    </div>
+                 </div>
+              
+                </tab>
+        </div>
+
+        </tabset>
+
+      </div>
+    </div>
+
+  </div>
+</div>

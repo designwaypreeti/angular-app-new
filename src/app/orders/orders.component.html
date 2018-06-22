@@ -71,19 +71,24 @@
                 </tr>
               </thead>
               <tbody>
-                 <tr data-toggle="modal" *ngFor="let booking of bookings" (click)="selectBooking(booking)">
-                   
-                <!-- <td>{{booking && booking.bookingInfo && (booking.bookingInfo.bookingdate | date:'dd MMM yyyy')}}</td> -->
-                <td>{{booking.bookingInfo.bookingdate}}</td>
-                <td>{{booking.bookingInfo.tickets[0].ticketid}}</td>
-                <!-- <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].type)}}</td> -->
-                <td># General</td>
-                <td># Ben Steffens</td>
-                <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].quantity)}}</td>
-                <td># $ 50   </td>
-                </tr>
+                <!-- <ng-template *ngFor="let name of bookUser"> -->
+
+                  <tr data-toggle="modal" *ngFor="let booking of bookings" (click)="openModalWithComponent(booking)">
+                    <!-- <td>{{booking && booking.bookingInfo && (booking.bookingInfo.bookingdate | date:'dd MMM yyyy')}}</td> -->
+                    <td></td>
+                     <!-- {{booking.bookingInfo.bookingdate}} -->
+                    <td>{{booking.bookingInfo.bookingid}}</td>
+                    <!-- <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].type)}}</td> -->
+                    <td># General</td>
+                    <td>Ben Steff</td>
+                    <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].quantity)}}</td>
+                    <td># $ 50 </td>
+                  </tr>
+                <!-- </ng-template> -->
+                 
               </tbody>
             </table>
+            <!-- <app-order-dialog model="orderDialog"></app-order-dialog> -->
             </div>
         </div>
 
@@ -92,3 +97,5 @@
   </div>
 
 </div>
+
+<!--  -->

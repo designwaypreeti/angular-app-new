@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from '../shared/services/main.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from "@angular/material";
-import { OrderDialogComponent } from '../shared/dialog/order-dialog/order-dialog.component';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 
 @Component({
   selector: 'app-orders',
@@ -16,32 +17,44 @@ export class OrdersComponent implements OnInit {
   selectedBooking
   hi:boolean=true;
   bookings:any;
+  bsModalRef: BsModalRef;
+  bookUser:any= [];
 
   constructor(private mainService: MainService,
-               private route: ActivatedRoute, 
-               private dialog : MatDialog) {
+              private route: ActivatedRoute,
+              private modalService: BsModalService) {
     this.user = JSON.parse(localStorage.getItem('user'))
   }
+
+
+  openModalWithComponent(booking) {
+    const initialState = {
+      bookings:booking
+    };
+    this.bsModalRef = this.modalService.show(OrderDialogComponent, { initialState });
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
   selectBooking(booking){
-    this.selectedBooking=booking;
-    
-    let dialogRef = this.dialog.open(OrderDialogComponent, { 
-      width: 'auto',
-      height: 'auto',
-      data: { booking: booking }
-    });
-    dialogRef.afterClosed().subscribe(res=>{
-    })
+    this.selectedBooking=booking; 
   }
-  close(){
-    this.selectedBooking=undefined;
-  }
+ 
   ngOnInit() {
     this.mainService.getOrders(this.user._id).subscribe(r => {
       this.bookings = r.bookings;
+      this.bookings = this.dateFormat(this.bookings)
     }, e => {
       console.log(e)
     })
+  }
+
+  dateFormat(bookings){
+    for(let i = 0 ; i < bookings.length;i++){
+      // let date = bookings[i].bookingInfo.bookingdate.split(" ");
+      // bookings[i].bookingInfo.bookingdate = date[0];
+    }
+    return bookings;
+
   }
 
 }
