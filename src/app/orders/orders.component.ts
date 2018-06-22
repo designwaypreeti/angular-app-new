@@ -42,7 +42,8 @@ export class OrdersComponent implements OnInit {
   ngOnInit() {
     this.mainService.getOrders(this.user._id).subscribe(r => {
       this.bookings = r.bookings;
-      this.bookings = this.dateFormat(this.bookings)
+      this.dateFormat(this.bookings)
+      this.addUser(this.bookings)
     }, e => {
       console.log(e)
     })
@@ -50,10 +51,20 @@ export class OrdersComponent implements OnInit {
 
   dateFormat(bookings){
     for(let i = 0 ; i < bookings.length;i++){
-      // let date = bookings[i].bookingInfo.bookingdate.split(" ");
-      // bookings[i].bookingInfo.bookingdate = date[0];
+      let date = bookings[i].bookingInfo.bookingdate.split(" ");
+      this.bookings[i].bookingInfo.date= date[0]
     }
-    return bookings;
+  }
+  addUser(bookings){
+    for (let i = 0; i < bookings.length; i++) {
+     let userId = bookings[i].bookingInfo.bookedby;
+     this.mainService.getProfile(userId)
+     .subscribe(res=>{
+       let user = res.user.name;
+       this.bookings[i].bookingInfo.user = user;
+    
+     })
+    }
 
   }
 
