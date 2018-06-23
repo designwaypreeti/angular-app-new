@@ -112,6 +112,8 @@ export class ProfileComponent implements OnInit {
     const user = {
       name: f.value.name,
       email: f.value.email,
+      address:f.value.address,
+      mobile:f.value.mobile,
       oldpassword: f.value.oldpassword ? f.value.oldpassword : undefined,
       newpassword: f.value.newpassword ? f.value.newpassword : undefined
 

@@ -12,6 +12,7 @@
         <div class="sub_modal_title">Wolfpack Wednesdays</div>
       </div>
       <div class="modal-body">
+        <!-- <pre>{{bookedBy | json}}</pre> -->
 
         <ul class="nav nav-tabs">
           <li class="">
@@ -42,7 +43,11 @@
                           <!-- <pre>{{ bookings.bookingInfo | json }}</pre> -->
                         <tr *ngFor="let ticket of bookings.bookingInfo.tickets; let i = index">
                           <td>{{bookings.bookingInfo.bookingid}} # {{i+1}}</td>
-                          <!-- <td>{{bookedBy.name}}</td> -->
+                          
+                          <td>
+                           {{bookedName.name}}
+                          </td>
+                          
                           <td>+44 123 456 7890</td>
                         </tr>
                       </tbody>

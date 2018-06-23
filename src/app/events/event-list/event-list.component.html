@@ -16,7 +16,7 @@
         <div id="upcoming" class="tab-pane fade in active">
           <div class="tab_the_section">
             <div class="row flex-row">
-              <div class="col-flex-4 event-card" *ngFor="let event of events | slice:0:max; let i = index" [routerLink]="['/events',event.info._id]" [queryParams]="{booked: 'true'}">
+              <div class="col-flex-4 event-card" *ngFor="let event of events | slice:0:max; let i = index" [routerLink]="['/events',event.info._id]">
                 <div class="tablet">
                   <div class="top_sec">
                     <div class="date_field">

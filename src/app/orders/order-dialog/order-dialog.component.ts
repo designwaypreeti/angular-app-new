@@ -17,6 +17,9 @@ export class OrderDialogComponent implements OnInit {
   bookings:any;
   userId: any;
   ticketType:any;
+  bookedName: any = "User";
+  bName : boolean = false;
+
   constructor(public bsModalRef: BsModalRef,
               private service: MainService) { }
 
@@ -36,6 +39,8 @@ export class OrderDialogComponent implements OnInit {
       .subscribe(res => {
         if (res.user) {
           this.bookedBy = res.user;
+          this.bookedName = res.user.name;
+          this.bName = true;
         }
       })
   }

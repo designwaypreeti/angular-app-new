@@ -54,6 +54,28 @@
                     </span>
                   </div>
                 </div>
+                <div class="div_control">
+                  <div class="the_title">
+                    phone
+                  </div>
+                  <div class="fields form_full">
+                    <span>
+                      <input type="text" class="form_input" [ngModel]="user ? user.mobile:''" name="mobile" placeholder="phone" required>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="div_control">
+                  <div class="the_title">
+                    Address
+                  </div>
+                  <div class="fields form_full">
+                    <span>
+                      <input type="text" class="form_input" [ngModel]="user ? user.address:''" name="address" placeholder="address" required>
+                    </span>
+                  </div>
+                </div>
+                
                 <div class="div_control"  *ngIf="changePass">
                   <div class="the_title">
                     Old Password
