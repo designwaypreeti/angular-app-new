@@ -5,7 +5,8 @@
     <div class="modal-content">
       <div class="mod">
         <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
-          <span aria-hidden="true">&times;</span>
+          <!-- <span aria-hidden="true">&times;</span> -->
+          <img src="../../../assets/images/close.svg" alt="">
         </button>
         <h4 class="modal-title">Ticket 71-0065</h4>
         <div class="sub_modal_title">Wolfpack Wednesdays</div>
@@ -57,7 +58,8 @@
                     </div>
                     <div class="details_list">
                       <div class="pre_text">Ticket type</div>
-                      <div class="main_text">{{ticketType}}</div>   
+                      <div class="main_text" *ngIf="bookings.bookingInfo.ticket_type">{{bookings.bookingInfo.ticket_type}}</div>   
+                      <div class="main_text">General</div>
                     </div>
                     <div class="details_list">
                       <div class="pre_text">Payment method</div>
@@ -68,7 +70,7 @@
                       <div class="main_text">#129838912374</div>
                     </div>
                   </div>
-              
+                
                 </tab>
                 <tab  >
                  <div class="tab-pane">

@@ -44,8 +44,8 @@ export class OrdersComponent implements OnInit {
       this.bookings = r.bookings;
       this.dateFormat(this.bookings)
       this.addUser(this.bookings)
+      this.getTicketType(this.bookings)
     }, e => {
-      console.log(e)
     })
   }
 
@@ -66,6 +66,20 @@ export class OrdersComponent implements OnInit {
      })
     }
 
+  }
+  getTicketType(bookings){
+    for (let i = 0; i < bookings.length; i++) {
+      let ticketId = bookings[i].bookingInfo.tickets[0].ticketid;
+      this.mainService.getTicketInfo(ticketId)
+      .subscribe(res=>{
+      if(res.tickets){
+        let t_type = res.tickets[0].ticket_type;
+        let t_price = res.tickets[0].ticket_price;
+        this.bookings[i].bookingInfo.ticket_type = t_type;
+        this.bookings[i].bookingInfo.ticket_price = t_price;
+      }
+      })
+    }    
   }
 
 }
