@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { OrderDialogComponent } from './order-dialog/order-dialog.component';
+import { FilterPipe } from "../shared/pipes/filter.pipe";
 
 @Component({
   selector: 'app-orders',
@@ -19,6 +20,7 @@ export class OrdersComponent implements OnInit {
   bookings:any;
   bsModalRef: BsModalRef;
   bookUser:any= [];
+  filterText:any='';
 
   constructor(private mainService: MainService,
               private route: ActivatedRoute,
@@ -37,6 +39,9 @@ export class OrdersComponent implements OnInit {
 
   selectBooking(booking){
     this.selectedBooking=booking; 
+  }
+  ngAfterViewChecked(){
+    console.log(this.filterText)
   }
  
   ngOnInit() {

@@ -48,7 +48,7 @@
                       Search
                     </div>
                     <div class="fields">
-                      <span class="search_icon"><input type="text" class="form_input" placeholder="Search"></span>
+                      <span class="search_icon"><input type="text" class="form_input" placeholder="Search" [(ngModel)]="filterText"></span>
                     </div>
                   </div>
                 </div>
@@ -73,7 +73,7 @@
               <tbody>
                 <!-- <ng-template *ngFor="let name of bookUser"> -->
 
-                  <tr data-toggle="modal" *ngFor="let booking of bookings" (click)="openModalWithComponent(booking)">
+                  <tr data-toggle="modal" *ngFor="let booking of bookings | filter: filterText" (click)="openModalWithComponent(booking)">
                     <td>{{booking.bookingInfo.date}}</td>
                     <td>{{booking.bookingInfo.bookingid}}</td>
                     <td *ngIf="booking.bookingInfo.ticket_type; else general">{{booking.bookingInfo.ticket_type}}</td>
@@ -83,7 +83,7 @@
                     <td>{{ booking.bookingInfo.user }}</td>
                     <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].quantity)}}</td>
                     <td *ngIf="booking.bookingInfo.ticket_price; else zero">$ {{booking.bookingInfo.ticket_price}} </td>
-                     <ng-template #zero>  <td>$ 0</td>
+                     <ng-template #zero>  <td>N/A</td>
                     </ng-template>
                   </tr>
                 <!-- </ng-template> -->

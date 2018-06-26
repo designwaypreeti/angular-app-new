@@ -58,6 +58,7 @@ import { SuperadminService } from "./shared/services/superadmin.service";
 import { AdminGuardService } from "./shared/guard/admin-guard.service";
 import { OrganiserGuardService } from "./shared/guard/organiser-guard.service";
 import { OrderDialogComponent } from "./orders/order-dialog/order-dialog.component";
+import { FilterPipe } from './shared/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { OrderDialogComponent } from "./orders/order-dialog/order-dialog.compone
     SubscriptionComponent,
     SuperadminHeaderComponent,
     SubscriptionListComponent,
-    OrderDialogComponent
+    OrderDialogComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
