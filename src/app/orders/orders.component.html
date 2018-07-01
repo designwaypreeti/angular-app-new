@@ -32,9 +32,8 @@
                       <div class="the_title">
                         Ticket types
                       </div>
-                      <div class="fields form_full">
-                        <span class="arrowdown"><input type="text" class="form_input"></span>
-                      </div>
+                      <ngx-select-dropdown class="drop" [options]="ticktType" [(value)]="filterText"></ngx-select-dropdown>
+
                     </div>
                   </div>
                 </div>
@@ -48,7 +47,7 @@
                       Search
                     </div>
                     <div class="fields">
-                      <span class="search_icon"><input type="text" class="form_input" placeholder="Search" [(ngModel)]="filterText"></span>
+                      <span class="search_icon"><input type="text" class="form_input" placeholder="Search" [(ngModel)]="filterText2"></span>
                     </div>
                   </div>
                 </div>
@@ -73,12 +72,12 @@
               <tbody>
                 <!-- <ng-template *ngFor="let name of bookUser"> -->
 
-                  <tr data-toggle="modal" *ngFor="let booking of bookings | filter: filterText" (click)="openModalWithComponent(booking)">
+                  <tr data-toggle="modal" *ngFor="let booking of bookings | filter: filterText | filter: filterText2" (click)="openModalWithComponent(booking)">
                     <td>{{booking.bookingInfo.date}}</td>
                     <td>{{booking.bookingInfo.bookingid}}</td>
                     <td *ngIf="booking.bookingInfo.ticket_type; else general">{{booking.bookingInfo.ticket_type}}</td>
                     <ng-template #general>
-                      <td>General</td>
+                      <td>N/A</td>
                     </ng-template>
                     <td>{{ booking.bookingInfo.user }}</td>
                     <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].quantity)}}</td>

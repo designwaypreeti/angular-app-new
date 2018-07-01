@@ -20,7 +20,9 @@ export class OrdersComponent implements OnInit {
   bookings:any;
   bsModalRef: BsModalRef;
   bookUser:any= [];
-  filterText:any='';
+  filterText: any = '';
+  filterText2:any='';
+  ticktType: any = ['All','General', 'VIP']
 
   constructor(private mainService: MainService,
               private route: ActivatedRoute,

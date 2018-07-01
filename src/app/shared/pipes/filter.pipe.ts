@@ -8,6 +8,13 @@ export class FilterPipe implements PipeTransform {
   transform(items: any, args?: any): any  {
     // console.log(items) 
     // console.log(args) 
+    if (args instanceof Array){
+      if (args[0] == 'All') {
+        args = '';
+      }else{
+        args = args[0];
+      }
+    }
     var flag = false;
     if(!items){
       return true;

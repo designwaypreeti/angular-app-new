@@ -59,6 +59,7 @@ import { AdminGuardService } from "./shared/guard/admin-guard.service";
 import { OrganiserGuardService } from "./shared/guard/organiser-guard.service";
 import { OrderDialogComponent } from "./orders/order-dialog/order-dialog.component";
 import { FilterPipe } from './shared/pipes/filter.pipe';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { FilterPipe } from './shared/pipes/filter.pipe';
     ColorPickerModule,
     MatTabsModule,
     ModalModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    SelectDropDownModule
   ],
   providers: [
     AuthGuardService,
