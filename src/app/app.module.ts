@@ -60,6 +60,8 @@ import { OrganiserGuardService } from "./shared/guard/organiser-guard.service";
 import { OrderDialogComponent } from "./orders/order-dialog/order-dialog.component";
 import { FilterPipe } from './shared/pipes/filter.pipe';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { PayemntsComponent } from './payemnts/payemnts.component';
+import { PaymentsDialogComponent } from './payemnts/payments-dialog/payments-dialog.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +96,9 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
     SuperadminHeaderComponent,
     SubscriptionListComponent,
     OrderDialogComponent,
-    FilterPipe
+    FilterPipe,
+    PayemntsComponent,
+    PaymentsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -132,7 +136,8 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
   bootstrap: [AppComponent],
   entryComponents: [
     DialogComponent,
-    OrderDialogComponent
+    OrderDialogComponent,
+    PaymentsDialogComponent
   ]
 })
 export class AppModule { }

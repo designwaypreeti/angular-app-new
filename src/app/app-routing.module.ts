@@ -19,6 +19,7 @@ import { SubscriptionComponent } from './superadmin/subscription/subscription.co
 import { AdminGuardService } from './shared/guard/admin-guard.service';
 import { OrganiserGuardService } from './shared/guard/organiser-guard.service';
 import { SubscriptionListComponent } from './superadmin/subscription-list/subscription-list.component';
+import { PayemntsComponent } from './payemnts/payemnts.component';
 
 const routes: Routes = [
     {
@@ -90,6 +91,11 @@ const routes: Routes = [
         path: 'superadmin/subscription/update/:id',
         component: SubscriptionComponent,
         canActivate: [AuthGuardService, AdminGuardService]
+    },
+    {
+        path: 'payments',
+        component: PayemntsComponent,
+        canActivate: [AuthGuardService, OrganiserGuardService]
     },
     {
         path: '',

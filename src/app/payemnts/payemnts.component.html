@@ -1,0 +1,195 @@
+  <div class="center_state_div">
+    <div class="container">
+      <div class="main_title_container">
+        <h1 class="the_title_left no_bottom_margin">Payments</h1>
+      </div>
+
+      <div class="payments_section">
+
+        <div class="top_info">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="one_section">
+                <div class="one_sub_section">
+                  <div class="top_sub_title">
+                    <span>Tickets sold</span>
+                    <img src="images/i.svg" />
+                  </div>
+                  <div class="mid_title">2,561</div>
+                  <div class="bottom_title">past 30 days</div>
+                </div>
+
+                <div class="one_sub_section">
+                  <div class="top_sub_title">
+                    <span>Revenue</span>
+                    <img src="images/i.svg" />
+                  </div>
+                  <div class="mid_title">£25,650</div>
+                  <div class="bottom_title">past 30 days</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="one_section">
+                <div class="one_sub_section">
+                  <div class="top_sub_title">
+                    <span>Amount on-hold</span>
+                    <img src="images/i.svg" />
+                  </div>
+                  <div class="mid_title">£3,200</div>
+
+                </div>
+
+                <div class="one_sub_section">
+                  <div class="top_sub_title">
+                    <span>A/c balance</span>
+                    <img src="images/i.svg" />
+                  </div>
+                  <div class="mid_title">£6,720</div>
+                  <div class="bottom_title">
+                    <a (click)="transferAmount()">transfer this amount now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom_section_payments">
+          <div class="history_sec">
+            <div class="main_title">
+              Transaction history
+            </div>
+            <div class="sub_title">
+              All your transactions that have taken place on this platform
+            </div>
+          </div>
+
+          <div class="management_top">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form">
+                  <div class="manage_form_inputs">
+                    <div class="fields">
+                      <div class="div_control">
+                        <div class="the_title">
+                          Show
+                        </div>
+                        <div class="fields form_full">
+                          <span class="arrowdown">
+                            <input type="text" class="form_input" placeholder="All transactions">
+                          </span>
+                        </div>
+                      </div>
+                      <!--
+                        -->
+                      <div class="div_control">
+                        <div class="the_title">
+                          View transactions
+                        </div>
+                        <div class="fields form_full">
+                          <span class="date_cal">
+                            <input type="text" class="form_input" placeholder="Today">
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="search_form">
+                  <div class="fields">
+                    <div class="div_control">
+                      <div class="the_title">
+                        Search
+                      </div>
+                      <div class="fields">
+                        <span class="search_icon">
+                          <input type="text" class="form_input" placeholder="Search by transaction id">
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="management_bottom">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>DATE</th>
+                    <th>TRANSACTION ID</th>
+                    <th>TRANSACTION DETAILS</th>
+                    <th class="right">CREDIT</th>
+                    <th class="right">DEBIT</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>21 June 2017</td>
+                    <td>#1237263478</td>
+                    <td>Subscription for June 2017</td>
+                    <td class="right">-</td>
+                    <td class="right">$12.00</td>
+                  </tr>
+                  <tr>
+                    <td>21 June 2017</td>
+                    <td>#1237263478</td>
+                    <td>Transfer to bank a/c no. XXX0976</td>
+                    <td class="right">$2,000.00</td>
+                    <td class="right">-</td>
+                  </tr>
+                  <tr>
+                    <td>21 June 2017</td>
+                    <td>#1237263478</td>
+                    <td>Ticket purchase • Wolfpack Wednesdays
+                      <div class="t_detail">Ben Steffens • 4 tickets</div>
+                    </td>
+                    <td class="right">$48.00</td>
+                    <td class="right">-</td>
+                  </tr>
+                  <tr>
+                    <td>21 June 2017</td>
+                    <td>#1237263478</td>
+                    <td>Ticket refunds • Wolfpack Wednesdays
+                      <div class="t_detail">Omkar Harmalkar • 2 tickets</div>
+                    </td>
+                    <td class="right">-</td>
+                    <td class="right">$24.00</td>
+                  </tr>
+                  <tr>
+                    <td>21 June 2017</td>
+                    <td>#1237263478</td>
+                    <td>Ticket purchase • Wolfpack Wednesdays
+                      <div class="t_detail">Albrito Marques • 3 tickets</div>
+                    </td>
+                    <td class="right">$36.00</td>
+                    <td class="right">-</td>
+                  </tr>
+                  <tr>
+                    <td>21 June 2017</td>
+                    <td>#1237263478</td>
+                    <td>Ticket purchase • Wolfpack Wednesdays
+                      <div class="t_detail">Rayner Prazeres • 1 tickets</div>
+                    </td>
+                    <td class="right">$12.00</td>
+                    <td class="right">-</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>

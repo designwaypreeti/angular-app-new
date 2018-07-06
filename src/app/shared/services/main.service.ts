@@ -185,4 +185,8 @@ export class MainService {
     return this.http.get<any>(`${URL}/event/ticket/view/${ticketId}`, { headers: this.headers})
     .map(r=>r)
   }
+  sendPaymentToken(uId, data){
+    return this.http.post<any>(`${URL}/payment/create?${uId}`, data , { headers: this.headers })
+      .map(r => r)
+  }
 }
