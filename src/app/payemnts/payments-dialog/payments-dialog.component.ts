@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from '../../shared/services/main.service';
+import { BsModalRef } from 'ngx-bootstrap';
+
 
 @Component({
   selector: 'app-payments-dialog',
@@ -7,14 +9,26 @@ import { MainService } from '../../shared/services/main.service';
   styleUrls: ['./payments-dialog.component.less']
 })
 export class PaymentsDialogComponent implements OnInit {
-
-  constructor(private mainService: MainService) { }
+  userId:any;
+  cardList:any = [];
+  accBalance:any = 20;
+  cardVal;
+  constructor(private mainService: MainService,
+              public modalref:BsModalRef) { }
 
   ngOnInit() {
-    let uId = localStorage.getItem('user');
-    console.log(uId);
+    this.userId = localStorage.getItem('user');
+    console.log(this.userId);
+    this.getCards();
   }
 
+  getCards() {
+    this.mainService.getCardList(this.userId)
+      .subscribe(res => {
+        console.log(res);
+        this.cardList = res.result.data;
+      })
+  }
   takePayment(amount: number, token: any) {
     let body = {
       email: "preeti.19@gmail.com",
@@ -42,20 +56,30 @@ export class PaymentsDialogComponent implements OnInit {
       locale: 'auto',
       token: tokenCallback
     });
-
     handler.open({
       name: 'Stubba',
       zipCode: false,
-      currency: 'gbp',
+      currency: 'usd',
       amount: amount,
-      panelLabel: "Pay {{amount}}",
       allowRememberMe: false
     });
   }
 
-  makePayment(){
-    this.checkOut( 1000, (token: any) => this.takePayment( 1000, token));
+  close(){
+    this.modalref.hide()
   }
+
+  makePayment(){
+    console.log(this.cardVal)
+    if(this.cardVal){
+      // this.takePayment()
+    }else{
+      this.checkOut(this.accBalance, (token: any) => this.takePayment(this.accBalance, token));
+
+    }
+  }
+
+ 
 
   }
 

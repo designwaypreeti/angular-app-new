@@ -3,8 +3,8 @@
     <!-- Modal content-->
     <div class="">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-          <img src="images/close.svg">
+        <button type="button" class="close" data-dismiss="modal" >
+          <img (click)="close()" src="assets/images/close.svg">
         </button>
         <h4 class="modal-title">Transfer to bank a/c</h4>
 
@@ -14,7 +14,7 @@
           <div class="div_control">
             <div class="ac_balance">
               <span>A/c balance</span>
-              <img src="images/i.svg" />
+              <img src="assets/images/i.svg" />
             </div>
             <div class="balance_figure">£6,720</div>
           </div>
@@ -24,17 +24,18 @@
             </div>
             <div class="fields form_full">
               <span class="down_arrow">
-                <select class="theme_select">
-                  <option value="Published">Barclays - XXXX XXXX XXXX 4321</option>
-                  <option value="Published">Barclays - XXXX XXXX XXXX 4321</option>
-                  <option value="Published">Barclays - XXXX XXXX XXXX 4321</option>
+                <select class="theme_select" [(ngModel)]="cardVal">
+                  <option value="">New card</option>
+                  <option value="{{card.id}}" *ngFor="let card of cardList">
+                    Barclays - XXXX XXXX XXXX {{card.last4}}</option>
+                    pre
                 </select>
               </span>
             </div>
           </div>
           <div class="buttons_events_page">
             <a (click)="makePayment()" class="btn btn_custom_acsetting adjust_margin_next_step">Transfer</a>
-            <div class="draft" data-dismiss="modal">
+            <div class="draft" data-dismiss="modal" (click)="close()">
               Cancel
             </div>
           </div>

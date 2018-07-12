@@ -20,7 +20,7 @@
     <div class="text_dec">{{plan.events !== null? plan.events : Unlimited}} events</div>
     <div class="text_dec">{{plan.tickets !== null? plan.tickets : Unlimited}} ticket sales</div>
     <div class="text_dec">{{plan.booking}} booking fee</div>
-    <div class="button_tag" 
+    <div class="button_tag" (click)="checkoutToPayment(plan.price)"
     [ngStyle]="
     {
       'color':plan.color_scheme,

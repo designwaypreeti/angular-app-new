@@ -189,4 +189,8 @@ export class MainService {
     return this.http.post<any>(`${URL}/payment/create?${uId}`, data , { headers: this.headers })
       .map(r => r)
   }
+  getCardList(uId){
+    return this.http.post<any>(`${URL}/payment/listcards?${uId}`,{}, { headers: this.headers })
+      .map(r => r)
+  }
 }
