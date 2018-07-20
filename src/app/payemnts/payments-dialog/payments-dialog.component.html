@@ -6,21 +6,38 @@
         <button type="button" class="close" data-dismiss="modal" >
           <img (click)="close()" src="assets/images/close.svg">
         </button>
-        <h4 class="modal-title">Transfer to bank a/c</h4>
+        <ng-template #trans>
+        <h4 class="modal-title" >Transfer to bank a/c</h4>
+        </ng-template>
+        <h4 class="modal-title" *ngIf="subscription; else trans">Checkout</h4>
 
       </div>
       <div class="modal-body">
         <div class="transfer_body">
-          <div class="div_control">
+          <ng-template #transmoney>
+            <div class="div_control">
+              <div class="ac_balance">
+                <span>A/c balance</span>
+                <img src="assets/images/i.svg" />
+              </div>
+              <div class="balance_figure">£6,720</div>
+            </div>
+          </ng-template>
+          <div class="div_control" *ngIf="subscription; else transmoney">
             <div class="ac_balance">
-              <span>A/c balance</span>
+              <span>Amount</span>
               <img src="assets/images/i.svg" />
             </div>
-            <div class="balance_figure">£6,720</div>
+            <div class="balance_figure">$ {{price}}</div>
           </div>
           <div class="div_control">
-            <div class="the_title">
-              Select bank a/c to transfer to
+            <ng-template #trans2>
+              <div class="the_title">
+                Select bank a/c to transfer to
+              </div>
+            </ng-template>
+            <div class="the_title" *ngIf="subscription; else trans2">
+              Select bank a/c 
             </div>
             <div class="fields form_full">
               <span class="down_arrow">
@@ -34,7 +51,7 @@
             </div>
           </div>
           <div class="buttons_events_page">
-            <a (click)="makePayment()" class="btn btn_custom_acsetting adjust_margin_next_step">Transfer</a>
+            <button (click)="makePayment()" class="btn btn_custom_acsetting adjust_margin_next_step" [disabled]="paymentInitiated">Transfer</button>
             <div class="draft" data-dismiss="modal" (click)="close()">
               Cancel
             </div>

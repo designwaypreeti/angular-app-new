@@ -40,7 +40,7 @@
                     {{p.selectedQuantity}}x {{p.ticket_name}}
                 </div>
               </td>
-              <td colspan="2" class="text-right btn_td"><button class="btn btn_custom" [disabled]="purchase.length===0" (click)="state=2">Buy Tickets</button></td>
+              <td colspan="2" class="text-right btn_td"><button class="btn btn_custom" [disabled]="purchase.length===0" (click)="state=2; buyTickets(subTotal+fees)">Buy Tickets</button></td>
             </tr>
           </tbody>
         </table>

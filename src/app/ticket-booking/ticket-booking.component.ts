@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MainService } from '../shared/services/main.service';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalService, BsModalRef } from '../../../node_modules/ngx-bootstrap';
+import { PaymentsDialogComponent } from '../payemnts/payments-dialog/payments-dialog.component';
 
 @Component({
   selector: 'app-ticket-booking',
@@ -8,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./ticket-booking.component.less']
 })
 export class TicketBookingComponent implements OnInit {
+  bsModalref: BsModalRef;
   @Input() eId 
   @Input() venue 
   tickets
@@ -21,7 +24,8 @@ export class TicketBookingComponent implements OnInit {
   state = 1
   price = 0
   quantity=[0,1,2,3,4,5,6,7,8,9,10]
-  constructor(private mainService: MainService, private toastr: ToastrService) {
+  constructor(private mainService: MainService, private toastr: ToastrService, 
+    private modalService: BsModalService) {
     this.user = JSON.parse(localStorage.getItem('user'))
    }
 
@@ -73,5 +77,9 @@ export class TicketBookingComponent implements OnInit {
       }
       ,e=>{})
 
+  }
+  buyTickets(price){
+    const initialState = { price: price, subscription: true }
+    this.bsModalref = this.modalService.show(PaymentsDialogComponent, Object.assign({}, { initialState }));
   }
 }
