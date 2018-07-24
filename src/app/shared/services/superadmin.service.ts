@@ -19,8 +19,8 @@ export class SuperadminService {
   
   postSubscription(data){
     console.log(JSON.stringify(data))
-    this.setHeader()
-    return this.http.post<any>(`${URL}/subscription/create`, JSON.stringify(data),
+    this.setHeader();
+    return this.http.post<any>(`${URL}/subscription/create`, data,
       { headers: this.headers })
       .map((response)=> { response.json(); console.log(response) })
   }
