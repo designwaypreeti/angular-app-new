@@ -15,13 +15,7 @@ export class ProfileComponent implements OnInit {
   oldPass
   newPass
   changePass = false
-  cards = [
-    {
-      number: 'xxx xxx xxx 123',
-      month: '06',
-      year: '2020'
-    }
-  ]
+  cards = []
   subs = []
   banks = []
   constructor(private mainService: MainService, private toastr: ToastrService) {
