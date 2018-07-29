@@ -22,7 +22,8 @@ export class TicketBookingComponent implements OnInit {
   user
   purchase=[]
   state = 1
-  price = 0
+  price = 0;
+  cards = [];
   quantity=[0,1,2,3,4,5,6,7,8,9,10]
   constructor(private mainService: MainService, private toastr: ToastrService, 
     private modalService: BsModalService) {
@@ -32,7 +33,9 @@ export class TicketBookingComponent implements OnInit {
   ngOnInit() {
     console.log(this.venue)
     this.fetchTickets()
+    
   }
+
 
   fetchTickets(){
     this.mainService.getTicket(this.eId).subscribe(r=>{
@@ -79,7 +82,13 @@ export class TicketBookingComponent implements OnInit {
 
   }
   buyTickets(price){
+    this.getCards();
     const initialState = { price: price, subscription: true }
     this.bsModalref = this.modalService.show(PaymentsDialogComponent, Object.assign({}, { initialState }));
+  }
+  getCards(){
+    this.mainService.getCardList(this.user._id).subscribe(res=>{
+      this.cards = res.result.data;
+    })
   }
 }

@@ -103,8 +103,7 @@
     <div class="card_details_container">
 
       <div class="row">
-
-        <div class="col-sm-6">
+        <div class="col-sm-6" *ngFor="let card of cards">
           <div class="the_card">
             <div class="name_card_flex">
               <div class="image_container">
@@ -116,12 +115,12 @@
             </div>
 
             <div class="card_number">
-              XXXX XXXX XXXX 1234
+              XXXX XXXX XXXX {{card.last4}}
             </div>
 
             <div class="card_expiry">
               <span class="ex_text">Expires</span>
-              <span class="ex_date">12 / 2020</span>
+              <span class="ex_date">{{card.exp_month}} / {{card.exp_year}}</span>
             </div>
             <div class="hover_icon">
               <img src="assets/images/success.svg" />
