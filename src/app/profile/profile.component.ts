@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   cards = []
   subs = []
   banks = []
+  subsArr = [];
   constructor(private mainService: MainService, private toastr: ToastrService) {
     this.tab = 1
   }
@@ -62,14 +63,17 @@ export class ProfileComponent implements OnInit {
         temp.tickets = (e.no_of_tickets === 0 || e.no_of_tickets == undefined)
           ? null
           : e.no_of_tickets
-        temp.booking = e.booking_fee
-        temp.src = e.icon || '/assets/images/free.png'
-        temp.selected = (e._id == user.subscription) ? true : false
-        temp.color_scheme = e.color_scheme || '#000'
-        this.subs.push(temp)
-
-        return temp
+        temp.booking = e.booking_fee;
+        temp.src = e.icon || '/assets/images/free.png';
+        temp.selected = (e._id == user.subscription) ? true : false;
+        temp.color_scheme = e.color_scheme || '#000';
+        this.subsArr.push(temp)
+        this.subsArr.reverse();
       })
+
+      for (let i = 0; i < 4; i++) {
+        this.subs[i] = this.subsArr[i];
+      }
       console.log(this.subs)
     }, err => { })
 
