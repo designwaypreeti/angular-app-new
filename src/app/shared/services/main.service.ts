@@ -97,7 +97,7 @@ export class MainService {
       .map(r => r)
   }
 
-  createTicket(eid,uid,data){
+  createTicket(uid,eid,data){
     this.setHeader()
     console.log(data)
     return this.http.post<any>(`${URL}/event/ticket?uid=${uid}&eventid=${eid}`,
