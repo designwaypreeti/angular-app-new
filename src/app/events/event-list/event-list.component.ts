@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from '../../shared/services/main.service';
-import * as moment from 'moment'
-import {Events} from './event.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-event-list',
