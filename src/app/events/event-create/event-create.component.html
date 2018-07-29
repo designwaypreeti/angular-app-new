@@ -407,11 +407,11 @@
               <div class="cards_container">
                 <div class="cards_container_inner">
 
-                    <app-ticket-card class="single_card_outer" 
-                          *ngFor="let ticket of tickets"  
-                          [ticket]="ticket" 
-                          (click)=selectTicket(ticket)>
+                  <div>
+                    <app-ticket-card class="single_card_outer" *ngFor="let ticket of tickets" [ticket]="ticket" (click)=selectTicket(ticket)
+                      style="width: 16em">
                     </app-ticket-card>
+                  </div>
                 </div>
 
               </div>
