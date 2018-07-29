@@ -193,4 +193,8 @@ export class MainService {
     return this.http.post<any>(`${URL}/payment/listcards?${uId}`,{}, { headers: this.headers })
       .map(r => r)
   }
+  getEventsByStatus(uId, status){
+    return this.http.get<any>(`${URL}/event/getall?uid=${uId}&status=${status}`,{ headers : this.headers})
+    .pipe();
+  }
 }

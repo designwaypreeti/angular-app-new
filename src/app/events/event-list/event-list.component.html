@@ -7,56 +7,60 @@
 
     <div class="event_section">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab">UPCOMING</a></li>
-        <li><a data-toggle="tab">COMPLETED</a></li>
-        <li><a data-toggle="tab">DRAFTS</a></li>
+        <li [class]='eventStatus[0]' (click)="getUpcomingEvents()"><a data-toggle="tab">UPCOMING</a></li>
+        <li [class]='eventStatus[1]' (click)="getCompletedEvents()"><a data-toggle="tab">COMPLETED</a></li>
+        <li [class]='eventStatus[2]' (click)="getDraftEvents()"><a data-toggle="tab">DRAFTS</a></li>
       </ul>
 
-      <div class="tab-content" *ngIf="events">
-        <div id="upcoming" class="tab-pane fade in active">
+      <div class="tab-content">
+        <div  class="tab-pane fade in active">
           <div class="tab_the_section">
             <div class="row flex-row">
-              <div class="col-flex-4 event-card" *ngFor="let event of events | slice:0:max; let i = index" [routerLink]="['/events',event.info._id]">
-                <div class="tablet">
-                  <div class="top_sec">
-                    <div class="date_field">
-                      <div class="date">{{event.info && event.info.dateDay}}</div>
-                      <div class="month">{{event.info && event.info.dateMonth}}</div>
+                <div class="col-flex-4 event-card" *ngFor="let event of events | slice:0:max; let i = index" [routerLink]="['/events',event.info._id]">
+                  <div class="tablet">
+                    <div class="top_sec">
+                      <div class="date_field">
+                        <div class="date">{{event.info && event.info.dateDay}}</div>
+                        <div class="month">{{event.info && event.info.dateMonth}}</div>
+                      </div>
+                      <div class="location_field">
+                        <div class="name_event">{{event.info.event_name}}</div>
+                        <div class="location_event">
+                          <img src="/assets/images/locaicon.svg" />
+                          <span>
+                            {{event.venue && event.venue.venue_name}}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div class="location_field">
-                      <div class="name_event">{{event.info.event_name}}</div>
-                      <div class="location_event"><img src="/assets/images/locaicon.svg" /><span>
-                        {{event.venue && event.venue.venue_name}}
-                      </span></div>
+                    <div class="mid_sec">
+                      <div class="sold">
+                        <div class="short_title">
+                          Tickets sold
+                        </div>
+                        <div class="the_figure">
+                          321
+                          <span>/500</span>
+                        </div>
+                      </div>
+                      <div class="sold revenue">
+                        <div class="short_title">
+                          Revenue
+                        </div>
+                        <div class="the_figure">
+                          £12,545
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bottom_sec">
+                      <div class="graph">
+                        <div class="graph_title">Sales graph</div>
+                      </div>
                     </div>
                   </div>
-                  <div class="mid_sec">
-                    <div class="sold">
-                      <div class="short_title">
-                        Tickets sold
-                      </div>
-                      <div class="the_figure">
-                        321<span>/500</span>
-                      </div>
-                    </div>
-                    <div class="sold revenue">
-                      <div class="short_title">
-                        Revenue
-                      </div>
-                      <div class="the_figure">
-                        £12,545
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bottom_sec">
-                    <div class="graph">
-                      <div class="graph_title">Sales graph</div>
-                    </div>
-                  </div>
+                
                 </div>
-
-              </div>  
-              <div class="col-flex-4 event-card" [routerLink]="['/events/create']" *ngIf="!(events && events.length && max<events.length)">
+              <div class="col-flex-4 event-card" [routerLink]="['/events/create']" *ngIf="!(events && events.length && max<events.length) || (events == 'undefined')">
 
                 <div class="tablet the_last">
 
@@ -78,14 +82,6 @@
               </div>
             </div>
           </div>
-
-        </div>
-        <div id="completed" class="tab-pane fade">
-
-
-        </div>
-        <div id="drafts" class="tab-pane fade">
-
 
         </div>
       </div>
