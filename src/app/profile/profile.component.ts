@@ -19,11 +19,15 @@ export class ProfileComponent implements OnInit {
   subs = []
   banks = []
   subsArr = [];
+  isCustomer:boolean = false;
   constructor(private mainService: MainService, private toastr: ToastrService) {
     this.tab = 1
   }
 
   ngOnInit() {
+    if (localStorage.getItem('isCustomer') == 'customer') {
+      this.isCustomer = true;
+    };
     this.user = JSON.parse(localStorage.getItem('user'))
     this.mainService.getProfile(this.user._id).subscribe(
       r => {

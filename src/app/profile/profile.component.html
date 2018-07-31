@@ -115,7 +115,7 @@
             </form>
 
           </div>
-          <div id="tab2" class="tab-pane fade" [ngClass]="{'in active':tab === 2}">
+          <div id="tab2" class="tab-pane fade" [ngClass]="{'in active':tab === 2}" *ngIf="!isCustomer">
             <h3 class="hide">SUBSCRIPTION</h3>
 
             <div class="tab_plans_container">
@@ -158,7 +158,25 @@
             </div>
 
           </div>
-          <div id="tab4" class="tab-pane fade" [ngClass]="{'in active':tab === 4}">
+            <div id="tab3" class="tab-pane fade" [ngClass]="{'in active':tab === 3}" *ngIf="isCustomer">
+              <h3 class="hide">My Orders</h3>
+            
+              <div class="card_details_container">
+                <div class="text_saved_cards">
+                  Saved cards
+                </div>
+                <!-- <div class="row">
+            
+                  <div class="col-sm-4" *ngFor="let card of cards">
+                    <app-profile-card [card]=card></app-profile-card>
+                  </div>
+            
+                </div> -->
+            
+              </div>
+            
+            </div>
+          <div id="tab4" class="tab-pane fade" [ngClass]="{'in active':tab === 4}" *ngIf="!isCustomer">
             <h3 class="hide">BANK DETAILS</h3>
             <div class="bank_details_container">
               <div class="bank_details">

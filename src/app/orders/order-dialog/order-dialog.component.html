@@ -41,11 +41,11 @@
                       </thead>
                       <tbody>
                           <!-- <pre>{{ bookings.bookingInfo | json }}</pre> -->
-                        <tr *ngFor="let ticket of bookings.bookingInfo.tickets; let i = index">
-                          <td>{{bookings.bookingInfo.bookingid}} # {{i+1}}</td>
+                        <tr *ngFor="let ticket of bookings?.bookingInfo.tickets; let i = index">
+                          <td>{{bookings?.bookingInfo?.bookingid}} # {{i+1}}</td>
                           
                           <td>
-                           {{bookedName.name}}
+                           {{bookedBy?.name}}
                           </td>
                           
                           <td>+44 123 456 7890</td>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="details_list">
                       <div class="pre_text">Ticket type</div>
-                      <div class="main_text" *ngIf="bookings.bookingInfo.ticket_type">{{bookings.bookingInfo.ticket_type}}</div>   
+                      <div class="main_text" *ngIf="bookings?.bookingInfo?.ticket_type">{{bookings?.bookingInfo?.ticket_type}}</div>   
                       <div class="main_text">General</div>
                     </div>
                     <div class="details_list">
@@ -82,19 +82,19 @@
                     <div class="order_details" *ngIf="bookedBy">
                       <div class="details_list" >
                         <div class="pre_text">Buyer name</div>
-                        <div class="main_text"> {{bookedBy.name}} </div> 
+                        <div class="main_text"> {{bookedBy?.name}} </div> 
                       </div>
                       <div class="details_list">
                         <div class="pre_text">Email</div>
-                        <div class="main_text"> {{bookedBy.email}} </div>
+                        <div class="main_text"> {{bookedBy?.email}} </div>
                       </div>
                       <div class="details_list">
-                        <div class="pre_text">Mobile no.</div>
-                        <div class="main_text">{{bookedBy.mobile}}</div>
+                        <div class="pre_text" *ngIf="bookedBy?.mobile">Mobile no.</div>
+                        <div class="main_text">{{bookedBy?.mobile}}</div>
                       </div>
                       <div class="details_list">
-                        <div class="pre_text">Address</div>
-                        <div class="main_text">{{bookedBy.address}}</div>
+                        <div class="pre_text" *ngIf="bookedBy?.address">Address</div>
+                        <div class="main_text">{{bookedBy?.address}}</div>
                         <!-- <div class="main_text">Penare</div>
                         <div class="main_text">PL26 5AJ</div> -->
                       </div>

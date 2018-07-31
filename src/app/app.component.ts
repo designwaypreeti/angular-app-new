@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   menu = false
   menueMobile = false
   superAdminHeader:any;
+  isCustomer:boolean = false;
   constructor(
     private route: ActivatedRoute,
     private router: Router) {
@@ -19,6 +20,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.route.snapshot)
+     if(localStorage.getItem('isCustomer') == 'customer'){
+      this.isCustomer = true;
+     };
+
     this.router.events.subscribe(e => {
       if (e instanceof NavigationEnd) {
         console.log(e.url)

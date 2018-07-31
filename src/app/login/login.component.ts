@@ -26,10 +26,13 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('token', r.token)
         localStorage.setItem('role',role);
+        localStorage.setItem('isCustomer', 'notCustomer');
         if(localStorage.getItem('role')== 'admin'){
           this.router.navigate(['superadmin']);
         }else if(localStorage.getItem('role')== 'event_organiser'){
         this.router.navigate(['profile'])
+        } else if (localStorage.getItem('role') == 'customer'){
+          localStorage.setItem('isCustomer','customer');
         }
       },
         e => {
