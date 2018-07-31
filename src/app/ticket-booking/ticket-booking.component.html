@@ -40,7 +40,7 @@
                     {{p.selectedQuantity}}x {{p.ticket_name}}
                 </div>
               </td>
-              <td colspan="2" class="text-right btn_td"><button class="btn btn_custom" [disabled]="purchase.length===0" (click)="state=2; buyTickets(subTotal+fees)">Buy Tickets</button></td>
+              <td colspan="2" class="text-right btn_td"><button class="btn btn_custom" [disabled]="purchase.length===0" (click)="state=2; saveTotal(subTotal+fees)">Buy Tickets</button></td>
             </tr>
           </tbody>
         </table>
@@ -104,7 +104,7 @@
 
       <div class="row">
         <div class="col-sm-6" *ngFor="let card of cards">
-          <div class="the_card">
+          <div class="the_card" (click)="popWarning(card)">
             <div class="name_card_flex">
               <div class="image_container">
                 <img src="assets/images/visa.svg" />
@@ -129,12 +129,14 @@
         </div>
 
         <div class="col-sm-6">
-          <div class="add_card no_bottom_mar" data-toggle="modal" data-target="#addCardModal">
-            <div class="add_text">
-              <img src="assets/images/plus.svg" />
-              <span class="span_text">Add another card</span>
+         <button class="card-btn" (click)="makeStripePayment()" [disabled]="processingPayment"> 
+            <div class="add_card no_bottom_mar" data-toggle="modal" >
+              <div class="add_text">
+                <img src="assets/images/plus.svg" />
+                <span class="span_text">Add another card</span>
+              </div>
             </div>
-          </div>
+         </button>
         </div>
       </div>
     </div>

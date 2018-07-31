@@ -197,4 +197,12 @@ export class MainService {
     return this.http.get<any>(`${URL}/event/getall?uid=${uId}&status=${status}`,{ headers : this.headers})
     .pipe();
   }
+  makeSavedCardPayment(uId,data,eventid){
+    return this.http.post<any>(`${URL}/event/booking?uid=${uId}&eventid=${eventid}`, data ,{ headers: this.headers })
+      .map(r=>r);
+  }
+  addcard(uId,data){
+    return this.http.post<any>(`${URL}/payment/addcard?uid=${uId}`,data ,{headers: this.headers})
+    .pipe()
+  }
 }
