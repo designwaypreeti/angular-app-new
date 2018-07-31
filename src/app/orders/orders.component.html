@@ -20,21 +20,23 @@
               <div class="form">
                 <div class="manage_form_inputs">
                   <div class="fields">
-                    <div class="div_control">
+                    <!-- <div class="div_control">
                       <div class="the_title">
                         Date range
                       </div>
                       <div class="fields form_full">
                         <span class="date_cal"><input type="text" class="form_input"></span>
                       </div>
-                    </div><!--
-                    --><div class="div_control">
+                    </div> -->
+                    <!--
+                    -->
+                    <!-- <div class="div_control">
                       <div class="the_title">
                         Ticket types
                       </div>
                       <ngx-select-dropdown class="drop" [options]="ticktType" [(value)]="filterText"></ngx-select-dropdown>
 
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -63,7 +65,7 @@
                 <tr>
                   <th>DATE</th>
                   <th>TICKET CODE</th>
-                  <th>TICKET TYPE</th>
+                  <!-- <th>TICKET TYPE</th> -->
                   <th>ATTENDEE NAME</th>
                   <th>TICKET QTY.</th>
                   <th>AMOUNT</th>
@@ -73,12 +75,12 @@
                 <!-- <ng-template *ngFor="let name of bookUser"> -->
 
                   <tr data-toggle="modal" *ngFor="let booking of bookings | filter: filterText | filter: filterText2" (click)="openModalWithComponent(booking)">
-                    <td>{{booking.bookingInfo.date}}</td>
+                    <td>{{booking.bookingInfo.date | date:'dd/MM/yyyy'}}</td>
                     <td>{{booking.bookingInfo.bookingid}}</td>
-                    <td *ngIf="booking.bookingInfo.ticket_type; else general">{{booking.bookingInfo.ticket_type}}</td>
+                    <!-- <td *ngIf="booking.bookingInfo.ticket_type; else general">{{booking.bookingInfo.ticket_type}}</td>
                     <ng-template #general>
                       <td>N/A</td>
-                    </ng-template>
+                    </ng-template> -->
                     <td>{{ booking.bookingInfo.user }}</td>
                     <td>{{booking && booking.bookingInfo && (booking.bookingInfo.tickets[0].quantity)}}</td>
                     <td *ngIf="booking.bookingInfo.ticket_price; else zero">$ {{booking.bookingInfo.ticket_price}} </td>

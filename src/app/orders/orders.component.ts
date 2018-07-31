@@ -58,8 +58,8 @@ export class OrdersComponent implements OnInit {
 
   dateFormat(bookings){
     for(let i = 0 ; i < bookings.length;i++){
-      let date = bookings[i].bookingInfo.bookingdate.split(" ");
-      this.bookings[i].bookingInfo.date= date[0]
+      let date = bookings[i].bookingInfo.bookingdate;
+      this.bookings[i].bookingInfo.date= date;
     }
   }
   addUser(bookings){
