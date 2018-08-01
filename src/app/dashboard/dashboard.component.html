@@ -1,1 +1,188 @@
-Dashboard
+<div class="center_state_div">
+    <div class="container">
+        <div class="main_title_container">
+            <h1 class="the_title_left no_bottom_margin">Dashboard</h1>
+            <a class="btn btn_custom_acsetting adjust_margin_next_step" href="/events/create">Create event</a>
+        </div>
+
+        <div class="center_dash">
+
+            <div class="overview bg_common">
+                <div class="top_title">
+                    Overview
+                </div>
+                <div class="the_section">
+
+                    <div class="the_flex_container">
+                        <div class="the_flex_item">
+                            <div class="sup_title">Venues added</div>
+                            <div class="main_title">{{data?.total_venues}}</div>
+                        </div>
+                        <div class="the_flex_item">
+                            <div class="sup_title">Total events hosted</div>
+                            <div class="main_title">{{data?.total_events}}</div>
+                        </div>
+                        <div class="the_flex_item">
+                            <div class="sup_title">Total tickets sold</div>
+                            <div class="main_title">{{data?.tickets_sold}}</div>
+                        </div>
+                        <div class="the_flex_item">
+                            <div class="sup_title">Total revenue</div>
+                            <div class="main_title">$ {{data?.price}}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="the_events">
+                <div class="row this_display_flex">
+                    <div class="col-sm-6 this_flex_item">
+                        <div class="events bg_common">
+                            <div class="top_title">
+                                Events
+                            </div>
+                            <div class="the_section">
+                                <div class="the_flex_container">
+                                    <div class="the_flex_item flex_width_50">
+                                        <div class="sup_title">Upcoming events</div>
+                                        <div class="main_title">{{ upcomingEvents }}</div>
+                                    </div>
+                                    <div class="the_flex_item flex_width_50">
+                                        <div class="sup_title">Draft events</div>
+                                        <div class="main_title">{{ draftEvents }}</div>
+                                    </div>
+                                </div>
+                                <div class="the_link">
+                                    <a href="/events" class="the_tag">View all events</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 this_flex_item">
+                        <div class="events bg_common">
+                            <div class="top_title">
+                                Next event
+                            </div>
+                            <div class="the_section">
+
+                                <div class="top_sec">
+                                    <div class="date_field">
+                                        <div class="date">{{upcoming.start_date | date:'dd'}} </div>
+                                        <div class="month">{{upcoming.start_date | date: 'MMM'}}</div>
+                                    </div>
+                                    <!--
+                      -->
+                                    <div class="location_field">
+                                        <div class="name_event">{{upcoming.event_name}}</div>
+                                        <div class="location_event">
+                                            <img src="./assets/images/locaicon.svg">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="the_link">
+                                    <a class="the_tag">View event details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="transaction bg_common">
+                <!-- <div class="top_title">
+                    Transactions
+                </div>
+                <div class="the_diff_section">
+                    <div class="graph_section">
+                        <div class="div_control">
+                            <div class="the_title">
+                                Show transactions for
+                            </div>
+                            <div class="fields form_full">
+                                <span class="down_arrow">
+                                    <select class="theme_select">
+                                        <option value="Published">This week</option>
+                                        <option value="Published">This week</option>
+                                        <option value="Published">This week</option>
+                                    </select>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="plot_graph"></div>
+                    </div>
+                </div> -->
+
+                <!-- <div class="table_section">
+                    <div class="management_bottom">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>DATE</th>
+                                        <th>TRANSACTION ID</th>
+                                        <th>TRANSACTION DETAILS</th>
+                                        <th>CREDIT</th>
+                                        <th>DEBIT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>21 June 2017</td>
+                                        <td>#1237263478</td>
+                                        <td>Subscription for June 2017</td>
+                                        <td class="right">-</td>
+                                        <td class="right">$12.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>21 June 2017</td>
+                                        <td>#1237263478</td>
+                                        <td>Transfer to bank a/c no. XXX0976</td>
+                                        <td class="right">$2,000.00</td>
+                                        <td class="right">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>21 June 2017</td>
+                                        <td>#1237263478</td>
+                                        <td>Ticket purchase • Wolfpack Wednesdays
+                                            <span>Ben Steffens • 4 tickets</span>
+                                        </td>
+                                        <td class="right">$48.00</td>
+                                        <td class="right">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>21 June 2017</td>
+                                        <td>#1237263478</td>
+                                        <td>Ticket refunds • Wolfpack Wednesdays
+                                            <span>Omkar Harmalkar • 2 tickets</span>
+                                        </td>
+                                        <td class="right">-</td>
+                                        <td class="right">$24.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>21 June 2017</td>
+                                        <td>#1237263478</td>
+                                        <td>Ticket purchase • Wolfpack Wednesdays
+                                            <span>Albrito Marques • 3 tickets</span>
+                                        </td>
+                                        <td class="right">$36.00</td>
+                                        <td class="right">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bottom_show_more">
+                            <a href="#">View all transactions</a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+
+
+    </div>
+</div>

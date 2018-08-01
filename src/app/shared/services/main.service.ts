@@ -209,4 +209,8 @@ export class MainService {
     return this.http.post<any>(`${URL}/payment/addnewcard?uid=${uId}`, data, { headers: this.headers })
       .pipe()
   }
+  getDashboardDetails(uId){
+    return this.http.post<any>(`${URL}/event/dashboard/?userid=${uId}`, {}, {headers: this.headers})
+      .pipe()
+  }
 }

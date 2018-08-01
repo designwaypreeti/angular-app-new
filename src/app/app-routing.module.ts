@@ -98,6 +98,10 @@ const routes: Routes = [
         canActivate: [AuthGuardService, OrganiserGuardService]
     },
     {
+        path: 'dashboard',
+        component: DashboardComponent
+    },
+    {
         path: '',
         component: EventListComponent,
         canActivate: [AuthGuardService]
