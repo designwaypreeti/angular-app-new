@@ -71,14 +71,14 @@
               </div>
               <div class="fields flexstart">
                 <span class="arrow">
-                  <mat-select placeholder="Month" required ngModel name="month" (click)="selectMonth(f.month)">
+                  <mat-select placeholder="Month" required ngModel name="month" (click)="selectMonth(modalf.month)">
                     <mat-option *ngFor="let m of month" [value]="m.value">
                       {{ m.viewValue }}
                     </mat-option>
                   </mat-select>
                 </span>
                 <span class="arrow">
-                  <mat-select placeholder="Year" required ngModel name="year" (click)="selectYear(y.year)" >
+                  <mat-select placeholder="Year" required ngModel name="year" (click)="selectYear(modalf.year)" >
                     <mat-option *ngFor="let y of year" [value]="y.value">
                       {{ y.viewValue }}
                     </mat-option>
