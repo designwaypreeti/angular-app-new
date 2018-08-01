@@ -35,6 +35,7 @@ export class TicketBookingComponent implements OnInit {
       viewValue: 'Delete'
     },
   ];
+selectedTickets = [];
   question: any = 'Do you want to proceed with the payment?';
   answer: boolean = false;
   constructor(private mainService: MainService, private toastr: ToastrService, 
@@ -62,7 +63,13 @@ export class TicketBookingComponent implements OnInit {
 
     })
   }
-  prePurchase(){
+  prePurchase(tick, m){
+    let ticketData = {
+      ticketid : tick._id,
+      quantity: m
+    }
+    this.selectedTickets.push(ticketData);
+
     this.purchase = this.tickets.filter(e=> e.selectedQuantity)
     this.subTotal = 0
     this.tickets.forEach(e => { 
@@ -112,7 +119,7 @@ export class TicketBookingComponent implements OnInit {
     let data = {
       total: this.totalFees,
       card_id: card.id,
-      tickets: this.tickets
+      tickets: this.selectedTickets
     }
     console.log(data)
     this.mainService.makeSavedCardPayment(this.user._id,data, this.eId)
@@ -156,16 +163,14 @@ export class TicketBookingComponent implements OnInit {
     let user = localStorage.getItem('user');
     let uId = JSON.parse(user)._id;
     let data = {
-      tickets: this.tickets,
+      tickets: this.selectedTickets,
       total: this.totalFees,
       source_token: token.id
     }
     this.mainService.makeSavedCardPayment(this.user._id, data, this.eId)
       .subscribe(()=>{
-        let cardbody = {
-          source_token : token.id
-        }
-       this.addCard(cardbody)
+       
+      //  this.addCard(cardbody)
       });
 
   }

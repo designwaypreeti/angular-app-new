@@ -10,11 +10,11 @@
               <td class="status">On sale</td>
               <td class="price">{{ticket.ticket_price}}</td>
               <td class="qty text-center">
-                <mat-select [(ngModel)]="ticket.selectedQuantity" (change)="prePurchase()" name="quantity" [disabled]="ticket !== activeTicket.ticket">
+                <mat-select [(ngModel)]="ticket.selectedQuantity" (change)="prePurchase(ticket, ticket.selectedQuantity)" name="quantity" [disabled]="ticket !== activeTicket.ticket">
                   <mat-option *ngFor="let m of quantity" [value]="m">
                     {{ m }}
                   </mat-option>
-                </mat-select>
+                </mat-select> 
               </td>
             </tr>
             <tr class="last">

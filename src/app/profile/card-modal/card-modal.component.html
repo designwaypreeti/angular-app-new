@@ -52,7 +52,7 @@
                   <input type="text" pattern="\d*" name ="cvv" ngModel class="form_input" required minlength="3" maxlength="3">
                 </span>
               </div>
-            </div>
+            </div> 
 
             <div class="div_control">
               <div class="the_title">
@@ -71,14 +71,14 @@
               </div>
               <div class="fields flexstart">
                 <span class="arrow">
-                  <mat-select placeholder="Month" required ngModel name="month">
+                  <mat-select placeholder="Month" required ngModel name="month" (click)="selectMonth(m.value)">
                     <mat-option *ngFor="let m of month" [value]="m.value">
                       {{ m.viewValue }}
                     </mat-option>
                   </mat-select>
                 </span>
                 <span class="arrow">
-                  <mat-select placeholder="Year" required ngModel name="year">
+                  <mat-select placeholder="Year" required ngModel name="year" (click)="selectYear(y.value)" >
                     <mat-option *ngFor="let y of year" [value]="y.value">
                       {{ y.viewValue }}
                     </mat-option>
@@ -88,7 +88,7 @@
             </div>
 
           </div>
-          <button type="submit" class="btn btn_custom_add" [disabled]="modalf.form.invalid">Add card</button>
+          <button type="submit" class="btn btn_custom_add" [disabled]="modalf.form.invalid" (click) ="addcard()">Add card</button>
         </div>
       </form>
     </div>
