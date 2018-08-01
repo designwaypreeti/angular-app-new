@@ -41,6 +41,7 @@ export class ProfileComponent implements OnInit {
       , e => {
         console.log(e)
       })
+      this.getListOfCards(); 
   }
   fetchPlans(user) {
     this.mainService.getSubscriptions().subscribe(r => {
@@ -184,6 +185,13 @@ export class ProfileComponent implements OnInit {
     if (data.shown === false) {
       this.shown = false
     }
+  }
+  getListOfCards(){
+    this.mainService.getCardList(this.user._id).subscribe( 
+      res =>{
+        this.cards = res.result.data;
+        console.log(res)
+    })
   }
 
 }
