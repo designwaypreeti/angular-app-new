@@ -76,8 +76,11 @@ export class ProfileComponent implements OnInit {
         this.subsArr.reverse();
       })
 
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < this.subsArr.length; i++) {
         this.subs[i] = this.subsArr[i];
+        if(i==3){
+          break;
+        }
       }
       console.log(this.subs)
     }, err => { })
